@@ -1,0 +1,39 @@
+---
+title: Uninstall
+description: "Learn how to uninstall Hawiyat on your server"
+---
+
+import { Step, Steps } from 'fumadocs-ui/components/steps';
+
+Follow these steps to completely remove Hawiyat and its components from your server.
+
+<Steps>
+<Step>
+Remove the docker swarm services created by Hawiyat:
+
+   ```bash
+   docker service rm hawiyat hawiyat-traefik hawiyat-postgres hawiyat-redis
+   ```
+ 
+</Step>
+ 
+<Step>
+ 
+Remove the docker volumes created by hawiyat:
+
+   ```bash
+   docker volume rm -f hawiyat-postgres-database redis-data-volume
+   ```
+ 
+</Step>
+ 
+<Step>
+
+Remove the hawiyat files and directories from your server:
+
+   ```bash
+   sudo rm -rf /etc/hawiyat
+   ```
+ 
+</Step>
+</Steps>
