@@ -57,9 +57,7 @@ export async function generateMetadata(props: any): Promise<Metadata> {
 			url: new URL(`${baseUrl}`).toString(),
 			images: [
 				{
-					url: new URL(
-						`${baseUrl}/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Flogo.7cfd81d9.png&w=828&q=75`,
-					).toString(),
+					url: new URL(`${baseUrl}/logo.png`).toString(),
 					width: 1200,
 					height: 630,
 					alt: page.data.title,
@@ -73,9 +71,7 @@ export async function generateMetadata(props: any): Promise<Metadata> {
 			description: page.data.description,
 			images: [
 				{
-					url: new URL(
-						`${baseUrl}/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Flogo.7cfd81d9.png&w=828&q=75`,
-					).toString(),
+					url: new URL(`${baseUrl}/logo.png`).toString(),
 					width: 1200,
 					height: 630,
 					alt: page.data.title,
