@@ -3,7 +3,7 @@ import { GlobeIcon, HeartIcon } from "lucide-react";
 
 export const Logo = () => {
 	return (
-		<svg width="92" height="77" viewBox="0 0 92 77" fill="none" xmlns="http://www.w3.org/2000/svg">
+		<svg width="92" height="77" viewBox="0 0 92 77" fill="none" xmlns="http://www.w3.org/2000/svg" className="!size-8 lg:!size-10">
 			<path d="M0 19.7065V57.5747L33.1183 38.6408L0 19.7065Z" fill="#BFBFBF" />
 			<path d="M33.1183 0.772461V38.6406L0 19.7067L33.1183 0.772461Z" fill="#BCD3D5" />
 			<path d="M66.2352 19.7064L33.1152 0.772461V38.6406L66.2352 19.7064Z" fill="white" />
