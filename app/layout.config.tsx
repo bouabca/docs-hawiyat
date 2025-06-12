@@ -1,5 +1,6 @@
 import type { BaseLayoutProps } from "fumadocs-ui/layout";
 import { GlobeIcon, HeartIcon } from "lucide-react";
+import Image from "next/image";
 
 export const Logo = () => {
 	return (
@@ -32,7 +33,7 @@ export const baseOptions: BaseLayoutProps = {
 		url: "/get-started/introduction",
 		title: (
 			<>
-				<Logo />
+				<Image src="./icon.svg" width={32} height={32} alt="" />
 				<span className="text-foreground">Hawiyat</span>
 			</>
 		),
