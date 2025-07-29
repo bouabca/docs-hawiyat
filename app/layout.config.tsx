@@ -46,7 +46,7 @@ export const baseOptions: BaseLayoutProps = {
 		},
 		{
 			text: "Discord",
-			url: "https://discord.com/invite/2tBnJ3jDJc",
+			url: "https://discord.com/",
 			active: "nested-url",
 			icon: (
 				<>
