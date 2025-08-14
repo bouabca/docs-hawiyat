@@ -1,42 +1,168 @@
 ---
-title: Providers
-description: Learn how to use providers in your application.
+title: Deployment Providers
+description: Comprehensive guide to deploying applications using Hawiyat's supported providers and deployment methods.
 ---
 
-Hawiyat offers several deployment methods, streamlining the process whether you're utilizing GitHub, any Git provider, Docker, or automated deployments.
+# Deployment Provider Integration Guide
 
-- GitHub
-- Git (Any Git Provider)
-- Docker
+Hawiyat provides a robust and flexible deployment ecosystem that supports multiple deployment methods and source providers. This comprehensive integration system allows you to deploy applications from various sources while maintaining security, reliability, and automation capabilities.
 
-## GitHub
+## Supported Deployment Providers
 
-Deploying via GitHub is straightforward:
+Hawiyat seamlessly integrates with industry-standard providers and protocols:
 
-1. Configure your GitHub repository in the `/dashboard/settings/server`.
-2. When creating an application, Hawiyat automatically retrieves the available repositories and branches.
+### Primary Providers
+- **GitHub**: Full-featured GitHub integration with automated deployments
+- **Git Providers**: Support for all major Git platforms (GitLab, Bitbucket, Azure DevOps, etc.)
+- **Docker**: Direct container image deployments from any registry
 
-## Git
+### Key Features Across All Providers
+- Automated deployment triggers
+- Secure credential management
+- Version control integration
+- Build pipeline customization
+- Deployment rollback capabilities
+- Activity monitoring and logging
 
-For deployments from any Git repository, whether public or private, you can use either SSH or HTTPS:
+## GitHub Integration
 
-1. Enter the repository URL.
-2. Specify the branch you wish to deploy.
+GitHub integration provides a seamless deployment experience with advanced features and automation capabilities:
 
-### Private Repositories
+### Setup Process
+1. **Repository Configuration**
+   - Navigate to `/dashboard/settings/server`
+   - Authenticate with your GitHub account
+   - Configure webhook settings (optional)
+   - Set up deployment keys
 
-For private repositories, authenticate using SSH. We provide a lock icon to generate an SSH key.
+2. **Application Creation**
+   - Automatic repository discovery
+   - Branch selection and management
+   - Environment variable configuration
+   - Build settings customization
 
-<ImageZoom src="/assets/hawiyat-ssh-key.png" width={800} height={630} className="rounded-lg"/>
+### Advanced GitHub Features
+- **Webhook Integration**
+  - Automated deployments on push
+  - Branch-specific deployment rules
+  - Custom webhook events support
+  - Deploy preview environments
 
-You can then copy the SSH key and paste it into the settings of your account.
+- **Security Features**
+  - OAuth2 authentication
+  - Repository-level permissions
+  - Secret environment variables
+  - Deploy key management
 
-<ImageZoom src="/assets/private-repository.png" width={800} height={630} className="rounded-lg"/>
+- **Collaboration Tools**
+  - Team access management
+  - Deployment approvals
+  - Activity logging
+  - Deployment notifications
 
-This enables you to pull repositories from your private repository, a method consistent across nearly all providers.
+## Git Provider Integration
 
-## Docker
+Hawiyat provides comprehensive support for deploying applications from any Git provider, offering flexible authentication methods and advanced configuration options:
 
-For Docker deployments:
+### Repository Configuration Options
 
-- Provide a Docker image. For private repositories, enter the username and password.
+1. **Authentication Methods**
+   - **HTTPS**:
+     - Username/password authentication
+     - Personal access tokens
+     - OAuth2 integration
+   - **SSH**:
+     - Automatic key generation
+     - Custom key support
+     - Key rotation management
+
+2. **Repository Setup**
+   - Specify repository URL
+   - Configure branch settings
+   - Set up deployment triggers
+   - Define build parameters
+
+### Private Repository Access
+
+Secure access to private repositories is facilitated through our robust SSH key management system:
+
+1. **SSH Key Generation**
+   - Click the lock icon in the interface
+   - Automatic key generation with secure parameters
+   - Support for custom key algorithms
+   - Optional passphrase protection
+
+<ImageZoom 
+  src="/assets/hawiyat-ssh-key.png" 
+  width={800} 
+  height={630} 
+  className="rounded-lg"
+  alt="SSH Key Generation Interface"
+/>
+
+2. **Key Installation**
+   - Copy the generated public key
+   - Add to your Git provider's deploy keys
+   - Verify key installation
+   - Test repository access
+
+<ImageZoom 
+  src="/assets/private-repository.png" 
+  width={800} 
+  height={630} 
+  className="rounded-lg"
+  alt="Private Repository Configuration"
+/>
+
+### Universal Git Provider Support
+- **Supported Platforms**:
+  - GitLab (Cloud & Self-hosted)
+  - Bitbucket (Cloud & Server)
+  - Azure DevOps
+  - Gitea
+  - Any Git-compatible repository
+
+- **Integration Features**:
+  - Webhook support
+  - Deploy key management
+  - Branch protection rules
+  - Commit verification
+
+## Docker Registry Integration
+
+Hawiyat provides robust support for Docker-based deployments with advanced registry integration features:
+
+### Registry Configuration
+- **Authentication Options**:
+  - Username/password credentials
+  - Access tokens
+  - Registry-specific authentication
+  - Custom certificate authority
+
+### Deployment Features
+- **Image Management**:
+  - Tag selection and filtering
+  - Automatic updates
+  - Layer caching
+  - Multi-stage builds
+
+### Security Features
+- **Registry Security**:
+  - Encrypted credentials storage
+  - Pull rate limiting
+  - Image scanning
+  - Access control policies
+
+### Advanced Options
+- **Registry Types**:
+  - Docker Hub
+  - Google Container Registry
+  - Amazon Elastic Container Registry
+  - Azure Container Registry
+  - Private registries
+
+- **Configuration Settings**:
+  - Registry mirrors
+  - Pull through cache
+  - Custom registry endpoints
+  - Proxy configuration

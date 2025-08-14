@@ -1,34 +1,230 @@
 ---
-title: Build Type
-description: "Learn about the different build types available in Hawiyat, including Nixpacks, Dockerfile, and Buildpack options."
-
+title: Application Build Systems
+description: "Comprehensive guide to Hawiyat's build systems: Nixpacks, Dockerfile, and Cloud Native Buildpacks for optimal application deployment"
 ---
 
 import { Callout } from 'fumadocs-ui/components/callout';
 
+# Application Build System Guide
 
-Hawiyat offers three distinct build types for deploying applications, each suited to different development needs and preferences.
+Hawiyat provides a sophisticated build system architecture that supports multiple build approaches, enabling developers to choose the most appropriate method for their specific use case. This comprehensive guide details the available build types, their benefits, and optimal usage scenarios.
 
-### Nixpacks
+## Build System Overview
 
-This is the default build type in Hawiyat. When you select Nixpacks, Hawiyat builds your application as a Nixpack, which is optimized for ease of use and efficiency.
+Our platform offers three powerful build systems, each designed to meet different deployment requirements:
 
-You can read more about Nixpacks [here](https://nixpacks.com/).
+1. **Nixpacks** (Recommended Default)
+   - Optimized for modern applications
+   - Zero configuration deployment
+   - Automatic dependency management
 
-### Dockerfile
+2. **Dockerfile**
+   - Custom build environments
+   - Full control over build process
+   - Legacy application support
 
-If your project includes a Dockerfile, you can specify its path. Hawiyat will use this Dockerfile to build your application directly, giving you full control over the build environment and dependencies.
+3. **Buildpacks**
+   - Cloud-native deployment
+   - Platform-agnostic builds
+   - Standardized build process
 
-### Buildpack
+## Nixpacks Build System
 
-Hawiyat supports two types of buildpacks:
+Nixpacks is Hawiyat's recommended build system, offering a powerful combination of automation, efficiency, and developer experience. This innovative build system automatically detects your application's requirements and creates optimized containers.
 
-- **Heroku**: Adapted from Heroku's popular cloud platform, these buildpacks are designed for compatibility and ease of migration.
-- **Paketo**: Provides cloud-native buildpacks that leverage modern standards and practices for building applications.
+### Key Features
 
-<Callout>
-  **Tip:** We recommend using the `Nixpacks` build type as it is the most
-  straightforward and commonly used option for most applications.
+1. **Automatic Detection**
+   - Language detection
+   - Framework identification
+   - Development environment analysis
+   - Dependency resolution
+
+2. **Build Optimization**
+   - Cache optimization
+   - Layer minimization
+   - Dependency deduplication
+   - Resource efficiency
+
+3. **Security Features**
+   - Minimal base images
+   - Security patches
+   - Vulnerability scanning
+   - Dependency auditing
+
+### Supported Technologies
+
+- **Languages**:
+  - Node.js/JavaScript
+  - Python
+  - Ruby
+  - Go
+  - Java
+  - PHP
+  - Rust
+  - And many more
+
+- **Frameworks**:
+  - React
+  - Next.js
+  - Django
+  - Flask
+  - Rails
+  - Spring Boot
+  - Laravel
+
+Learn more about Nixpacks [here](https://nixpacks.com/).
+
+## Dockerfile Build System
+
+The Dockerfile build system provides complete control over the build process, ideal for applications requiring specific configurations or custom build steps.
+
+### Features and Capabilities
+
+1. **Build Configuration**
+   - Custom base images
+   - Multi-stage builds
+   - Build arguments
+   - Environment variables
+   - Custom scripts
+
+2. **Advanced Options**
+   - Layer caching
+   - Build contexts
+   - Cross-platform builds
+   - Build-time variables
+
+3. **Integration Features**
+   - CI/CD pipeline support
+   - Registry integration
+   - Build hooks
+   - Cache management
+
+### Best Practices
+
+1. **Optimization**
+   - Use multi-stage builds
+   - Minimize layer count
+   - Optimize caching
+   - Remove unnecessary files
+
+2. **Security**
+   - Use official base images
+   - Regular security updates
+   - Minimal permissions
+   - Secure credentials handling
+
+## Cloud Native Buildpacks
+
+Hawiyat integrates with industry-standard buildpack providers, offering a standardized approach to building cloud-native applications. Our platform supports two major buildpack ecosystems:
+
+### Heroku Buildpacks
+
+Heroku buildpacks provide a battle-tested build system with extensive language and framework support.
+
+1. **Key Advantages**
+   - Proven reliability
+   - Extensive language support
+   - Simple configuration
+   - Automatic updates
+   - Large ecosystem
+
+2. **Features**
+   - Dependency caching
+   - Build-time hooks
+   - Runtime configuration
+   - Environment management
+   - Add-on compatibility
+
+3. **Supported Stacks**
+   - heroku-18
+   - heroku-20
+   - heroku-22
+   - Custom stacks
+
+### Paketo Buildpacks
+
+Paketo buildpacks implement the Cloud Native Buildpacks specification, providing modern, standardized build processes.
+
+1. **Core Features**
+   - Cloud-native architecture
+   - Reproducible builds
+   - Bill of Materials
+   - Supply chain security
+   - Modular design
+
+2. **Advanced Capabilities**
+   - Lifecycle management
+   - Buildpack composition
+   - Platform API compliance
+   - Image optimization
+   - Dependency updates
+
+3. **Enterprise Benefits**
+   - Standardized builds
+   - Compliance support
+   - Security features
+   - Audit trail
+   - Enterprise support
+
+<Callout type="info">
+  ## Build Type Selection Guide
+
+  ### Recommended: Nixpacks
+  - **Best for**: Most applications
+  - **Benefits**: 
+    - Zero configuration
+    - Automatic optimization
+    - Modern tooling
+    - Rapid deployment
+
+  ### Consider Dockerfile when:
+  - You need complete build control
+  - Have specific base image requirements
+  - Require custom build steps
+  - Need multi-stage builds
+
+  ### Choose Buildpacks for:
+  - Cloud-native applications
+  - Platform standardization
+  - Enterprise compliance
+  - Legacy application migration
 </Callout>
 
-By choosing the appropriate build type, you can tailor the deployment process to best fit your application's requirements and your operational preferences.
+## Build System Comparison
+
+### Performance Characteristics
+
+1. **Build Speed**
+   - Nixpacks: Fast with smart caching
+   - Dockerfile: Varies with configuration
+   - Buildpacks: Optimized for reuse
+
+2. **Resource Usage**
+   - Nixpacks: Optimized automatically
+   - Dockerfile: Manual optimization
+   - Buildpacks: Standardized optimization
+
+3. **Maintenance Overhead**
+   - Nixpacks: Minimal
+   - Dockerfile: Higher
+   - Buildpacks: Moderate
+
+### Security Considerations
+
+- **Nixpacks**: 
+  - Automated security patches
+  - Built-in best practices
+  - Regular updates
+
+- **Dockerfile**: 
+  - Manual security configuration
+  - Custom security policies
+  - Regular maintenance required
+
+- **Buildpacks**: 
+  - Standardized security
+  - Compliance features
+  - Automated updates
+
+By carefully considering your application's requirements, development workflow, and operational needs, you can select the build system that best aligns with your objectives. Each system offers unique advantages, and Hawiyat's flexible architecture allows you to choose the most appropriate option for your specific use case.

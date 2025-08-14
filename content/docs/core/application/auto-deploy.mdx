@@ -1,40 +1,142 @@
 ---
-title: Auto Deploy
-description: "Learn how to automatically deploy your application to Hawiyat."
+title: Automated Deployment Systems
+description: "Comprehensive guide to automating application deployments in Hawiyat using Webhooks, APIs, and integrated CI/CD pipelines."
 ---
 
-Automatically deploying your application to Hawiyat can be achieved through two primary methods: using Webhooks or the Hawiyat API. Each method supports various platforms and provides a streamlined deployment process.
+# Automated Deployment Guide
 
-## Github
+Hawiyat provides sophisticated automated deployment capabilities through multiple integration paths, enabling seamless continuous deployment workflows. This comprehensive guide covers all available automation methods, their configuration, and best practices.
 
-For Github, we provide autodeploy without any configuration. This will automatically deploy your application whenever you push to your repository.
+## Deployment Automation Overview
 
-## Webhook URL
+Our platform offers three robust approaches to automation:
 
-Webhooks allow you to automatically deploy your application whenever changes are made in your source repository.
+1. **Native GitHub Integration**
+   - Zero-configuration deployment
+   - Built-in authentication
+   - Automated branch tracking
+   - Deploy previews
 
-- GitHub
-- GitLab
-- Bitbucket
-- Gitea
-- DockerHub
+2. **Webhook System**
+   - Multi-provider support
+   - Custom trigger rules
+   - Secure payload delivery
+   - Event filtering
 
-### Configuration Steps
+3. **RESTful API**
+   - Programmatic control
+   - Custom automation
+   - CI/CD integration
+   - Scripted deployments
 
-1. **Enable Auto Deploy**: Toggle the 'Auto Deploy' button found in the general tab of your application settings in Hawiyat.
-2. **Obtain Webhook URL**: Locate the Webhook URL from the deployment logs.
+## GitHub Native Integration
+
+Hawiyat provides a seamless, zero-configuration GitHub integration that enables immediate automated deployments:
+
+### Features
+- **Automatic Repository Detection**
+  - Branch synchronization
+  - Commit tracking
+  - PR integration
+  - Deploy previews
+
+### Security
+- **OAuth2 Authentication**
+  - Secure token management
+  - Scope-based permissions
+  - Automatic token rotation
+  - Audit logging
+
+### Configuration Options
+- **Branch Rules**
+  - Production branch protection
+  - Review requirements
+  - Merge restrictions
+  - Deployment conditions
+
+## Webhook Integration System
+
+Hawiyat's webhook system provides enterprise-grade automated deployment capabilities across multiple platforms and version control systems.
+
+### Supported Platforms
+
+1. **Version Control Systems**
+   - **GitHub**
+     - Organization support
+     - Enterprise server compatibility
+     - Advanced security features
+   
+   - **GitLab**
+     - Self-hosted instance support
+     - CI/CD pipeline integration
+     - Custom header support
+   
+   - **Bitbucket**
+     - Cloud and Server support
+     - Pipeline integration
+     - Custom triggers
+   
+   - **Gitea**
+     - Self-hosted compatibility
+     - Custom event filtering
+     - Signature verification
+
+2. **Container Registries**
+   - **DockerHub**
+     - Automated builds
+     - Tag filtering
+     - Registry webhooks
+
+### Comprehensive Setup Process
+
+1. **Enable Automated Deployment**
+   - Navigate to application settings
+   - Access the general configuration tab
+   - Locate the 'Auto Deploy' section
+   - Enable the feature toggle
+   - Configure deployment rules
+
+2. **Webhook URL Configuration**
+   - Access deployment configuration
+   - Retrieve secure webhook URL
+   - Copy the unique endpoint
 
 <ImageZoom
   src="/assets/webhook-url.png"
-  alt="Webhook URL"
+  alt="Webhook URL Configuration Interface"
   width={1000}
   height={500}
 />
 
-3. **Configure Your Repository**:
-   - Navigate to your repository settings on your chosen platform.
-   - Add the webhook URL provided by Hawiyat.
-   - Ensure the settings match the configuration necessary for triggering the webhook.
+3. **Platform Integration**
+   - Access repository settings
+   - Navigate to webhook section
+   - Configure webhook endpoint
+   - Set content type (application/json)
+   - Configure event triggers
+   - Set security parameters
+
+<ImageZoom
+  src="/assets/webhook-github.png"
+  alt="Repository Webhook Configuration"
+  width={1000}
+  height={500}
+/>
+
+### Advanced Configuration Options
+
+1. **Event Filtering**
+   - Push events
+   - Tag creation
+   - Release publication
+   - Pull request actions
+   - Custom events
+
+2. **Security Settings**
+   - Secret token validation
+   - IP whitelisting
+   - SSL verification
+   - Payload signing
 
 <ImageZoom
   src="/assets/webhook-github.png"
@@ -43,44 +145,118 @@ Webhooks allow you to automatically deploy your application whenever changes are
   height={500}
 />
 
-#### Important Notes
+## Critical Configuration Notes
 
-- **Branch Matching**: When using Git-based providers (GitHub, GitLab, etc.), ensure that the branch configured in Hawiyat matches the branch you intend to push to. Misalignment will result in a "Branch Not Match" error.
-- **Docker Tags**: For deployments using DockerHub, ensure the tag pushed matches the one specified in Hawiyat.
-- The steps are the same for all the providers.
+### Version Control Integration
+1. **Branch Configuration**
+   - Match branch names exactly
+   - Case-sensitive matching
+   - Pattern matching support
+   - Default branch handling
 
-### API Method
+2. **Container Tags**
+   - Tag synchronization
+   - Version matching
+   - Latest tag handling
+   - Custom tag patterns
 
-Deploy your application programmatically using the Hawiyat API from anywhere.
+### Best Practices
+- Implement proper error handling
+- Monitor webhook deliveries
+- Set up notification systems
+- Maintain deployment logs
+- Regular security audits
 
-### Steps to Deploy Using API
+## RESTful API Integration
 
-Steps:
+Hawiyat provides a powerful REST API enabling programmatic control over deployments and advanced automation capabilities.
 
-1. **Generate a Token**: Create an API token in your profile settings on Hawiyat.
-2. **Retrieve Application ID**:
+### Authentication System
 
-```http
-curl -X 'GET' \
-  'https://your-domain/api/project.all' \
-  -H 'accept: application/json'
-  -H 'Authorization: Bearer <token>'
-```
+1. **Token Generation**
+   - Access profile settings
+   - Navigate to API tokens
+   - Generate new token
+   - Set token permissions
+   - Configure expiration
 
-This command lists all projects and services. Identify the applicationId for the application you wish to deploy.
+2. **Token Management**
+   - Secure storage
+   - Regular rotation
+   - Access monitoring
+   - Usage analytics
 
-3. **Trigger Deployment**:
+### API Implementation Guide
 
-```http
-curl -X 'POST' \
-  'https://your-domain/api/application.deploy' \
-  -H 'accept: application/json' \
-  -H 'Content-Type: application/json' \
-  -H 'Authorization: Bearer <token>' \
-  -d '{
-  "applicationId": "string"
-}'
-```
+1. **Project Discovery**
+   ```http
+   curl -X 'GET' \
+     'https://your-domain/api/project.all' \
+     -H 'accept: application/json' \
+     -H 'Authorization: Bearer <token>'
+   ```
 
-This API method allows for flexible, scriptable deployment options, suitable for automated systems or situations where direct repository integration is not feasible.
-In this way you can deploy your application from anywhere, you can use the webhook URL or the API.
+   **Response Handling**:
+   - Parse project listing
+   - Extract application IDs
+   - Cache results
+   - Handle pagination
+
+2. **Deployment Trigger**
+   ```http
+   curl -X 'POST' \
+     'https://your-domain/api/application.deploy' \
+     -H 'accept: application/json' \
+     -H 'Content-Type: application/json' \
+     -H 'Authorization: Bearer <token>' \
+     -d '{
+     "applicationId": "string"
+   }'
+   ```
+
+   **Advanced Options**:
+   - Custom deployment parameters
+   - Environment selection
+   - Build configuration
+   - Rollback settings
+
+### Integration Scenarios
+
+1. **CI/CD Pipeline Integration**
+   - Jenkins pipeline
+   - GitHub Actions
+   - GitLab CI
+   - CircleCI
+   - Azure DevOps
+
+2. **Custom Automation**
+   - Scheduled deployments
+   - Multi-stage deployments
+   - Canary releases
+   - Blue-green deployments
+
+3. **Error Handling**
+   - Retry mechanisms
+   - Failure notifications
+   - Rollback procedures
+   - Error logging
+
+### Security Considerations
+
+1. **API Security**
+   - Token encryption
+   - Request signing
+   - Rate limiting
+   - IP restrictions
+
+2. **Deployment Safety**
+   - Validation checks
+   - Health monitoring
+   - Rollback triggers
+   - Audit logging
+
+3. **Best Practices**
+   - Regular token rotation
+   - Minimal scope access
+   - Secure token storage
+   - Activity monitoring

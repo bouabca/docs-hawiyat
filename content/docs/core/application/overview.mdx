@@ -3,42 +3,138 @@ title: Overview
 description: "Explore the multiple deployment methods available in Hawiyat, including GitHub, Git, Docker, and automated deployments via webhooks."
 ---
 
-Applications in Hawiyat are treated as a single service or container, making it easy and intuitive for users to work with each application in its own workspace.
+# Application Management in Hawiyat
 
-We offer multiple functionalities that you can use to manage your applications, such as:
+Applications in Hawiyat are designed with a container-first approach, where each application is encapsulated as a single service or container. This architectural decision provides several key benefits:
 
-## General
+- **Isolation**: Each application runs in its own isolated environment, preventing conflicts between dependencies and ensuring consistent behavior
+- **Scalability**: Individual applications can be scaled independently based on their specific requirements
+- **Maintainability**: The isolated workspace model makes it easier to manage, monitor, and troubleshoot each application
+- **Resource Efficiency**: Resources can be allocated and optimized on a per-application basis
 
-Configure the source of your code, the way your application is built, and also manage actions like deploying, updating, and deleting your application, and stopping it.
+## Core Features and Management Tools
 
-## Environment
+Hawiyat provides a comprehensive suite of tools and functionalities to manage your applications effectively. Below, you'll find detailed information about each management area:
 
-If you need to assign environment variables to your application, you can do so here.
+## General Management
 
-## Monitoring
+The General Management section provides essential controls for the core aspects of your application lifecycle:
 
-Four graphs will be displayed for the use of memory, CPU, disk, and network. Note that the information is only updated if you are viewing the current page, otherwise it will not be updated.
+- **Source Control Integration**: Configure and manage your application's source code repository, supporting multiple version control platforms
+- **Build Configuration**: Customize how your application is built, including build commands, environment settings, and deployment strategies
+- **Lifecycle Management**: Execute critical operations such as:
+  - Deploying new versions
+  - Updating existing deployments
+  - Gracefully stopping applications
+  - Managing application deletion
+  - Rolling back to previous versions when needed
 
-## Logs
+## Environment Configuration
 
-If you want to see any important logs from your application that is running, you can do so here and determine if your application is displaying any errors or not.
+The Environment section provides a robust interface for managing your application's runtime configuration:
 
-## Deployments
+- **Environment Variables**: Set and manage both sensitive and non-sensitive environment variables
+- **Configuration Groups**: Organize variables into logical groups for different environments (development, staging, production)
+- **Secret Management**: Securely store and manage sensitive information
+- **Variable Validation**: Ensure all required environment variables are properly configured before deployment
 
-You can view the last 10 deployments of your application. When you deploy your application in real time, a new deployment record will be created and it will gradually show you how your application is being built.
+## Performance Monitoring
 
-We also offer a button to cancel deployments that are in queue. Note that those in progress cannot be canceled.
+Our comprehensive monitoring dashboard provides real-time insights into your application's performance through four key metrics:
 
-We provide a webhook so that you can trigger your own deployments by pushing to your GitHub, Gitea, GitLab, Bitbucket, DockerHub repository.
+1. **Memory Usage**:
+   - Track RAM utilization
+   - Monitor memory leaks
+   - View garbage collection patterns
 
-## Domains
+2. **CPU Performance**:
+   - Monitor processor usage
+   - Track processing bottlenecks
+   - Analyze computational efficiency
 
-This is where you will assign your domain so that your application can be accessed from the internet.
+3. **Disk Usage**:
+   - Monitor storage consumption
+   - Track I/O operations
+   - Analyze disk performance patterns
 
-There are two ways to assign a domain:
+4. **Network Activity**:
+   - Monitor bandwidth usage
+   - Track network latency
+   - Analyze traffic patterns
 
-1. Create a custom domain.
-2. Use a generated domain, we use traefik.me to generate free domains.
+Important: The monitoring graphs are updated in real-time only when viewing the monitoring page. This design choice helps optimize system resources and provides the most accurate data when you need it.
+
+## Application Logging
+
+The Logging system provides comprehensive visibility into your application's runtime behavior:
+
+- **Real-time Log Streaming**: View logs as they are generated
+- **Log Filtering**: Filter logs by severity level (INFO, WARNING, ERROR, etc.)
+- **Search Capability**: Search through logs for specific events or error messages
+- **Log Retention**: Access historical logs for troubleshooting and analysis
+- **Log Download**: Export logs for offline analysis or archival purposes
+
+## Deployment Management
+
+Our sophisticated deployment system offers complete control over your application's deployment lifecycle:
+
+### Deployment History
+- Maintains a detailed history of your last 10 deployments
+- Each deployment record includes:
+  - Timestamp
+  - Deployment status
+  - Build logs
+  - Configuration changes
+  - Deployment duration
+  - Resource utilization
+
+### Real-time Deployment Monitoring
+- Watch your application build and deploy in real-time
+- View detailed progress indicators for each deployment phase:
+  - Source code checkout
+  - Dependency installation
+  - Build process
+  - Container creation
+  - Service deployment
+
+### Deployment Control
+- **Queue Management**: Cancel pending deployments that haven't started
+- **Progress Protection**: Active deployments cannot be canceled to maintain system integrity
+- **Rollback Capability**: Quickly revert to previous successful deployments if needed
+
+### Automated Deployment Integration
+Hawiyat provides powerful webhook integration supporting multiple source control platforms:
+- GitHub
+- GitLab
+- Gitea
+- Bitbucket
+- DockerHub
+
+These webhooks enable automatic deployments triggered by:
+- Push events
+- Tag creation
+- Release publications
+- Custom webhook events
+
+## Domain Management
+
+The Domain Management interface provides comprehensive control over how your applications are accessed from the internet. We offer flexible domain configuration options to suit various deployment scenarios:
+
+### Domain Configuration Options
+
+1. **Custom Domain Integration**
+   - Configure your own domain names
+   - Support for multiple domains per application
+   - SSL/TLS certificate management
+   - DNS configuration guidance
+   - Custom header rules
+
+2. **Auto-generated Domains**
+   - Instant access through traefik.me domains
+   - Zero configuration required
+   - Perfect for development and testing
+   - Automatic SSL certificate provisioning
+   - Immediate availability
 
 ## Advanced Settings
 

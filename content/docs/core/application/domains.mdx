@@ -1,48 +1,247 @@
 ---
-title: Domains
-description: Domains
+title: Domain Management
+description: Comprehensive guide to domain configuration, SSL/TLS management, and routing in Hawiyat
 ---
 
-This section outlines how to configure domains for your applications in Hawiyat, ensuring that your applications are accessible via custom URLs.
+# Domain Configuration and Management
 
+This comprehensive guide details how to configure and manage domains for your applications in Hawiyat. Proper domain configuration is essential for making your applications accessible, secure, and professionally presented on the internet.
 
-### Add Domain
+## Domain Management Overview
 
-Associate custom domains with your application to make it accessible over the internet.
+Hawiyat provides a sophisticated domain management system that offers:
 
-- **Host**: The domain name that you want to link to your application (e.g., `api.hawiyat.org`).
-- **Path**: The specific path within the domain where the application should be accessible.
-- **Container Port**: The port on the container that the domain should route to.
-- **Certificate**: Select whether to secure the domain with SSL/TLS certificates. Hawiyat supports automatic provisioning of SSL certificates via Let's Encrypt.
-- **HTTPS**: Toggle this on to enable HTTPS for your domain, providing secure, encrypted connections.
+- Custom domain configuration
+- Automatic SSL/TLS certificate management
+- Advanced routing capabilities
+- Development domains for testing
+- Load balancing and failover
+- Traffic monitoring and analytics
 
-#### Steps to Add a Domain
-1. Click 'Add Domain'.
-2. Fill in the domain details, including host, path, and port.
-3. Choose to enable HTTPS and select a certificate option.
-4. Click 'Create' to apply the settings.
+## Custom Domain Configuration
 
-### Generate Domain
+Configure custom domains to make your applications accessible through professional, branded URLs. Our system provides comprehensive domain management capabilities with advanced security features.
 
-Quickly set up a domain for development or testing purposes without needing to register a domain.
+### Domain Configuration Parameters
 
-- **Generate TraefikMe Domain**: Creates a free domain provided by TraefikMe. This is ideal for testing or temporary access before a proper domain is purchased.
+1. **Host Configuration**
+   - **Domain Name**: Link your application to a custom domain (e.g., `api.hawiyat.org`)
+   - **Subdomain Support**: Configure multiple subdomains
+   - **Wildcard Domains**: Support for wildcard certificates and routing
+   - **Domain Validation**: Automatic DNS verification
 
-#### Steps to Generate a Domain
-1. Click 'Generate Domain'.
-2. Choose 'Generate TraefikMe Domain' for a quick setup.
-3. A domain will be automatically assigned to your application.
+2. **Path Management**
+   - **URL Path**: Define specific paths for application access
+   - **Path-based Routing**: Route different paths to different services
+   - **URL Rewriting**: Configure URL transformation rules
+   - **Path Prefixing**: Add custom prefixes to routes
 
-### Managing Domains
+3. **Port Configuration**
+   - **Container Port Mapping**: Specify internal container ports
+   - **Protocol Selection**: Choose HTTP/HTTPS protocols
+   - **Port Forwarding**: Advanced port routing options
+   - **Load Balancing**: Distribute traffic across ports
 
-- **View and Modify**: Existing domains are listed with options to edit settings or remove them.
-- **Details**: Each domain entry shows the configured host, path, port, and whether HTTPS is enabled.
+4. **SSL/TLS Certificate Management**
+   - **Automatic Provisioning**: Let's Encrypt integration
+   - **Custom Certificates**: Upload your own SSL certificates
+   - **Certificate Renewal**: Automatic certificate management
+   - **SNI Support**: Multiple certificates per domain
 
-### Note
+5. **Security Settings**
+   - **HTTPS Enforcement**: Force secure connections
+   - **HSTS Configuration**: HTTP Strict Transport Security
+   - **SSL/TLS Versions**: Configure supported protocols
+   - **Cipher Suite Selection**: Custom security settings
 
-Proper domain configuration is crucial for the accessibility and security of your application. Always verify domain settings and ensure that DNS configurations are properly set up to point to the correct IP addresses. Enable HTTPS to enhance security and trust, especially for production environments.
+### Domain Setup Process
 
+1. **Initial Configuration**
+   - Access the domain management interface
+   - Click 'Add Domain' to begin setup
+   - Select domain configuration type
 
-### Important Clarification on Container Ports
+2. **Basic Settings**
+   - Enter domain name and path configurations
+   - Configure port mappings
+   - Set up SSL/TLS options
 
-The "Container Port" specified in the domain settings is exclusively for routing traffic to the correct application container through Traefik, and does not expose the port directly to the internet. This is fundamentally different from the port settings in the "Advanced -> Ports" section, which are used to directly expose application ports. The container port in the domain settings ensures that Traefik can internally direct traffic to the specified port within the container based on the domain configuration.
+3. **Security Configuration**
+   - Enable HTTPS
+   - Choose certificate provider
+   - Configure security policies
+
+4. **Validation and Deployment**
+   - Verify domain ownership
+   - Test configuration
+   - Apply and activate settings
+
+## Development Domain Generation
+
+Hawiyat provides an automated domain generation system for rapid development and testing environments, eliminating the need for immediate domain registration during the development phase.
+
+### TraefikMe Integration
+
+Our platform leverages TraefikMe's robust domain generation service to provide instant, secure development URLs:
+
+1. **Automatic Domain Generation**
+   - Instant provisioning
+   - Unique domain names
+   - SSL/TLS included
+   - Zero configuration needed
+
+2. **Development Features**
+   - Preview environments
+   - Branch-specific domains
+   - Temporary access URLs
+   - Automatic DNS management
+
+3. **Security Considerations**
+   - HTTPS by default
+   - Automatic certificate management
+   - Rate limiting
+   - DDoS protection
+
+### Generation Process
+
+1. **Quick Setup**
+   - Navigate to domain settings
+   - Click 'Generate Domain'
+   - Select 'Generate TraefikMe Domain'
+
+2. **Configuration Options**
+   - Choose domain prefix (optional)
+   - Select environment type
+   - Configure access controls
+   - Set expiration (optional)
+
+3. **Domain Activation**
+   - Automatic DNS propagation
+   - SSL certificate provisioning
+   - Health check verification
+   - Deployment confirmation
+
+4. **Management Features**
+   - Domain renewal
+   - Access logging
+   - Traffic monitoring
+   - Usage analytics
+
+## Domain Management Interface
+
+The Domain Management Interface provides comprehensive tools for maintaining and monitoring your domain configurations:
+
+### Domain Overview Dashboard
+
+1. **Domain Listing**
+   - Comprehensive domain inventory
+   - Status indicators
+   - Quick action buttons
+   - Search and filtering
+
+2. **Management Operations**
+   - Edit domain settings
+   - Update SSL certificates
+   - Modify routing rules
+   - Configure redirects
+   - Manage access controls
+
+3. **Monitoring Tools**
+   - Traffic analytics
+   - Error reporting
+   - Performance metrics
+   - Security alerts
+
+### Domain Health and Maintenance
+
+1. **Health Monitoring**
+   - Uptime tracking
+   - Response time monitoring
+   - SSL certificate status
+   - DNS propagation checks
+
+2. **Maintenance Tasks**
+   - Certificate renewal
+   - DNS record updates
+   - Security policy updates
+   - Backup management
+
+## Best Practices and Security Guidelines
+
+### Domain Configuration Best Practices
+
+1. **DNS Management**
+   - Verify DNS propagation
+   - Configure proper A/AAAA records
+   - Set up CNAME records correctly
+   - Implement DNS security measures
+
+2. **Security Measures**
+   - Enable HTTPS by default
+   - Implement HSTS policies
+   - Configure CSP headers
+   - Enable rate limiting
+
+3. **Performance Optimization**
+   - Enable caching
+   - Configure CDN integration
+   - Optimize routing rules
+   - Implement load balancing
+
+### Container Port Configuration
+
+#### Understanding Port Management
+
+The domain settings in Hawiyat implement a sophisticated port management system:
+
+1. **Domain Port Settings**
+   - **Internal Routing**: Container ports specified in domain settings are used exclusively for internal Traefik routing
+   - **Security**: No direct internet exposure
+   - **Flexibility**: Multiple internal routing configurations
+   - **Load Balancing**: Distribute traffic across containers
+
+2. **Advanced Port Configuration**
+   - Located in "Advanced -> Ports" section
+   - Direct port exposure management
+   - Public internet accessibility
+   - Custom protocol support
+
+3. **Traefik Integration**
+   - Intelligent traffic routing
+   - Automatic service discovery
+   - Health checking
+   - Circuit breaking
+
+#### Security Considerations
+
+1. **Port Exposure**
+   - Minimize direct port exposure
+   - Implement proper access controls
+   - Monitor port usage
+   - Regular security audits
+
+2. **Traffic Management**
+   - Rate limiting
+   - DDoS protection
+   - Traffic filtering
+   - Access logging
+
+### ⚠️ Important Security Notes
+
+1. **Configuration Verification**
+   - Always verify domain settings
+   - Test DNS configurations
+   - Validate SSL certificates
+   - Check security headers
+
+2. **Production Environments**
+   - Enable enhanced security measures
+   - Implement monitoring
+   - Regular security updates
+   - Backup configurations
+
+3. **Regular Maintenance**
+   - Update SSL certificates
+   - Review security policies
+   - Monitor traffic patterns
+   - Update configurations
