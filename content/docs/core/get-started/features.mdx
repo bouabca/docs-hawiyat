@@ -1,51 +1,182 @@
 ---
-title: 'Features'
-description: 'Explore the comprehensive suite of features available in Hawiyat for optimized application deployment and management.'
+title: "Platform Features"
+description: "Comprehensive guide to Hawiyat's advanced deployment capabilities, infrastructure management, and operational features"
 ---
 
-Hawiyat provides a comprehensive suite of features designed to simplify and enhance the application deployment process.
+# Hawiyat Platform Features
 
-## Application Deployment
+Hawiyat delivers a sophisticated suite of enterprise-grade features designed to revolutionize application deployment and infrastructure management. Our platform combines cutting-edge technology with intuitive interfaces to provide a comprehensive solution for modern deployment needs.
 
-Hawiyat supports two primary methods for deploying applications:
+## Application Deployment Architecture
 
-1. **Applications**: This straightforward method allows for effortless deployment. Ideal for single applications, it offers a near plug-and-play experience.
-2. **Docker Compose**: A more advanced option, requiring the creation of Dockerfiles and `docker-compose.yml`. This method provides greater control over deployment settings and full utilization of Docker Compose capabilities.
+Hawiyat implements two sophisticated deployment methodologies, each optimized for specific use cases and operational requirements:
 
-### Applications Management
+### 1. Standard Application Deployment
+The standard deployment pathway offers a streamlined, automated approach designed for rapid deployment cycles:
 
-Manage your applications through a range of features:
+- **Zero-Configuration Deployment**: Automatic detection and configuration of application requirements
+- **Intelligent Build System**: Advanced build pipeline with automatic dependency resolution
+- **Runtime Optimization**: Automated resource allocation and scaling capabilities
+- **Integration Support**: Native integration with major version control systems and CI/CD pipelines
+- **Deployment Strategies**: Support for blue-green deployments, canary releases, and rolling updates
 
-**Basic Operations**:
-  1. Deploy, stop, and delete applications.
-  2. Open a terminal directly in the application container.
+### 2. Docker Compose Orchestration
+Advanced containerization management through Docker Compose, providing granular control over multi-container applications:
 
-**Source and Build Configuration**:
-  1. Choose source providers (GitHub, Git, Docker).
-  2. Select build types (Docker, Nixpacks, Heroku Buildpacks, Paketo Buildpacks).
+- **Custom Container Configuration**: Full support for custom Dockerfile and docker-compose.yml specifications
+- **Service Orchestration**: Sophisticated management of multi-container applications and microservices
+- **Network Configuration**: Advanced networking capabilities including custom overlay networks and service discovery
+- **Volume Management**: Persistent storage management with support for various volume drivers
+- **Resource Control**: Fine-grained control over CPU, memory, and storage allocations
+
+## Advanced Application Management
+
+Our comprehensive application management system provides enterprise-grade control and monitoring capabilities:
+
+### Deployment Operations
+Sophisticated deployment management with advanced operational controls:
+
+**Core Operations**
+- **Deployment Automation**: 
+  - One-click deployment with automatic environment configuration
+  - Rollback capabilities with version control
+  - Automated health checks and self-healing
+  - Custom deployment hooks and triggers
+
+- **Container Management**:
+  - Interactive terminal access with secure shell integration
+  - Container lifecycle management
+  - Resource allocation and scaling
+  - Custom initialization scripts
+
+### Build System Integration
+Advanced build pipeline with comprehensive source control integration:
+
+**Source Control Integration**
+- **Multi-Source Support**:
+  - GitHub Enterprise integration with advanced security features
+  - GitLab and Bitbucket integration capabilities
+  - Direct Git repository support with SSH/HTTPS
+  - Container registry integration (Docker Hub, GitHub, Private registries)
+
+**Build System Configuration**
+- **Multiple Build Engines**:
+  - Docker with multi-stage build support
+  - Nixpacks with deterministic builds
+  - Heroku Buildpacks for legacy applications
+  - Paketo Buildpacks for cloud-native applications
+- **Build Optimization**:
+  - Layer caching and optimization
+  - Parallel build processing
+  - Custom build arguments
+  - Build matrix support
 
 
-**Environment Management**:
-  1. Add and manage environment variables.
+### Environment Control System
+Comprehensive environment management with security-first design:
 
-**Monitoring Tools**:
-  1. Monitor CPU, memory, disk, and network usage.
+**Environment Configuration**
+- **Variable Management**:
+  - Secure storage of sensitive data
+  - Environment inheritance and overrides
+  - Dynamic variable injection
+  - Secret rotation and versioning
+  - Integration with external secret managers
 
-**Logs**:
-  1. Access real-time logs.
+### Advanced Monitoring Suite
+Enterprise-grade monitoring and analytics capabilities:
 
-**Deployments**:
-  1. View and manage deployments, you can see the logs of the building application.
-  2. Cancel queued deployments in case you have a lot of deployments in the queue, the most common is when you push alot of times in your repository, you can cancel the incoming queues, not the deployments that are already running.
+**Resource Monitoring**
+- **System Metrics**:
+  - Real-time CPU utilization tracking
+  - Memory usage analysis and trending
+  - Disk I/O performance monitoring
+  - Network throughput and latency metrics
+  - Custom metric collection support
 
-**Domain Management**:
-  1. Add, delete, and generate domains.
+**Performance Analytics**
+- **Advanced Analytics**:
+  - Historical performance trending
+  - Resource usage patterns
+  - Anomaly detection
+  - Predictive scaling indicators
 
-**Advanced Settings**:
-  1. Customize initial commands and cluster settings.
-  2. Set resource limits and manage volumes for data persistence.
-  3. Configure redirects, security headers, and port settings.
-  4. Detailed Traefik configuration for specific needs.
+### Logging Infrastructure
+Sophisticated logging system with advanced search and analysis:
+
+**Log Management**
+- **Real-time Logging**:
+  - Stream processing of application logs
+  - Structured logging support
+  - Log aggregation and correlation
+  - Custom log parsing rules
+  - Log retention policies
+
+### Deployment Pipeline
+Comprehensive deployment management and control:
+
+**Deployment Control**
+- **Build and Deploy**:
+  - Real-time build progress monitoring
+  - Detailed deployment status tracking
+  - Build artifact management
+  - Deployment configuration versioning
+
+- **Queue Management**:
+  - Intelligent queue prioritization
+  - Parallel deployment processing
+  - Queue cleanup and optimization
+  - Automatic queue throttling
+
+### Domain Management System
+Comprehensive domain control and SSL management:
+
+**Domain Operations**
+- **Domain Control**:
+  - Automated domain provisioning
+  - Custom domain management
+  - Wildcard domain support
+  - Domain alias management
+  - Automatic DNS verification
+
+- **SSL Management**:
+  - Automated SSL certificate provisioning
+  - Let's Encrypt integration
+  - Custom certificate support
+  - Certificate renewal automation
+  - SSL configuration management
+
+### Advanced Configuration
+Enterprise-grade configuration and customization capabilities:
+
+**System Configuration**
+- **Initialization Control**:
+  - Custom startup commands
+  - Service dependencies management
+  - Boot sequence optimization
+  - Health check configuration
+  - Failure recovery procedures
+
+- **Resource Management**:
+  - Dynamic resource allocation
+  - Container resource limits
+  - Storage quota management
+  - Network bandwidth control
+  - Resource reservation policies
+
+- **Security Configuration**:
+  - Custom security headers
+  - CORS policy management
+  - Rate limiting rules
+  - IP filtering
+  - Authentication middleware
+
+- **Traffic Management**:
+  - Advanced routing rules
+  - Load balancer configuration
+  - Traffic splitting capabilities
+  - Circuit breaker settings
+  - Retry policies
 
 ### Docker Compose Management
 
@@ -75,28 +206,115 @@ Enhance your Docker Compose experience with these advanced functionalities:
   1. Append command, by default we use a internal command to build the docker compose however, you can append a command to the existing one.
   2. Manage volumes and mounts.
 
-## Database Deployment
+## Database Infrastructure Management
 
-Deploy and manage a variety of databases:
+Comprehensive database deployment and management system supporting enterprise-grade database operations:
 
+### Supported Database Engines
 
-**Supported Databases**:
-  1. MySQL, PostgreSQL, MongoDB, Redis, MariaDB.
+**Relational Databases**
+- **PostgreSQL**:
+  - Advanced query optimization
+  - Replication support
+  - Partitioning capabilities
+  - Full-text search
+  - JSON support
 
-**General Management**:
-  1. Deploy, stop, and delete databases.
-  2. Open a terminal within the database container.
+- **MySQL**:
+  - InnoDB engine optimization
+  - Master-slave replication
+  - Performance schema
+  - Thread pool management
+  - Query cache configuration
 
-**Environment and Monitoring**:
-  1. Manage environment variables.
-  2. Monitor CPU, memory, disk, and network usage.
+- **MariaDB**:
+  - Galera cluster support
+  - Multi-source replication
+  - Thread pool optimization
+  - Query optimizer enhancements
+  - Custom storage engines
 
-**Backups and Logs**:
-  1. Configure manual and scheduled backups.
-  2. View real-time logs.
+**NoSQL Solutions**
+- **MongoDB**:
+  - Sharding configuration
+  - Replica set management
+  - Index optimization
+  - WiredTiger storage engine
+  - Aggregation pipeline support
 
-**Advanced Configuration**:
-  1. Use custom Docker images and initial commands.
-  2. Configure volumes and resource limits.
+- **Redis**:
+  - Clustering support
+  - Persistence configuration
+  - Pub/sub messaging
+  - LRU cache management
+  - Sentinel high availability
 
-These features are designed to offer flexibility and control over your deployment environments, ensuring that Hawiyat meets the diverse needs of modern application deployment and management.
+### Database Operations Management
+
+**Core Operations**
+- **Lifecycle Management**:
+  - Automated provisioning
+  - Version management
+  - High availability configuration
+  - Performance optimization
+  - Automated failover
+
+- **Administrative Access**:
+  - Secure shell integration
+  - Role-based access control
+  - SSL/TLS encryption
+  - Audit logging
+  - Connection pooling
+
+### Database Environment Control
+
+**Configuration Management**
+- **Environment Settings**:
+  - Custom configuration files
+  - Parameter optimization
+  - Resource allocation
+  - Character set management
+  - Timezone configuration
+
+- **Performance Monitoring**:
+  - Query performance analysis
+  - Resource utilization tracking
+  - Connection monitoring
+  - Lock management
+  - I/O performance metrics
+
+### Backup and Recovery
+
+**Data Protection**
+- **Backup Management**:
+  - Automated scheduled backups
+  - Point-in-time recovery
+  - Incremental backup support
+  - Backup encryption
+  - Cross-region replication
+
+- **Log Management**:
+  - Transaction log monitoring
+  - Error log analysis
+  - Slow query logging
+  - Audit log tracking
+  - Log rotation policies
+
+### Advanced Database Configuration
+
+**Infrastructure Settings**
+- **Container Configuration**:
+  - Custom image support
+  - Init container scripts
+  - Volume management
+  - Network configuration
+  - Resource quotas
+
+- **Security Settings**:
+  - Authentication methods
+  - SSL certificate management
+  - Network security policies
+  - Access control lists
+  - Encryption at rest
+
+This comprehensive feature set represents Hawiyat's commitment to providing a robust, secure, and highly configurable platform for modern application and database deployment. Our platform continues to evolve with regular updates and enhancements to meet the growing demands of enterprise deployments and cloud-native applications.

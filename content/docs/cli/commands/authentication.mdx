@@ -1,29 +1,66 @@
 ---
 title: Authentication
-description: A guide to authenticating with the Hawiyat CLI
+description: Complete guide to authenticating with the Hawiyat CLI using token-based authentication.
 ---
 
-The Hawiyat CLI uses a token-based authentication system. To authenticate, you'll need to create an access token and store it securely.
+
+
+The **Hawiyat CLI** uses a **token-based authentication** system to securely verify your identity and grant access to your Hawiyat resources.  
+Instead of repeatedly entering a username and password, you generate a unique **access token** from your dashboard and use it for all CLI operations.
+
+This method is secure, script-friendly, and ideal for automation pipelines such as **CI/CD**.
+
+---
+
+## How Authentication Works
+
+The authentication process follows these steps:
+
+1. **Generate an access token** from your Hawiyat account dashboard.
+2. **Store the token** securely — the CLI saves it locally in a configuration file.
+3. Every time you run a CLI command, the **token is sent** to the Hawiyat API.
+4. The API verifies the token:
+   - If valid → Command executes successfully.
+   - If invalid → CLI displays an authentication error.
+5. Tokens remain valid **until revoked** from the dashboard.
+
+---
 
 ## Creating an Access Token
 
-To create an access token, first you need to have permissions if you are admin you don't need permissions.
+> ⚠ **Permissions Note:**  
+> - **Admins** can generate tokens without restrictions.  
+> - **Non-admin users** must have explicit permission to generate tokens.
 
-by default access token never expires.
+**Steps to create a token:**
+1. Log in to the **Hawiyat Dashboard**.
+2. Go to **Settings → Profile**.
+3. Scroll down to the **Access Tokens** section.
+4. Click the **Generate** button.
+5. Copy the generated token immediately — it will only be shown once.  
+   By default, Hawiyat access tokens **do not expire** unless you revoke them.
 
-You can go to `dashboard/settings/profile` and click on the `Generate` button.
+<ImageZoom
+  src="/assets/cli/token.png"
+  width={800}
+  height={630}
+  alt="Access token generation screen"
+  className="rounded-lg"
+/>
 
-<ImageZoom  src="/assets/cli/token.png" width={800} height={630} alt='home og image' className="rounded-lg" />
-
+---
 
 ## Storing the Access Token
 
-Hawiyat when you create an access token automatically will generate a config.json with the access token and the server url.
+When you authenticate through the CLI, Hawiyat automatically stores the token in a `config.json` file along with your server’s URL.
 
+**Default storage locations:**
+- **macOS / Linux:** `~/.hawiyat/config.json`
+- **Windows:** `%USERPROFILE%\.hawiyat\config.json`
 
-
-## Commands
-
-1. `Hawiyat authenticate` - Authenticate with the Hawiyat CLI.
-2. `Hawiyat verify` - Verify if the access token is valid.
-
+**Example `config.json` file:**
+```json
+{
+  "server": "https://api.hawiyat.com",
+  "token": "your-access-token"
+}

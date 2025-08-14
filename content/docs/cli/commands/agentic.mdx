@@ -1,0 +1,444 @@
+---
+title: Hawiyat Agent CLI
+description: Comprehensive guide to Hawiyat Agent CLI for advanced system operations, security, and infrastructure management
+---
+
+# Hawiyat Agent CLI
+
+The Hawiyat Agent CLI is a powerful tool that provides advanced system operations, infrastructure management, security scanning, and automation capabilities. This comprehensive guide covers all aspects of the Hawiyat Agent CLI.
+
+## Prerequisites
+
+Before using the Hawiyat Agent CLI, ensure:
+- Hawiyat CLI is installed and updated
+- Agent service is running (`hawiyat agent status`)
+- Required permissions are configured
+- System requirements are met
+- Network access is properly configured
+
+## Quick Start
+
+```bash
+# Initialize Hawiyat Agent
+hawiyat agent init
+
+# Verify installation
+hawiyat agent verify
+
+# Start monitoring
+hawiyat agent monitor start
+```
+
+## Core Features
+
+### System Operations
+
+```bash
+hawiyat agent system [command] [options]
+```
+
+**Available Commands:**
+```bash
+# System health check
+hawiyat agent system health
+
+# Resource monitoring
+hawiyat agent system resources --watch
+
+# Performance analysis
+hawiyat agent system analyze
+
+# Service management
+hawiyat agent system service [start|stop|restart]
+```
+
+### Security Scanner
+
+```bash
+hawiyat agent scan [target] [options]
+```
+
+**Scanning Options:**
+- `--type` - Scan type (vulnerability, compliance, configuration)
+- `--depth` - Scan depth (quick, standard, deep)
+- `--output` - Output format (json, yaml, html)
+- `--rules` - Custom ruleset file
+- `--exclude` - Paths to exclude
+
+**Examples:**
+```bash
+# Full system vulnerability scan
+hawiyat agent scan system --type vulnerability --depth deep
+
+# Container image scan
+hawiyat agent scan container myapp:latest --type security
+
+# Infrastructure as Code scan
+hawiyat agent scan iac ./terraform --type compliance
+
+# Dependencies scan
+hawiyat agent scan deps ./package.json --type security
+```
+
+### Infrastructure Management
+
+#### Kubernetes Operations
+
+```bash
+hawiyat agent k8s [command] [options]
+```
+
+**Features:**
+```bash
+# Cluster security scan
+hawiyat agent k8s scan cluster
+
+# Resource optimization
+hawiyat agent k8s optimize resources
+
+# Policy enforcement
+hawiyat agent k8s policy apply
+
+# Configuration validation
+hawiyat agent k8s validate configs
+```
+
+#### Terraform Management
+
+```bash
+hawiyat agent terraform [command] [options]
+```
+
+**Operations:**
+```bash
+# Security scanning
+hawiyat agent terraform scan ./configs
+
+# State management
+hawiyat agent terraform state backup
+
+# Policy compliance
+hawiyat agent terraform policy check
+
+# Cost estimation
+hawiyat agent terraform cost estimate
+```
+
+#### Ansible Integration
+
+```bash
+hawiyat agent ansible [command] [options]
+```
+
+**Features:**
+```bash
+# Playbook security check
+hawiyat agent ansible scan playbook.yml
+
+# Role validation
+hawiyat agent ansible validate roles
+
+# Inventory management
+hawiyat agent ansible inventory verify
+```
+
+### File System Operations
+
+```bash
+hawiyat agent fs [command] [options]
+```
+
+**File Management:**
+```bash
+# Integrity monitoring
+hawiyat agent fs monitor /path --realtime
+
+# Security scanning
+hawiyat agent fs scan /path --malware
+
+# Access control
+hawiyat agent fs acl update /path
+
+# Encryption management
+hawiyat agent fs encrypt /path
+```
+
+### Network Operations
+
+```bash
+hawiyat agent network [command] [options]
+```
+
+**Features:**
+```bash
+# Security scanning
+hawiyat agent network scan --ports all
+
+# Traffic analysis
+hawiyat agent network analyze --protocol all
+
+# Firewall management
+hawiyat agent network firewall update
+
+# SSL/TLS management
+hawiyat agent network ssl verify
+```
+
+### Container Security
+
+```bash
+hawiyat agent container [command] [options]
+```
+
+**Operations:**
+```bash
+# Image scanning
+hawiyat agent container scan image:tag
+
+# Runtime security
+hawiyat agent container monitor
+
+# Policy enforcement
+hawiyat agent container policy apply
+
+# Compliance checking
+hawiyat agent container compliance audit
+```
+
+### Configuration Management
+
+```bash
+hawiyat agent config [command] [options]
+```
+
+**Features:**
+```bash
+# Configuration validation
+hawiyat agent config validate
+
+# Security compliance
+hawiyat agent config compliance check
+
+# Drift detection
+hawiyat agent config drift monitor
+
+# Backup management
+hawiyat agent config backup create
+```
+
+### Automation Engine
+
+```bash
+hawiyat agent automation [command] [options]
+```
+
+**Capabilities:**
+```bash
+# Workflow creation
+hawiyat agent automation workflow create
+
+# Task scheduling
+hawiyat agent automation schedule create
+
+# Integration management
+hawiyat agent automation integration add
+
+# Pipeline execution
+hawiyat agent automation pipeline run
+```
+
+## Advanced Features
+
+### Machine Learning Operations
+
+```bash
+hawiyat agent ml [command] [options]
+```
+
+**Features:**
+```bash
+# Model validation
+hawiyat agent ml model validate
+
+# Security scanning
+hawiyat agent ml security check
+
+# Performance optimization
+hawiyat agent ml optimize resources
+
+# Deployment management
+hawiyat agent ml deploy model
+```
+
+### Compliance Management
+
+```bash
+hawiyat agent compliance [command] [options]
+```
+
+**Operations:**
+```bash
+# Compliance scanning
+hawiyat agent compliance scan --framework soc2
+
+# Report generation
+hawiyat agent compliance report generate
+
+# Policy enforcement
+hawiyat agent compliance policy apply
+
+# Audit logging
+hawiyat agent compliance audit log
+```
+
+### Secret Management
+
+```bash
+hawiyat agent secrets [command] [options]
+```
+
+**Features:**
+```bash
+# Secret scanning
+hawiyat agent secrets scan ./src
+
+# Rotation management
+hawiyat agent secrets rotate --all
+
+# Access control
+hawiyat agent secrets acl update
+
+# Encryption verification
+hawiyat agent secrets verify
+```
+
+## Best Practices
+
+### Security
+
+1. **Access Control**
+   ```bash
+   hawiyat agent rbac setup
+   hawiyat agent auth configure
+   ```
+
+2. **Monitoring**
+   ```bash
+   hawiyat agent monitor setup
+   hawiyat agent alerts configure
+   ```
+
+3. **Compliance**
+   ```bash
+   hawiyat agent compliance setup
+   hawiyat agent audit enable
+   ```
+
+### Performance
+
+1. **Resource Optimization**
+   ```bash
+   hawiyat agent optimize resources
+   hawiyat agent tune system
+   ```
+
+2. **Scaling**
+   ```bash
+   hawiyat agent scale auto
+   hawiyat agent resources adjust
+   ```
+
+### Automation
+
+1. **Workflow Management**
+   ```bash
+   hawiyat agent workflow create
+   hawiyat agent tasks automate
+   ```
+
+2. **Integration**
+   ```bash
+   hawiyat agent integration setup
+   hawiyat agent pipeline create
+   ```
+
+## Troubleshooting
+
+### Common Issues
+
+1. **Connection Problems**
+```bash
+hawiyat agent diagnose connection
+hawiyat agent network test
+```
+
+2. **Performance Issues**
+```bash
+hawiyat agent debug performance
+hawiyat agent analyze bottleneck
+```
+
+3. **Security Alerts**
+```bash
+hawiyat agent security check
+hawiyat agent audit review
+```
+
+### Debug Commands
+
+```bash
+# Debug mode
+hawiyat agent debug --level verbose
+
+# Log analysis
+hawiyat agent logs analyze
+
+# System verification
+hawiyat agent verify all
+
+# Health check
+hawiyat agent health deep
+```
+
+## Configuration Reference
+
+### Agent Configuration
+
+```yaml
+# hawiyat-agent.yaml
+version: '1.0'
+agent:
+  mode: advanced
+  logging:
+    level: info
+    format: json
+  security:
+    encryption: aes256
+    audit: enabled
+  monitoring:
+    interval: 60s
+    metrics: true
+  automation:
+    enabled: true
+    concurrent_tasks: 5
+```
+
+### Policy Configuration
+
+```yaml
+# policy.yaml
+policies:
+  security:
+    scan_interval: 1h
+    compliance:
+      - soc2
+      - hipaa
+    auto_remediation: true
+  resources:
+    limits:
+      cpu: 80%
+      memory: 70%
+    auto_scale: true
+```
+
+For detailed information, visit our [agent documentation](/docs/agent) or contact [support](https://support.hawiyat.org).

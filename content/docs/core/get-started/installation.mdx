@@ -1,72 +1,179 @@
 ---
-title: Installation
-description: "Get Hawiyat up and running on your server within minutes with this easy-to-follow installation guide."
+title: "Installation Guide"
+description: "Comprehensive guide for deploying Hawiyat in production environments with advanced configuration options"
 ---
 
+# Hawiyat Installation Guide
 
-Follow these steps in order to set up Hawiyat locally and deploy it to your server, effectively managing Docker containers and applications:
+This comprehensive guide walks you through the process of deploying Hawiyat in your infrastructure. Our advanced installation process ensures secure and efficient setup while maintaining optimal performance.
 
-You need to follow this steps in the same order:
+## Pre-Installation Planning
 
-1. [Virtual Private Server (VPS)](#virtual-private-server-vps)
+Before beginning the installation process, we recommend visiting [hawiyat.org](https://hawiyat.org) for:
+- Latest system requirements
+- Security best practices
+- Performance optimization guides
+- Configuration templates
+- Installation scripts
 
-## Virtual Private Server (VPS)
+## Infrastructure Requirements
 
-There are multiple VPS providers to choose from:
+### Virtual Private Server (VPS) Selection
 
-We have tested on the following Linux Distros:
+The foundation of a robust Hawiyat deployment starts with selecting the appropriate infrastructure. We recommend using OVH as our primary supported provider for optimal performance and reliability.
 
-- Ubuntu 24.04 LTS
+### Certified Operating Systems
+
+Our platform has undergone extensive testing and optimization for the following enterprise-grade Linux distributions:
+
+**Ubuntu Series**
+- Ubuntu 24.04 LTS (Recommended)
+  - Enhanced security features
+  - Long-term support guarantee
+  - Optimized performance profile
 - Ubuntu 23.10
-- Ubuntu 22.04 LTS
-- Ubuntu 20.04 LTS
-- Ubuntu 18.04 LTS
-- Debian 12
-- Debian 11
-- Debian 10
+  - Latest kernel improvements
+  - Advanced hardware support
+- Ubuntu 22.04/20.04/18.04 LTS
+  - Legacy system support
+  - Proven stability record
+
+**Debian Series**
+- Debian 12/11/10
+  - Enterprise-grade stability
+  - Advanced security features
+  - Minimal resource footprint
+
+**Enterprise Linux**
 - Fedora 40
-- Centos 9
-- Centos 8
+  - Cutting-edge features
+  - Advanced security protocols
+- CentOS 9/8
+  - Enterprise-ready configuration
+  - Extended lifecycle support
 
-### Providers
+### Infrastructure Provider
 
-- [DigitalOcean](https://www.digitalocean.com/pricing/droplets#basic-droplets)
-- [Hetzner](https://www.hetzner.com/cloud/)
-- [Linode](https://www.linode.com/es/pricing/#compute-shared)
-- [Vultr](https://www.vultr.com/pricing/#cloud-compute)
-- [Scaleway](https://www.scaleway.com/en/pricing/?tags=baremetal,available)
-- [Google Cloud](https://cloud.google.com/)
-- [AWS](https://aws.amazon.com/ec2/pricing/)
+[OVH Cloud](https://www.ovhcloud.com/en/) is our recommended infrastructure provider, offering:
 
-### Requirements
+- **Enterprise-Grade Infrastructure**:
+  - High-performance compute instances
+  - Advanced networking capabilities
+  - Global availability zones
+  - DDoS protection included
+  - 24/7 infrastructure monitoring
 
-To ensure a smooth experience with Hawiyat, your server should have at least 2GB of RAM and 30GB of disk space. This specification helps to handle the resources consumed by Docker during builds and prevents system freezes.
+- **Optimized Configuration**:
+  - Pre-configured for Hawiyat
+  - Automated scaling support
+  - Built-in backup solutions
+  - Network optimization
 
+### System Requirements
+
+#### Minimum Production Specifications
+
+- **Compute Resources**:
+  - CPU: 2 dedicated vCPUs
+  - RAM: 4GB minimum (8GB recommended)
+  - Storage: 50GB SSD (100GB recommended)
+  - Network: 1Gbps connection
+
+#### Recommended Specifications
+
+- **High-Performance Configuration**:
+  - CPU: 4+ dedicated vCPUs
+  - RAM: 16GB
+  - Storage: 200GB SSD
+  - Network: 2Gbps+ connection
 
 import { Callout } from 'fumadocs-ui/components/callout';
 
-<Callout>**Suggestion:** For cost efficiency with reliable service, we recommend Hetzner as the best value-for-money VPS provider.</Callout>
+<Callout>
+**Recommendation:** For production deployments, we recommend using OVH's High-Performance instances with dedicated resources and DDoS protection.
+</Callout>
 
+### Installation Process
 
-### Docker
+#### 1. Platform Registration
 
-Hawiyat utilizes Docker, so it is essential to have Docker installed on your server. If Docker is not already installed, use the following command to install it automatically:
+1. Visit [hawiyat.org](https://hawiyat.org)
+2. Create your enterprise account
+3. Generate your installation token
+4. Download the verification key
+
+#### 2. Automated Installation
+
+After obtaining your installation credentials from hawiyat.org, execute our secure installation script:
 
 ```bash
-curl -sSL https://hawiyat.org/install.sh | sh
+# Replace YOUR_INSTALLATION_TOKEN with the token from hawiyat.org
+curl -sSL https://hawiyat.org/install.sh | sh -s -- --token YOUR_INSTALLATION_TOKEN
 ```
 
-## Completing the Setup
+## Post-Installation Configuration
 
-After running the installation script, Hawiyat and its dependencies will be set up on your server. Here's how to finalize the setup and start using Hawiyat:
+After the automated installation process completes, follow these steps for optimal setup:
 
-### Accessing Hawiyat
+### Security Configuration
 
-Open your web browser and navigate to `http://your-ip-from-your-vps:3000`. You will be directed to the initial setup page where you can configure the administrative account for Hawiyat.
+1. **SSL/TLS Setup**:
+   - Configure SSL certificates
+   - Enable HTTPS redirection
+   - Set up security headers
+   - Configure firewall rules
 
+2. **Access Control**:
+   - Set up IP allowlisting
+   - Configure authentication methods
+   - Enable 2FA for admin access
 
-### Initial Configuration
+### Platform Access
 
-1. **Create an Admin Account:** Fill in the necessary details to set up your administrator account. This account will be the admin account for Hawiyat.
+1. **Initial Access**:
+   - Navigate to `https://your-domain` or `http://your-ip:3000`
+   - Verify SSL certificate status
+   - Check security headers configuration
 
- <ImageZoom  src="/assets/images/setup.png" width={1300} height={630} alt='home og image' className="rounded-lg" />
+2. **Administrative Setup**:
+   - Complete domain verification
+   - Configure backup settings
+   - Set up monitoring alerts
+
+### Advanced Configuration
+
+1. **Admin Account Creation**:
+   - Set up root administrator credentials
+   - Configure role-based access control
+   - Enable audit logging
+   - Set up emergency access protocols
+
+<ImageZoom src="/assets/images/setup.png" width={1300} height={630} alt="Hawiyat Enterprise Setup Interface" className="rounded-lg" />
+
+### Performance Optimization
+
+1. **Resource Allocation**:
+   - Configure container limits
+   - Set up resource quotas
+   - Enable performance monitoring
+   - Configure automatic scaling
+
+2. **Network Configuration**:
+   - Optimize network settings
+   - Configure load balancing
+   - Set up failover protocols
+   - Enable DDoS protection
+
+### Monitoring Setup
+
+1. **System Monitoring**:
+   - Configure performance metrics
+   - Set up alert thresholds
+   - Enable log aggregation
+   - Configure backup verification
+
+2. **Security Monitoring**:
+   - Enable intrusion detection
+   - Configure access logging
+   - Set up security alerts
+   - Enable automated scanning

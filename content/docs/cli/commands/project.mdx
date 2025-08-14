@@ -1,18 +1,169 @@
 ---
-title: Project
-description: A guide to using the Hawiyat CLI to manage projects
+title: Project Management
+description: Comprehensive guide to managing projects with Hawiyat CLI
 ---
 
+# Project Management with Hawiyat CLI
 
-The Hawiyat CLI can be used to create, deploy, and manage projects.
+The Hawiyat CLI provides a robust set of commands for managing your projects. From creation to deployment, these commands give you full control over your project lifecycle.
 
-## Requirements
+## Prerequisites
 
-Is required to be already authenticated with the Hawiyat CLI.
+Before using project commands, ensure:
+- You have [Hawiyat CLI installed](/docs/cli/installation)
+- You are authenticated (`hawiyat auth login`)
+- You have necessary permissions in your organization
 
-## Commands
+## Available Commands
 
-1. `Hawiyat project create` - Create a new project.
-2. `Hawiyat project info` - Get information about a project.
-3. `Hawiyat project list` - List all projects.
+### Create Project
+```bash
+hawiyat project create [options]
+```
+
+Create a new project in your Hawiyat workspace.
+
+**Options:**
+- `--name <name>` - Project name (required)
+- `--description <desc>` - Project description
+- `--template <template>` - Initialize with a template
+- `--private` - Create a private project
+- `--org <organization>` - Create in specific organization
+
+**Example:**
+```bash
+hawiyat project create --name my-awesome-app --description "My new application" --template next.js
+```
+
+### Project Information
+```bash
+hawiyat project info [project-name]
+```
+
+Display detailed information about a specific project.
+
+**Output includes:**
+- Project configuration
+- Environment variables
+- Deployment status
+- Resource usage
+- Connected services
+
+### List Projects
+```bash
+hawiyat project list [options]
+```
+
+List all projects you have access to.
+
+**Options:**
+- `--format <format>` - Output format (table|json|yaml)
+- `--status <status>` - Filter by status
+- `--org <organization>` - Filter by organization
+- `--limit <number>` - Limit number of results
+
+### Update Project
+```bash
+hawiyat project update [project-name] [options]
+```
+
+Update project settings and configuration.
+
+**Options:**
+- `--name <new-name>` - New project name
+- `--description <desc>` - Update description
+- `--env <key=value>` - Set environment variables
+- `--scale <instances>` - Update scaling configuration
+
+### Delete Project
+```bash
+hawiyat project delete [project-name] [--force]
+```
+
+Remove a project and all associated resources.
+
+**Options:**
+- `--force` - Skip confirmation prompt
+- `--keep-domain` - Preserve custom domains
+- `--backup` - Create backup before deletion
+
+### Project Logs
+```bash
+hawiyat project logs [project-name] [options]
+```
+
+View project logs in real-time.
+
+**Options:**
+- `--tail` - Follow log output
+- `--since <time>` - Show logs since timestamp
+- `--service <name>` - Filter by service
+- `--level <level>` - Filter by log level
+
+## Project Configuration
+
+Projects can be configured using `hawiyat.config.js`:
+
+```javascript
+module.exports = {
+  name: 'my-project',
+  type: 'web',
+  env: {
+    NODE_ENV: 'production'
+  },
+  scale: {
+    min: 1,
+    max: 5,
+    auto: true
+  },
+  build: {
+    command: 'npm run build',
+    output: 'dist'
+  }
+};
+```
+
+## Best Practices
+
+1. **Project Naming**
+   - Use lowercase letters, numbers, and hyphens
+   - Keep names short but descriptive
+   - Avoid special characters
+
+2. **Environment Management**
+   - Use `.env` files for local development
+   - Set production secrets via CLI or dashboard
+   - Regularly rotate sensitive credentials
+
+3. **Resource Optimization**
+   - Monitor resource usage with `hawiyat project stats`
+   - Set appropriate scaling parameters
+   - Clean up unused projects
+
+## Related Commands
+
+- [`hawiyat deploy`](/docs/cli/commands/deploy) - Deploy your project
+- [`hawiyat env`](/docs/cli/commands/env) - Manage environment variables
+- [`hawiyat domains`](/docs/cli/commands/domains) - Configure custom domains
+
+## Troubleshooting
+
+If you encounter issues:
+
+1. Verify your authentication status:
+```bash
+hawiyat auth status
+```
+
+2. Check project status:
+```bash
+hawiyat project status [project-name]
+```
+
+3. View detailed logs:
+```bash
+hawiyat project logs [project-name] --debug
+```
+
+For more assistance, visit our [support portal](https://support.hawiyat.org) or join our [Discord community](https://discord.gg/hawiyat).
 

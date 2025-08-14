@@ -1,21 +1,53 @@
 ---
-title: 'Architecture of Hawiyat'
-description: 'Overview of the core architecture components of Hawiyat.'
+title: "Hawiyat Platform Architecture"
+description: "Comprehensive overview of Hawiyat's advanced architectural components and system design"
 ---
 
-Understanding the architecture of Hawiyat is crucial for both deploying and scaling applications. Below is a diagram illustrating the core components:
+The Hawiyat platform architecture represents a sophisticated integration of cutting-edge technologies, designed to deliver unmatched performance, reliability, and scalability. This technical overview details our advanced system components and their seamless interaction.
 
-<ImageZoom src="/assets/architecture.png" alt="Architecture Diagram" width={1000} height={600} className="rounded-lg"/>
+<ImageZoom src="/assets/architecture.png" alt="Hawiyat Platform Architecture" width={1000} height={600} className="rounded-lg"/>
 
+## Core Architecture Components
 
-## Installation Process
+The Hawiyat platform implements a microservices-based architecture with the following key components:
 
-When Hawiyat is installed, it automatically sets up the following components:
+### 1. Advanced Interface Layer (Next.js)
+- **Dynamic Server-Side Rendering Engine**
+  - Optimized performance with automatic static optimization
+  - Intelligent data caching and revalidation
+  - Advanced routing system with dynamic path support
+  - Built-in API routes for backend functionality
+  - Seamless TypeScript integration for type safety
 
-1. **Next.js Application**: Serves as the frontend interface. Utilizing Next.js allows for an integrated server-side rendering experience, streamlining the UI and backend into a single cohesive application.
-2. **PostgreSQL Database**: Acts as the primary database for Hawiyat, chosen for its robustness and widespread adoption. It stores all the configuration and operational data.
-3. **Redis Database**: Employed for managing deployment queues. This ensures that multiple deployments do not trigger simultaneously, which could lead to high server load and potential freezing.
-4. **Traefik**: Used as a reverse proxy and load balancer. Traefik facilitates dynamic routing and service discovery which simplifies the configuration process by allowing declarative setup through the UI.
+### 2. Data Management Layer (PostgreSQL)
+- **High-Performance Database System**
+  - Advanced query optimization engine
+  - Robust transaction management
+  - Full-text search capabilities
+  - JSON/JSONB support for flexible data structures
+  - Partitioning for improved query performance
+  - Advanced indexing strategies
+  - Built-in replication support
+
+### 3. Task Orchestration System (Redis)
+- **Advanced Queue Management**
+  - Sophisticated job scheduling algorithms
+  - Real-time task prioritization
+  - Automatic failure recovery
+  - Distributed locking mechanisms
+  - Memory-optimized data structures
+  - Pub/sub messaging system
+  - Advanced caching strategies
+
+### 4. Traffic Management Layer (Traefik)
+- **Intelligent Request Routing**
+  - Advanced load balancing algorithms
+  - Dynamic service discovery
+  - Automated certificate management
+  - Real-time configuration updates
+  - Circuit breaker implementation
+  - Rate limiting and throttling
+  - Advanced middleware support
 
 ## Purpose and Functionality
 

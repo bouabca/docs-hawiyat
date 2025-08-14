@@ -1,45 +1,262 @@
 ---
-title: Databases
-description: A guide to using the Hawiyat CLI to manage databases
+title: Database Management
+description: Comprehensive guide to managing databases with Hawiyat CLI
 ---
 
-The Hawiyat CLI can be used to create, deploy, and manage databases.
+# Database Management with Hawiyat CLI
 
-## Requirements
+Hawiyat provides robust support for managing various types of databases through its CLI. This guide covers all supported databases, their specific commands, and best practices for database management.
 
-Is required to be already authenticated with the Hawiyat CLI.
+## Prerequisites
 
+Before managing databases, ensure:
+- Hawiyat CLI is installed and updated to the latest version
+- You are authenticated (`hawiyat auth login`)
+- You have sufficient permissions in your organization
+- Required ports are open in your firewall
+- Adequate resources are available in your cluster
 
-## Commands
+## Global Database Commands
 
-### MariaDB 
+These commands work across all database types:
 
-1. `Hawiyat database mariadb create` - Create a new mariadb database.
-2. `Hawiyat database mariadb delete` - Delete an mariadb database.
-3. `Hawiyat database mariadb deploy` - Deploy a mariadb database.
-4. `Hawiyat database mariadb stop` - Stop a running mariadb database.
+```bash
+hawiyat database list              # List all databases
+hawiyat database backup list      # List all backups
+hawiyat database logs [name]      # View database logs
+hawiyat database metrics [name]   # View performance metrics
+```
+
+## Resource Configuration
+
+Each database can be configured with specific resource limits:
+
+```bash
+hawiyat database [type] create --resources
+  --cpu=1              # CPU cores
+  --memory=1Gi        # Memory allocation
+  --storage=10Gi      # Storage capacity
+  --replicas=3        # Number of replicas
+```
+
+## Supported Databases
+
+### MariaDB
+
+```bash
+hawiyat database mariadb create [options]
+```
+
+**Options:**
+- `--name <name>` - Database name
+- `--version <version>` - MariaDB version (default: latest)
+- `--port <port>` - Custom port (default: 3306)
+- `--password <password>` - Root password
+- `--charset <charset>` - Default character set
+- `--collation <collation>` - Default collation
+
+**Additional Commands:**
+```bash
+hawiyat database mariadb backup create    # Create backup
+hawiyat database mariadb backup restore   # Restore from backup
+hawiyat database mariadb user create     # Create new user
+hawiyat database mariadb config edit     # Edit configuration
+```
 
 ### PostgreSQL
-1. `Hawiyat database postgresql create` - Create a new postgresql database.
-2. `Hawiyat database postgresql delete` - Delete an postgresql database.
-3. `Hawiyat database postgresql deploy` - Deploy a postgresql database.
-4. `Hawiyat database postgresql stop` - Stop a running postgresql database.
+
+```bash
+hawiyat database postgresql create [options]
+```
+
+**Options:**
+- `--name <name>` - Database name
+- `--version <version>` - PostgreSQL version
+- `--port <port>` - Custom port (default: 5432)
+- `--extensions <ext>` - Install extensions
+- `--ha` - Enable high availability
+
+**Additional Features:**
+```bash
+hawiyat database postgresql replica add    # Add read replica
+hawiyat database postgresql vacuum        # Perform vacuum
+hawiyat database postgresql analyze       # Analyze database
+```
 
 ### MySQL
-1. `Hawiyat database mysql create` - Create a new mysql database.
-2. `Hawiyat database mysql delete` - Delete an mysql database.
-3. `Hawiyat database mysql deploy` - Deploy a mysql database.
-4. `Hawiyat database mysql stop` - Stop a running mysql database.
+
+```bash
+hawiyat database mysql create [options]
+```
+
+**Options:**
+- `--name <name>` - Database name
+- `--version <version>` - MySQL version
+- `--port <port>` - Custom port (default: 3306)
+- `--innodb-buffer-pool-size <size>` - Buffer pool size
+- `--max-connections <number>` - Max connections
+
+**Maintenance Commands:**
+```bash
+hawiyat database mysql optimize    # Optimize tables
+hawiyat database mysql repair     # Repair tables
+hawiyat database mysql check      # Check tables
+```
 
 ### MongoDB
-1. `Hawiyat database mongodb create` - Create a new mongodb database.
-2. `Hawiyat database mongodb delete` - Delete an mongodb database.
-3. `Hawiyat database mongodb deploy` - Deploy a mongodb database.
-4. `Hawiyat database mongodb stop` - Stop a running mongodb database.
+
+```bash
+hawiyat database mongodb create [options]
+```
+
+**Options:**
+- `--name <name>` - Database name
+- `--version <version>` - MongoDB version
+- `--port <port>` - Custom port (default: 27017)
+- `--replica-set <name>` - Create replica set
+- `--sharded` - Enable sharding
+
+**Sharding Commands:**
+```bash
+hawiyat database mongodb shard add      # Add shard
+hawiyat database mongodb shard remove   # Remove shard
+hawiyat database mongodb shard balance  # Balance shards
+```
 
 ### Redis
-1. `Hawiyat database redis create` - Create a new redis database.
-2. `Hawiyat database redis delete` - Delete an redis database.
-3. `Hawiyat database redis deploy` - Deploy a redis database.
-4. `Hawiyat database redis stop` - Stop a running redis database.
+
+```bash
+hawiyat database redis create [options]
+```
+
+**Options:**
+- `--name <name>` - Instance name
+- `--version <version>` - Redis version
+- `--port <port>` - Custom port (default: 6379)
+- `--maxmemory <size>` - Maximum memory
+- `--persistence <type>` - RDB/AOF configuration
+
+**Cluster Operations:**
+```bash
+hawiyat database redis cluster create   # Create cluster
+hawiyat database redis sentinel add     # Add sentinel
+hawiyat database redis replica add      # Add replica
+```
+
+### Cassandra
+
+```bash
+hawiyat database cassandra create [options]
+```
+
+**Options:**
+- `--name <name>` - Cluster name
+- `--version <version>` - Cassandra version
+- `--nodes <number>` - Number of nodes
+- `--dc <datacenter>` - Datacenter name
+- `--rack <rack>` - Rack name
+
+**Node Management:**
+```bash
+hawiyat database cassandra node add     # Add node
+hawiyat database cassandra node remove  # Remove node
+hawiyat database cassandra repair       # Run repair
+```
+
+### Elasticsearch
+
+```bash
+hawiyat database elasticsearch create [options]
+```
+
+**Options:**
+- `--name <name>` - Cluster name
+- `--version <version>` - Elasticsearch version
+- `--nodes <number>` - Number of nodes
+- `--plugins <list>` - Install plugins
+- `--heap-size <size>` - JVM heap size
+
+**Cluster Operations:**
+```bash
+hawiyat database elasticsearch snapshot create  # Create snapshot
+hawiyat database elasticsearch index manage    # Manage indices
+hawiyat database elasticsearch stats          # View statistics
+```
+
+## Database Backup and Recovery
+
+All databases support automated backup and recovery:
+
+```bash
+# Create backup
+hawiyat database [type] backup create --name [backup-name] --retention 7d
+
+# List backups
+hawiyat database [type] backup list
+
+# Restore from backup
+hawiyat database [type] restore --from [backup-name]
+
+# Schedule automated backups
+hawiyat database [type] backup schedule --cron "0 0 * * *"
+```
+
+## Monitoring and Maintenance
+
+Monitor your databases' health and performance:
+
+```bash
+# View real-time metrics
+hawiyat database [type] metrics --watch
+
+# Check database health
+hawiyat database [type] health
+
+# View connection statistics
+hawiyat database [type] connections
+
+# Performance analysis
+hawiyat database [type] analyze
+```
+
+## Best Practices
+
+1. **Security**
+   - Regularly rotate credentials
+   - Use strong passwords
+   - Implement network policies
+   - Enable SSL/TLS encryption
+
+2. **Performance**
+   - Monitor resource usage
+   - Configure proper indexes
+   - Regular maintenance
+   - Scale resources as needed
+
+3. **Backup**
+   - Regular automated backups
+   - Test restore procedures
+   - Multiple backup locations
+   - Monitor backup success
+
+## Troubleshooting
+
+Common issues and solutions:
+
+1. **Connection Issues**
+```bash
+hawiyat database [type] diagnose connection
+```
+
+2. **Performance Problems**
+```bash
+hawiyat database [type] analyze performance
+```
+
+3. **Resource Constraints**
+```bash
+hawiyat database [type] resources check
+```
+
+For more assistance, visit our [database documentation](/docs/databases) or contact [support](https://support.hawiyat.org).
 

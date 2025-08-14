@@ -1,20 +1,303 @@
 ---
-title: Application
-description: A guide to using the Hawiyat CLI to manage applications
+title: Application Management
+description: Comprehensive guide to deploying and managing applications with Hawiyat CLI
 ---
 
+# Application Management with Hawiyat CLI
 
-The Hawiyat CLI can be used to create, deploy, and manage applications.
+Hawiyat provides a powerful platform for deploying, scaling, and managing applications of all types. This comprehensive guide covers everything from basic deployment to advanced application management.
 
-## Requirements
+## Prerequisites
 
-Is required to be already authenticated with the Hawiyat CLI.
+Before deploying applications, ensure:
+- Hawiyat CLI is installed (`hawiyat --version`)
+- Authentication is complete (`hawiyat auth login`)
+- Required permissions are granted
+- Project workspace is initialized
+- Deployment environment is configured
 
+## Quick Start
 
-## Commands
+Deploy your first application:
 
-1. `Hawiyat app create` - Create a new application.
-2. `Hawiyat app delete` - Delete an application.
-3. `Hawiyat app deploy` - Deploy an application.
-4. `Hawiyat app stop` - Stop a running application.
+```bash
+# Initialize a new application
+hawiyat app init my-awesome-app
+
+# Deploy to production
+hawiyat app deploy --env production
+```
+
+## Application Commands
+
+### Create Application
+
+```bash
+hawiyat app create [options]
+```
+
+**Options:**
+- `--name <name>` - Application name
+- `--type <type>` - Application type (node, python, go, java, etc.)
+- `--framework <framework>` - Framework (next.js, django, spring, etc.)
+- `--git <repository>` - Git repository URL
+- `--branch <branch>` - Git branch to deploy
+- `--team <team>` - Team/Organization name
+- `--private` - Create as private application
+
+**Example:**
+```bash
+hawiyat app create \
+  --name my-next-app \
+  --type node \
+  --framework next.js \
+  --git https://github.com/username/repo \
+  --branch main
+```
+
+### Deploy Application
+
+```bash
+hawiyat app deploy [options]
+```
+
+**Options:**
+- `--env <environment>` - Target environment
+- `--version <version>` - Deployment version
+- `--docker-file <path>` - Custom Dockerfile
+- `--compose-file <path>` - Docker compose file
+- `--replicas <number>` - Number of instances
+- `--registry <url>` - Custom container registry
+- `--no-cache` - Skip build cache
+- `--force` - Force deployment
+
+**Deployment Configuration:**
+```yaml
+# hawiyat.yaml
+version: '1.0'
+name: my-application
+type: node
+env: production
+build:
+  dockerfile: ./Dockerfile
+  context: .
+  args:
+    NODE_ENV: production
+resources:
+  cpu: 1
+  memory: 1Gi
+  storage: 10Gi
+scaling:
+  min: 2
+  max: 10
+  target_cpu_usage: 70
+```
+
+### Application Configuration
+
+```bash
+hawiyat app config [command] [options]
+```
+
+**Environment Variables:**
+```bash
+# Set environment variables
+hawiyat app config set KEY=value
+
+# Set from .env file
+hawiyat app config import .env.prod
+
+# View current configuration
+hawiyat app config list
+```
+
+**Secrets Management:**
+```bash
+# Add encrypted secrets
+hawiyat app secrets set \
+  --name DB_PASSWORD \
+  --value "super-secret" \
+  --env production
+```
+
+### Scale Application
+
+```bash
+hawiyat app scale [options]
+```
+
+**Options:**
+- `--replicas <number>` - Set instance count
+- `--cpu <value>` - CPU allocation
+- `--memory <value>` - Memory allocation
+- `--auto-scale` - Enable auto-scaling
+
+**Auto-scaling Configuration:**
+```bash
+hawiyat app scale config \
+  --min 2 \
+  --max 10 \
+  --cpu-target 70 \
+  --memory-target 80
+```
+
+### Monitor Application
+
+```bash
+hawiyat app monitor [options]
+```
+
+**Monitoring Commands:**
+```bash
+# View logs
+hawiyat app logs --tail 100 --follow
+
+# Check status
+hawiyat app status --detailed
+
+# View metrics
+hawiyat app metrics --format json
+
+# Health checks
+hawiyat app health
+```
+
+### Domain Management
+
+```bash
+hawiyat app domain [command] [options]
+```
+
+**Commands:**
+```bash
+# Add custom domain
+hawiyat app domain add example.com
+
+# Configure SSL
+hawiyat app domain ssl --auto
+
+# Add CDN
+hawiyat app domain cdn --provider cloudflare
+```
+
+## Advanced Features
+
+### CI/CD Integration
+
+```bash
+# GitHub Actions Integration
+hawiyat app ci github \
+  --repo username/repo \
+  --branch main \
+  --token $GITHUB_TOKEN
+
+# GitLab CI Integration
+hawiyat app ci gitlab \
+  --project group/project \
+  --token $GITLAB_TOKEN
+```
+
+### Database Integration
+
+```bash
+# Link database
+hawiyat app database link \
+  --type postgres \
+  --name my-db
+
+# Database migration
+hawiyat app database migrate \
+  --file ./migrations
+```
+
+### Service Mesh
+
+```bash
+# Enable service mesh
+hawiyat app mesh enable \
+  --proxy envoy \
+  --tracing jaeger
+
+# Configure routing
+hawiyat app mesh route create \
+  --from service-a \
+  --to service-b
+```
+
+## Application Templates
+
+Quick start with pre-configured templates:
+
+```bash
+# List available templates
+hawiyat app template list
+
+# Create from template
+hawiyat app create --template next-typescript
+```
+
+## Best Practices
+
+1. **Development Workflow**
+   - Use version control
+   - Implement CI/CD pipelines
+   - Follow GitOps principles
+   - Maintain staging environments
+
+2. **Security**
+   - Regular security scans
+   - Implement RBAC
+   - Use secrets management
+   - Enable audit logging
+
+3. **Performance**
+   - Implement caching
+   - Use CDN for static assets
+   - Configure auto-scaling
+   - Monitor resource usage
+
+4. **Reliability**
+   - Set up health checks
+   - Implement graceful shutdown
+   - Configure automated backups
+   - Use rolling updates
+
+## Troubleshooting
+
+Common issues and solutions:
+
+1. **Deployment Failures**
+```bash
+# Check deployment logs
+hawiyat app logs --deployment latest
+
+# Verify configuration
+hawiyat app config verify
+```
+
+2. **Performance Issues**
+```bash
+# Analyze performance
+hawiyat app analyze
+
+# View resource usage
+hawiyat app resources
+```
+
+3. **Connectivity Problems**
+```bash
+# Test connectivity
+hawiyat app network test
+
+# Debug routing
+hawiyat app route debug
+```
+
+## Related Commands
+
+- [`hawiyat project`](/docs/cli/commands/project) - Project management
+- [`hawiyat database`](/docs/cli/commands/databases) - Database operations
+- [`hawiyat monitor`](/docs/cli/commands/monitor) - Monitoring tools
+
+For detailed information, visit our [application documentation](/docs/applications) or join our [Discord community](https://discord.gg/hawiyat).
 

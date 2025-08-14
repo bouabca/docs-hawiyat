@@ -8,6 +8,8 @@
     "commands/authentication",
     "commands/project",
     "commands/application",
-    "commands/databases"
+    "commands/databases",
+    "---Advanced---",
+    "commands/agentic"
   ]
 }
