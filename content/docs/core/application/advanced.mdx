@@ -1,132 +1,596 @@
 ---
-title: Advanced
-description: Learn how to use advanced features in your application.
+title: "Advanced Application Configuration Guide"
+description: "Comprehensive guide to advanced application features, including container orchestration, cluster management, and sophisticated deployment configurations"
 ---
+import { Callout } from 'fumadocs-ui/components/callout';
 
-This section is designed for experienced users who need to manage complex configurations and orchestration settings in Hawiyat. Here, you can execute custom commands, manage cluster replicas, select Docker registries, and configure Docker Swarm settings.
+# Advanced Configuration System
 
-### Run Command
+## Introduction
 
-- **Purpose**: Allows users to execute custom shell commands directly within the container.
-- **Usage**: Enter the command you need to run in the provided field and click 'Save' to execute it within the container environment. This tool is particularly useful for debugging or specific administrative tasks.
+The Advanced Configuration System provides enterprise-grade control over your application's deployment, scaling, and orchestration capabilities. This comprehensive guide is designed for experienced system administrators and DevOps engineers who need to implement complex configurations and maintain sophisticated deployment architectures within the Hawiyat platform.
 
-### Cluster Settings
+## Command Execution Framework
 
-- **Purpose**: Manages the scaling and distribution of the application across multiple servers or nodes.
-- **Replicas**: Set the number of instances of your application that should be running.
-- **Registry Selection**: Choose the Docker registry from which your container images will be pulled. This is crucial for ensuring that the correct images are used during deployment.
+### Interactive Shell Interface
 
-#### Important Note
-Always click 'Redeploy' after modifying the cluster settings to apply the changes.
+The Command Execution System provides direct access to container environments, enabling sophisticated debugging and administrative operations:
 
-### Swarm Settings
+1. **Command Interface**
+   - Real-time command execution
+   - Interactive shell access
+   - Output streaming
+   - Error handling
 
-Swarm settings allow for detailed configuration of how containers are orchestrated within the Docker Swarm.
+2. **Security Controls**
+   - Command validation
+   - Execution logging
+   - Access restrictions
+   - Audit trailing
 
-#### Health Check
+3. **Usage Guidelines**
+   ```bash
+   # Example command structure
+   command [options] <parameters>
+   
+   # Common operations
+   - File system management
+   - Process control
+   - Network diagnostics
+   - System monitoring
+   ```
 
-- **Purpose**: Ensures that containers are running smoothly and restarts them if they fail.
-- **Configuration**: Specify parameters like test commands, intervals, timeouts, start periods, and retries.
+<Callout type="warning">
+Exercise caution when executing commands as they run with container-level privileges and can affect application stability.
+</Callout>
 
-#### Restart Policy
+## Cluster Management System
 
-Defines how containers should be handled if they exit or fail, the configuration is as follows:
+### Architecture Overview
 
-- **Condition**: Specifies under what condition a restart should occur.
-- **Delay**: Sets the time delay between restarts.
-- **Max Attempts**: Limits the number of restart attempts.
-- **Window**: Defines the time window used to evaluate the restart policy.
+The Cluster Management System provides comprehensive control over application distribution and scaling across your infrastructure:
 
-#### Update Config
+1. **Scaling Configuration**
+   - **Horizontal Scaling**
+     - Dynamic replica adjustment
+     - Load distribution
+     - Resource optimization
+     - Performance monitoring
+   
+   - **Vertical Scaling**
+     - Resource allocation
+     - Container sizing
+     - Performance tuning
+     - Capacity planning
 
-Manages the deployment and update process of services in the swarm, the configuration is as follows:
+2. **Registry Integration**
+   - **Registry Management**
+     - Multiple registry support
+     - Authentication handling
+     - Image versioning
+     - Cache optimization
+   
+   - **Deployment Strategy**
+     - Image pull policies
+     - Version control
+     - Rollback support
+     - Security scanning
+
+3. **Distribution Control**
+   - **Node Assignment**
+     - Affinity rules
+     - Anti-affinity policies
+     - Resource constraints
+     - Label matching
+   
+   - **Load Balancing**
+     - Traffic distribution
+     - Health checking
+     - Failover handling
+     - Session persistence
+
+<Callout type="info">
+Configuration changes require redeployment to ensure proper propagation across the cluster. Use the 'Redeploy' function after any modifications to apply changes effectively.
+</Callout>
+
+### Implementation Guidelines
+
+1. **Pre-deployment Checklist**
+   - Verify resource availability
+   - Check network connectivity
+   - Validate registry access
+   - Review security policies
+
+2. **Optimization Strategies**
+   - Resource allocation planning
+   - Performance monitoring setup
+   - Scaling threshold configuration
+   - Backup procedures
+
+## Docker Swarm Orchestration
+
+### Comprehensive Swarm Management
+
+The Docker Swarm configuration system provides enterprise-grade container orchestration capabilities:
+
+1. **Health Monitoring System**
+   
+   The health monitoring framework ensures continuous application availability through sophisticated monitoring and automated recovery:
+
+   - **Health Check Implementation**
+     ```yaml
+     health_check:
+       test: ["CMD", "curl", "-f", "http://localhost/health"]
+       interval: 30s
+       timeout: 10s
+       retries: 3
+       start_period: 40s
+     ```
+
+   - **Monitoring Parameters**
+     - Real-time status tracking
+     - Performance metrics collection
+     - Resource utilization monitoring
+     - Error pattern detection
+
+   - **Automated Recovery**
+     - Self-healing procedures
+     - Graceful container restart
+     - Service reconciliation
+     - State preservation
+
+2. **Restart Policy Framework**
+
+   Sophisticated restart management system for maintaining service availability:
+
+   - **Policy Configuration**
+     ```yaml
+     restart_policy:
+       condition: any|on-failure|none
+       delay: 5s
+       max_attempts: 3
+       window: 120s
+     ```
+
+   - **Condition Management**
+     - Failure detection
+     - Exit code analysis
+     - State evaluation
+     - Resource checking
+
+   - **Recovery Orchestration**
+     - Graceful shutdown
+     - State preservation
+     - Resource cleanup
+     - Service restoration
+
+<Callout type="tip">
+Configure health checks and restart policies based on your application's specific requirements and recovery time objectives (RTO).
+</Callout>
+
+### Update Management System
+
+The Update Management System provides sophisticated control over service updates and deployments:
+
+1. **Deployment Strategy**
+   
+   Configure comprehensive update behaviors for seamless service transitions:
+
+   ```yaml
+   update_config:
+     parallelism: 2
+     delay: 10s
+     failure_action: pause
+     monitor: 30s
+     max_failure_ratio: 0.3
+     order: start-first
+   ```
+
+   - **Execution Control**
+     - Parallel update orchestration
+     - Timing optimization
+     - Failure handling
+     - Progress monitoring
+
+   - **Risk Mitigation**
+     - Rolling updates
+     - Canary deployments
+     - Blue-green deployment support
+     - Automatic rollback triggers
+
+2. **Node Placement Strategy**
+
+   Sophisticated container placement control for optimal resource utilization:
+
+   ```yaml
+   placement:
+     constraints:
+       - node.role == worker
+       - node.labels.zone == production
+     preferences:
+       - spread: node.labels.zone
+   ```
+
+   - **Constraint Management**
+     - Hardware requirements
+     - Geographic distribution
+     - Security boundaries
+     - Resource availability
+
+   - **Distribution Optimization**
+     - Load balancing
+     - Resource utilization
+     - Network topology
+     - Failure domain separation
+
+<Callout type="warning">
+Carefully consider placement constraints as they can affect application availability and performance across the cluster.
+</Callout>
+
+### Advanced Placement Features
+
+1. **Affinity Rules**
+   - Service co-location
+   - Anti-affinity policies
+   - Soft preferences
+   - Hard constraints
+
+2. **Resource Awareness**
+   - CPU utilization
+   - Memory availability
+   - Network topology
+   - Storage requirements
+
+## Service Recovery Framework
+
+### Rollback Management System
+
+Sophisticated rollback control system for maintaining service stability:
+
+```yaml
+rollback_config:
+  parallelism: 2
+  delay: 5s
+  failure_action: pause
+  monitor: 20s
+  max_failure_ratio: 0.2
+  order: stop-first
+```
+
+1. **Rollback Strategy**
+   - **Execution Control**
+     - Parallel rollback handling
+     - Timing optimization
+     - Failure management
+     - State monitoring
+   
+   - **Data Preservation**
+     - State backup
+     - Configuration preservation
+     - Data integrity
+     - Version control
+
+2. **Recovery Procedures**
+   - **Automation**
+     - Trigger conditions
+     - Execution steps
+     - Validation checks
+     - Notification system
+   
+   - **Monitoring**
+     - Service health
+     - Performance metrics
+     - Resource usage
+     - Error tracking
+
+## Service Distribution Architecture
+
+### Deployment Modes
+
+Comprehensive service deployment configuration system:
+
+1. **Replicated Services**
+   ```yaml
+   mode:
+     replicated:
+       replicas: 5
+   ```
+   - **Scale Management**
+     - Dynamic scaling
+     - Load distribution
+     - Resource allocation
+     - Performance optimization
+
+2. **Global Services**
+   ```yaml
+   mode:
+     global: {}
+   ```
+   - **Distribution Control**
+     - Node coverage
+     - Service availability
+     - Resource awareness
+     - Automatic scaling
+
+3. **Replicated Jobs**
+   ```yaml
+   mode:
+     replicated_job:
+       max_concurrent: 2
+       total_completions: 10
+   ```
+   - **Execution Control**
+     - Concurrency management
+     - Completion tracking
+     - Resource allocation
+     - Error handling
+
+<Callout type="tip">
+Choose the appropriate service mode based on your application's requirements for availability, scalability, and resource utilization.
+</Callout>
+
+### Implementation Guidelines
+
+1. **Mode Selection Criteria**
+   - Service requirements
+   - Resource availability
+   - Scaling needs
+   - Geographic distribution
+
+2. **Performance Optimization**
+   - Resource allocation
+   - Network topology
+   - Load balancing
+   - Failover planning
+## Network Configuration Framework
+
+### Advanced Network Management
+
+Sophisticated network configuration system for optimal service communication:
+
+```yaml
+networks:
+  frontend:
+    driver: overlay
+    driver_opts:
+      com.docker.network.driver.mtu: '1450'
+    attachable: true
+    labels:
+      com.example.description: "Frontend network"
+  backend:
+    driver: overlay
+    internal: true
+    ipam:
+      config:
+        - subnet: "172.20.0.0/16"
+```
+
+1. **Network Architecture**
+   - **Topology Design**
+     - Network segmentation
+     - Traffic isolation
+     - Access control
+     - Performance optimization
+   
+   - **Driver Configuration**
+     - MTU sizing
+     - Overlay networks
+     - IPAM settings
+     - Security policies
+
+2. **Service Connectivity**
+   - **Network Aliases**
+     ```yaml
+     networks:
+       backend:
+         aliases:
+           - service.internal
+           - api.backend
+     ```
+   
+   - **Access Control**
+     - Network policies
+     - Security groups
+     - Traffic rules
+     - Load balancing
+
+## Service Metadata System
+
+### Label Management Framework
+
+Comprehensive metadata organization system:
+
+```yaml
+labels:
+  com.example.description: "Core API Service"
+  com.example.department: "Engineering"
+  com.example.environment: "production"
+  com.example.version: "2.1.0"
+```
+
+1. **Metadata Strategy**
+   - **Organization**
+     - Service identification
+     - Version tracking
+     - Environment tagging
+     - Department assignment
+   
+   - **Integration**
+     - Monitoring systems
+     - Deployment tools
+     - Analytics platforms
+     - Management interfaces
+
+2. **Implementation Guidelines**
+   - **Naming Conventions**
+     - Hierarchical structure
+     - Consistent formatting
+     - Clear descriptions
+     - Version schemes
+   
+   - **Usage Patterns**
+     - Filtering criteria
+     - Grouping logic
+     - Resource tracking
+     - Automation triggers
+
+<Callout type="info">
+Well-structured labels are essential for service organization and automation. Follow consistent naming conventions across your infrastructure.
+</Callout>
 
 
-- **Parallelism**: Number of containers to update simultaneously.
-- **Delay**: Time between updates.
-- **Failure Action**: Action to take if an update fails.
-- **Monitor**: Duration to monitor a container after an update.
-- **Max Failure Ratio**: The fraction of containers that are allowed to fail before the update is considered a failure.
-- **Order**: The order in which containers are stopped and started during an update.
+## Resource Management Framework
 
-#### Placement
+### Advanced Resource Configuration
 
-Controls where containers are placed within the swarm based on specific rules and preferences, the configuration is as follows:
+Sophisticated resource control system for optimal performance and stability:
 
-- **Constraints**: Conditions that must be met for a container to be placed on a node.
-- **Preferences**: Preferences for placing containers across nodes to spread load evenly.
+```yaml
+resources:
+  limits:
+    cpus: '2'
+    memory: 4G
+  reservations:
+    cpus: '1'
+    memory: 2G
+```
 
-### Rollback Config
+1. **Resource Allocation Strategy**
+   - **CPU Management**
+     - Processing power distribution
+     - Core allocation
+     - Thread management
+     - Usage monitoring
+   
+   - **Memory Control**
+     - RAM allocation
+     - Swap configuration
+     - Cache management
+     - OOM protection
 
-Manages the rollback process for services when updates fail, the configuration is as follows:
+2. **Performance Optimization**
+   - **Resource Monitoring**
+     - Usage patterns
+     - Bottleneck detection
+     - Performance metrics
+     - Capacity planning
+   
+   - **Dynamic Adjustment**
+     - Scaling triggers
+     - Resource reallocation
+     - Performance tuning
+     - Load balancing
 
-- **Parallelism**: Number of containers to rollback simultaneously.
-- **Delay**: Time between rollbacks.
-- **FailureAction**: Action to take if a rollback fails.
-- **Monitor**: Duration to monitor a container after a rollback.
-- **MaxFailureRatio**: The fraction of containers that are allowed to fail before the rollback is considered a failure.
-- **Order**: The order in which containers are stopped and restarted during a rollback.
+<Callout type="warning">
+Careful resource allocation is critical for application performance and stability. Monitor usage patterns and adjust configurations accordingly.
+</Callout>
 
-### Mode
+### Implementation Guidelines
 
-Defines how services are replicated within the swarm, the configuration is as follows:
+1. **Resource Planning**
+   - Application requirements
+   - Usage patterns
+   - Growth projections
+   - Performance targets
 
-- **Replicated**: Services are replicated across nodes as specified.
-- **Replicas**: Number of replicas per service.
-- **Global**: A single instance of the service runs on every node.
-- **ReplicatedJob**: Runs a job in a replicated manner.
-- **MaxConcurrent**: Maximum number of jobs running concurrently.
-- **TotalCompletions**: Total number of times the jobs need to complete.
-
-### Network
-
-Configures network settings for the services, the configuration is as follows:
-
-- **Target**: Specifies the network name.
-- **Aliases**: Provides aliases for the network.
-- **DriverOpts**: Network driver options like MTU size and host binding.
-
-### Labels
-
-Assigns metadata to containers to help identify and organize them, the configuration is as follows:
-
-- **Labels**: Key-value pairs assigned to the service. For example:
-1. `com.example.app.name`: "my-app"
-2. `com.example.app.version`: "1.0.0"
-
-
-### Note
-Modifying Swarm Settings requires careful consideration as incorrect configurations can disrupt the entire container orchestration. Always ensure you understand the implications of the changes you are making.
-
-
-## Resources
-
-Manage the memory and CPU resources allocated to your applications or databases.
-
-- **Memory Reservation**: The minimum amount of memory guaranteed to the application.
-- **Memory Limit**: The maximum amount of memory the application can use.
-- **CPU Limit**: The maximum number of CPU units that the application can utilize.
-- **CPU Reservation**: The minimum number of CPU units reserved for the application.
+2. **Optimization Strategies**
+   - Resource utilization
+   - Performance tuning
+   - Scaling policies
+   - Cost management
 
 
-### Volumes/Mounts
+## Storage Architecture Framework
 
-Configure persistent storage for your application to ensure data remains intact across container restarts and deployments.
+### Advanced Volume Management
 
+Comprehensive storage configuration system for persistent data management:
 
-**Bind Mount**: Maps a host file or directory to a container file or directory. Typically used for specific configurations or databases.
-1. **Host Path**: Path on the host.
-2. **Mount Path**: Path in the container.
+```yaml
+volumes:
+  - type: bind
+    source: /host/data
+    target: /container/data
+  - type: volume
+    source: db_data
+    target: /var/lib/mysql
+  - type: tmpfs
+    target: /tmp
+    tmpfs:
+      size: 1000000
+```
 
-**Volume Mount**: Uses Docker-managed volumes that are easier to back up and migrate than bind mounts.
-1. **Volume Name**: Name of the Docker-managed volume.
-2. **Mount Path**: Path in the container where the volume is mounted.
+1. **Storage Types**
+   - **Bind Mounts**
+     ```yaml
+     volumes:
+       - type: bind
+         source: /etc/configs
+         target: /etc/app/configs
+         read_only: true
+     ```
+     - Host path mapping
+     - Configuration management
+     - Development workflows
+     - Direct access patterns
 
-**File Mount**: Specifically for single files, useful for configuration files.
-1. **Content**: The content to store in the file.
-2. **Mount Path**: Path in the container where the file is placed.
+   - **Named Volumes**
+     ```yaml
+     volumes:
+       - type: volume
+         source: app_data
+         target: /data
+         volume:
+           nocopy: true
+     ```
+     - Data persistence
+     - Backup management
+     - Migration support
+     - Performance optimization
 
-File mounts are a Hawiyat features, this create a file in a folder called `files` inside your project, so it recreates every single time you deploy your project.
+2. **File Mount System**
+   
+   Hawiyat's specialized file mounting feature for dynamic configuration:
+
+   ```yaml
+   file_mounts:
+     - content: |
+         server {
+           listen 80;
+           server_name example.com;
+         }
+       target: /etc/nginx/conf.d/default.conf
+   ```
+
+   - **Implementation**
+     - Configuration files
+     - Secret management
+     - Runtime parameters
+     - Dynamic updates
+
+   - **Features**
+     - Automatic recreation
+     - Version control
+     - Change tracking
+     - Deployment integration
+
+<Callout type="tip">
+File mounts are stored in the `files` directory of your project and are automatically recreated during deployment, ensuring consistent configuration across your infrastructure.
+</Callout>
+
+### Storage Management Guidelines
+
+1. **Mount Selection Criteria**
+   - Data persistence requirements
+   - Performance needs
+   - Security considerations
+   - Backup strategies
+
+2. **Implementation Best Practices**
+   - Access permissions
+   - Backup procedures
+   - Performance optimization
+   - Security hardening
 
 <ImageZoom src="/assets/file-mount-configuration.webp" width={800} height={630} className="rounded-lg"/>
 

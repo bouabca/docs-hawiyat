@@ -1,29 +1,218 @@
 ---
-title: "Application Domain Setup"
-description: "Learn how to setup a domain for an application"
+title: "Application Domain "
+description: "Comprehensive guide for setting up and managing application domains in the Hawiyat ecosystem"
 ---
 
-This guide details how to set up a domain for your application.
+import { Callout } from 'fumadocs-ui/components/callout';
 
-## Create DNS Record
+# Application Domain Management System
 
-1. Add an `A` record to your DNS settings:
-   - **Name:** Enter the route you want to point to (e.g., `app` for `app.yourdomain.com`).
-   - **Value:** Type in the IP address of your server, such as `1.2.3.4`.
+This comprehensive guide walks you through the process of configuring and managing domains for your applications within the Hawiyat platform. Learn how to set up custom domains, manage SSL certificates, and optimize your application's accessibility.
 
-## Application Domain Setup
+## Prerequisites
 
-1. Navigate to your application's dashboard.
-2. Go to the `Domains` tab and click on `Add Domain`.
-3. Enter the DNS record you created in the previous step (e.g., `app.yourdomain.com`).
-4. Make sure to assign the right container port (e.g., NextJS: `3000`).
-5. Choose your certificate option:
-   - `None`
-   - `Let's Encrypt`
-   
+Before starting the domain configuration process, ensure you have:
 
-For detailed instructions on setting up certificates, refer to the [Certificates](/docs/core/domain/certificates) documentation.
+1. **Required Access**
+   - Application administrator privileges
+   - DNS management access
+   - Valid domain ownership
+   - Server IP address information
+
+2. **Technical Requirements**
+   - Active application deployment
+   - Domain name
+   - DNS provider credentials
+   - Container port information
+   - SSL certificate preference
+
+## DNS Configuration Process
+
+### Understanding DNS Records
+
+Different record types serve various purposes:
+- **A Records**: Direct IPv4 address mapping
+- **CNAME Records**: Domain name aliases
+- **AAAA Records**: IPv6 address mapping
+- **TXT Records**: Verification and SPF
+- **SRV Records**: Service records
+
+### Creating DNS Records
+
+Follow these steps to configure your DNS:
+
+1. **Access DNS Management**
+   ```plaintext
+   Domain: app.yourdomain.com
+   Record Type: A
+   Value: Your server IP (e.g., 1.2.3.4)
+   TTL: 3600 (recommended)
+   ```
+
+2. **Record Configuration**
+   - Log in to your DNS provider
+   - Navigate to DNS management
+   - Select "Add Record"
+   - Choose "A" record type
+   - Enter subdomain (e.g., `app`)
+   - Input server IP address
+   - Set appropriate TTL
+   - Save configuration
+
+<Callout type="info">
+  DNS changes typically take 1-4 hours to propagate globally. Some regions may experience longer delays up to 48 hours.
+</Callout>
+
+## Application Configuration Process
+
+### Initial Setup
+
+1. **Access Application Dashboard**
+   - Log in to Hawiyat platform
+   - Select your application
+   - Navigate to application settings
+   - Access domain management
+
+2. **Domain Management Interface**
+   - Locate `Domains` tab
+   - Click `Add Domain` button
+   - Review available options
+   - Prepare configuration details
+
+### Domain Configuration
+
+1. **Basic Setup**
+   - Enter full domain name
+   - Verify DNS record match
+   - Configure domain settings
+   - Set primary/secondary status
+
+2. **Port Configuration**
+   Common ports for popular frameworks:
+   ```plaintext
+   NextJS: 3000
+   React: 3000
+   Vue: 8080
+   Angular: 4200
+   Express: 3000
+   Django: 8000
+   Flask: 5000
+   ```
+
+3. **SSL Certificate Setup**
+   Choose from available options:
+   - `None` (Development only)
+   - `Let's Encrypt` (Recommended)
+   - `Custom Certificate` (Enterprise)
+
+<Callout type="warning">
+  Production applications should always use SSL certificates to ensure secure data transmission.
+</Callout>
+
+### Advanced Configuration
+
+1. **SSL Implementation**
+   - Select certificate type
+   - Configure SSL settings
+   - Verify certificate status
+   - Test secure connection
+
+2. **Domain Validation**
+   - Verify DNS propagation
+   - Check SSL installation
+   - Test domain resolution
+   - Confirm application access
+
+For comprehensive SSL management, see our [Certificates](/docs/core/domain/certificates) documentation.
 
 
-<ImageZoom  src="/assets/images/application-domain-setup/app-setup-domain.png" width={800} height={630} quality={100} priority alt='home og image' className="rounded-lg" />
+## Monitoring and Maintenance
+
+### Health Checks
+
+1. **Domain Health**
+   - DNS resolution monitoring
+   - SSL certificate status
+   - Application accessibility
+   - Response time tracking
+
+2. **Performance Monitoring**
+   - Load time optimization
+   - SSL handshake speed
+   - DNS lookup performance
+   - Application response
+
+### Troubleshooting Guide
+
+1. **Common Issues**
+   - DNS resolution failures
+   - SSL certificate errors
+   - Port conflicts
+   - Application access issues
+
+2. **Resolution Steps**
+   - Verify DNS configuration
+   - Check SSL status
+   - Confirm port settings
+   - Test application health
+
+## Visual Configuration Reference
+
+The following image shows the Hawiyat application domain configuration interface:
+
+<ImageZoom  
+    src="/assets/images/application-domain-setup/app-setup-domain.png" 
+    width={800} 
+    height={630} 
+    quality={100} 
+    priority 
+    alt='Hawiyat application domain configuration interface showing domain settings and SSL options' 
+    className="rounded-lg" 
+/>
+
+## Best Practices
+
+1. **Security**
+   - Always use SSL in production
+   - Regular certificate rotation
+   - Implement security headers
+   - Monitor for vulnerabilities
+
+2. **Performance**
+   - Optimize DNS settings
+   - Enable HTTP/2 support
+   - Configure caching
+   - Use CDN when possible
+
+3. **Maintenance**
+   - Regular SSL updates
+   - DNS record audits
+   - Performance monitoring
+   - Security assessments
+
+<Callout type="tip">
+  Remember to regularly review and update your domain configuration to maintain optimal security and performance.
+</Callout>
+
+## Next Steps
+
+After completing domain setup:
+
+1. **Security Configuration**
+   - Review security settings
+   - Set up monitoring
+   - Configure backups
+   - Document changes
+
+2. **Testing**
+   - Verify SSL functionality
+   - Test application access
+   - Check domain resolution
+   - Validate configurations
+
+3. **Documentation**
+   - Update access records
+   - Document configurations
+   - Record maintenance schedules
+   - Create incident procedures
 

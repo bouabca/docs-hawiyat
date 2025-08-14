@@ -1,24 +1,189 @@
 ---
-title: Profile
-description: 'Customize your profile settings including email, password, and avatar.'
+title: "Profile"
+description: "Complete guide to managing your Hawiyat profile, security settings, and API access with advanced configuration options"
 ---
+import { Callout } from 'fumadocs-ui/components/callout';
 
-The Profile section allows you to customize your account settings.
+# Profile Management System
 
-## Account Settings
+## Introduction
 
-1. **Change Email**: Update your email address.
-2. **Change Password**: Update your password.
-3. **Change Avatar**: Update your profile picture.
+The Profile Management System provides comprehensive control over your Hawiyat account settings, security configurations, and API access. This guide details all available options and best practices for maintaining your account.
 
-## Two-Factor Authentication (2FA)
+## Account Management
 
-Enhance your account security by enabling two-factor authentication using the Google Authenticator app.
+### Email Configuration
 
-## API/CLI Access
+The email management system allows you to:
 
-You can generate a new API key to access the API/CLI.
+1. **Update Email Address**
+   - Verify current email
+   - Enter new email address
+   - Receive verification link
+   - Confirm new email
+   
+2. **Email Preferences**
+   - Security notifications
+   - Update alerts
+   - System maintenance notices
+   - Feature announcements
 
-1. **Generate API Key**: Create a new API key.
-2. **Copy API Key**: Copy the generated API key for use.
-3. **View API Documentation**: Access the Swagger API documentation for detailed API usage.
+<Callout type="info">
+Email changes require verification through both old and new email addresses to ensure account security.
+</Callout>
+
+### Password Security
+
+Maintain robust account security through password management:
+
+1. **Password Updates**
+   - Current password verification
+   - New password requirements:
+     - Minimum 12 characters
+     - Special characters
+     - Numbers
+     - Mixed case letters
+   - Password confirmation
+   - Security notification
+
+2. **Password Best Practices**
+   - Regular updates recommended
+   - No password reuse
+   - Use password manager
+   - Enable password recovery
+
+### Profile Customization
+
+Personalize your account presentation:
+
+1. **Avatar Management**
+   - Upload custom image
+   - Supported formats:
+     - JPEG/JPG
+     - PNG
+     - GIF (static)
+   - Size requirements:
+     - Maximum: 5MB
+     - Dimensions: 512x512px
+   - Auto-resize capability
+
+2. **Profile Display**
+   - Visual customization
+   - Display name settings
+   - Time zone configuration
+   - Language preferences
+
+## Enhanced Security Protocol
+
+### Two-Factor Authentication (2FA)
+
+Comprehensive 2FA implementation using industry-standard protocols:
+
+1. **Setup Process**
+   - Download Google Authenticator
+   - Scan QR code
+   - Enter verification code
+   - Save backup codes
+
+2. **Authentication Flow**
+   - Generate time-based codes
+   - 30-second rotation
+   - Offline accessibility
+   - Multiple device support
+
+3. **Recovery Options**
+   - Backup codes generation
+   - Safe storage guidelines
+   - Recovery process
+   - Account restoration
+
+<Callout type="warning">
+Store your backup codes in a secure location. They are your only way to recover access if you lose your authentication device.
+</Callout>
+
+## API Integration System
+
+### API Key Management
+
+Comprehensive control over API access:
+
+1. **Key Generation**
+   - Secure key creation
+   - Access level selection:
+     - Read-only
+     - Write access
+     - Admin privileges
+   - Expiration settings
+   - Usage limitations
+
+2. **Key Security**
+   - Encrypted storage
+   - Access logging
+   - IP restrictions
+   - Rate limiting
+
+3. **Management Features**
+   - Key rotation
+   - Usage monitoring
+   - Access revocation
+   - Audit logging
+
+### CLI Integration
+
+Seamless command-line interface access:
+
+1. **Setup Process**
+   - CLI installation
+   - Authentication configuration
+   - Environment setup
+   - Access verification
+
+2. **Usage Guidelines**
+   - Command reference
+   - Best practices
+   - Security considerations
+   - Troubleshooting
+
+### API Documentation
+
+Comprehensive API reference:
+
+1. **Swagger Documentation**
+   - Interactive interface
+   - Endpoint descriptions
+   - Request/response examples
+   - Authentication guides
+
+2. **Integration Guides**
+   - Quick start tutorials
+   - Code examples
+   - Common use cases
+   - Best practices
+
+<Callout type="tip">
+Regular key rotation and monitoring of API usage patterns helps maintain secure access to your account.
+</Callout>
+
+## Security Best Practices
+
+1. **Account Protection**
+   - Regular password updates
+   - 2FA enablement
+   - Secure email access
+   - Session management
+
+2. **API Security**
+   - Key rotation schedule
+   - Access monitoring
+   - Usage auditing
+   - Incident response
+
+3. **General Guidelines**
+   - Regular security reviews
+   - Access log monitoring
+   - Backup verification
+   - Update compliance
+
+<Callout type="warning">
+Never share your API keys or authentication credentials. Always use secure channels for key distribution and storage.
+</Callout>

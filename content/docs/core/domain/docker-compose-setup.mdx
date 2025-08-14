@@ -1,26 +1,138 @@
 ---
-title: "Docker Compose Setup"
-description: "Learn how to setup a domain for a Docker Compose application"
+title: "Docker Compose Domain"
+description: "Comprehensive guide for setting up and managing domains with Docker Compose applications in the Hawiyat ecosystem"
 ---
 import { Step, Steps } from 'fumadocs-ui/components/steps';
+import { Callout } from 'fumadocs-ui/components/callout';
 
-This guide details how to set up a domain for your Docker Compose application.
+# Docker Compose Domain Management System
 
-## Create DNS Record
+## Introduction
 
-1. Add an `A` record to your DNS settings:
-   - **Name:** Enter the route you want to point to (e.g., `app` for `app.yourdomain.com`).
-   - **Value:** Type in the IP address of your server, such as `1.2.3.4`.
+Docker Compose is a powerful tool for defining and running multi-container Docker applications. When integrated with Hawiyat's domain management system, it provides a robust foundation for deploying scalable, accessible applications. This comprehensive guide will walk you through the process of configuring domains for your Docker Compose applications, ensuring secure and efficient container networking.
 
-## Docker Compose Domain Setup
+## System Architecture Overview
 
-To make a Docker Compose service or container accessible via a domain, add two things to your existing Docker Compose file.
+Before diving into the configuration process, it's important to understand how the different components work together:
+
+1. **Docker Compose Layer**
+   - Manages container orchestration
+   - Handles service definitions
+   - Controls networking between containers
+   - Manages container lifecycle
+
+2. **Traefik Integration**
+   - Provides reverse proxy functionality
+   - Handles SSL/TLS termination
+   - Manages routing rules
+   - Enables automatic certificate management
+
+3. **Hawiyat Network Layer**
+   - Facilitates container communication
+   - Manages service discovery
+   - Handles load balancing
+   - Ensures secure internal networking
+
+## DNS Configuration Process
+
+### Understanding DNS Architecture
+
+The Domain Name System (DNS) acts as the foundation for making your Docker services accessible. It translates human-readable domain names into IP addresses that computers can understand. In the context of Docker Compose applications, proper DNS configuration is crucial for:
+
+- Service accessibility
+- Load balancing
+- SSL/TLS certificate management
+- High availability
+
+### DNS Record Setup
+
+Configure your domain's DNS settings with the following specifications:
+
+1. **Record Configuration**
+   ```plaintext
+   Type: A Record
+   Name: app (for app.yourdomain.com)
+   Value: Your server's IP (e.g., 1.2.3.4)
+   TTL: 3600 (recommended)
+   ```
+
+<Callout type="info">
+  DNS propagation can take between 1-48 hours depending on your provider and global DNS cache settings. Plan your deployment accordingly.
+</Callout>
+
+## Docker Compose Integration
+
+### Network Architecture
+
+The Hawiyat platform utilizes a sophisticated networking setup that enables seamless communication between containers while maintaining security and isolation. This is achieved through the `hawiyat-network`, a custom Docker network that provides:
+
+- Service discovery
+- Internal DNS resolution
+- Load balancing
+- Network isolation
+- Security boundaries
+
+### Basic Configuration
+
+To integrate your Docker Compose services with the Hawiyat platform, your configuration needs to address two main aspects:
 
 <Steps>
 <Step>
-Add the `hawiyat-network` network to each service.
 
- 
+#### Network Integration
+
+The `hawiyat-network` serves as the backbone of container communication. Here's how to properly configure it:
+
+```yaml
+services:
+  app:
+    image: nextjs-app
+    networks:
+      - hawiyat-network    # Enables communication with Hawiyat services
+    ports:
+      - "3000"            # Expose application port
+
+networks:
+  hawiyat-network:
+    external: true        # Uses existing Hawiyat network
+```
+
+This configuration provides:
+- Seamless service discovery
+- Automatic DNS resolution
+- Internal load balancing
+- Network security isolation
+
+</Step>
+
+<Step>
+
+#### Traefik Configuration
+
+Traefik serves as the edge router, managing incoming traffic and SSL certificates. The configuration varies based on your security requirements:
+
+
+##### Standard Configuration (Cloudflare Default)
+When using Cloudflare's default configuration, implement basic HTTP routing:
+
+```yaml
+labels:
+  - "traefik.http.routers.<unique-name>.entrypoints=web"
+```
+
+##### Secure Configuration (Let's Encrypt / Cloudflare Full Strict)
+For enhanced security with automatic SSL certificate management:
+
+```yaml
+labels:
+  - "traefik.http.routers.<unique-name>.entrypoints=websecure"
+  - "traefik.http.routers.<unique-name>.tls.certResolver=letsencrypt"
+```
+
+#### Complete Configuration Example
+
+Here's a comprehensive example that implements all security features:
+
 ```yaml
 services:
   app:
@@ -29,56 +141,91 @@ services:
       - hawiyat-network
     ports:
       - "3000"
-
-networks:
-  hawiyat-network:
-    external: true
-```
- 
-</Step>
- 
-<Step>
- 
-Traefik labels to make the service accessible through the domain.
-
-
-1. if you are using the default Cloudflare configuration, add the following label:
-
-- `traefik.http.routers.<unique-name>.entrypoints=web`
-
-2. If you are using Let's Encrypt or Cloudflare's Full Strict mode, add the following labels:
-
-- `traefik.http.routers.<unique-name>.entrypoints=websecure`
-- `traefik.http.routers.<unique-name>.tls.certResolver=letsencrypt`
-
-
- ```yaml
-services:
-  app:
-    image: nextjs-app
-    networks:
-      - hawiyat-network
-    ports:
-      - "3000"
     labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.<unique-name>.entrypoints=websecure"
-      - "traefik.http.routers.<unique-name>.tls.certResolver=letsencrypt"
-      - "traefik.http.routers.<unique-name>.rule=Host(`app.yourdomain.com`)"
-      - "traefik.http.services.<unique-name>.loadbalancer.server.port=3000"
+      - "traefik.enable=true"                                                    # Enable Traefik for this service
+      - "traefik.http.routers.<unique-name>.entrypoints=websecure"              # Use HTTPS endpoint
+      - "traefik.http.routers.<unique-name>.tls.certResolver=letsencrypt"       # Automatic SSL certificates
+      - "traefik.http.routers.<unique-name>.rule=Host(`app.yourdomain.com`)"    # Domain routing rule
+      - "traefik.http.services.<unique-name>.loadbalancer.server.port=3000"     # Container port
 networks:
   hawiyat-network:
     external: true
 ```
- 
-</Step>
 
- 
+</Step>
 </Steps>
 
+## Advanced Configuration
 
+### SSL/TLS Management
 
-### Example of a Basic `docker-compose.yml`
+The platform offers flexible SSL/TLS configuration options:
 
+1. **Automatic Certificate Management**
+   - Let's Encrypt integration
+   - Automatic renewal
+   - Zero-downtime updates
+   - Wild card certificate support
 
-For example of a basic `docker-compose.yml` file, refer to the [Docker Compose Quickstart](/docs/core/docker-compose/example#tutorial) documentation. 
+2. **Custom Certificate Integration**
+   - Support for existing certificates
+   - Custom CA certificates
+   - Multiple certificate chains
+   - SNI support
+
+### Load Balancing
+
+Traefik provides sophisticated load balancing capabilities:
+
+1. **Algorithms**
+   - Round Robin (default)
+   - Weighted Round Robin
+   - Dynamic Round Robin
+
+2. **Health Checks**
+   - Path-based monitoring
+   - Custom health check endpoints
+   - Configurable intervals
+   - Failure thresholds
+
+## Security Best Practices
+
+1. **Network Security**
+   - Use secure endpoints
+   - Implement rate limiting
+   - Enable TLS 1.3
+   - Configure security headers
+
+2. **Certificate Management**
+   - Regular certificate rotation
+   - Automated renewal monitoring
+   - Certificate transparency logging
+   - Key storage security
+
+<Callout type="warning">
+Always use HTTPS in production environments. The 'web' endpoint should only be used in development or when behind a secure proxy.
+</Callout>
+
+## Example Configurations
+
+### Basic Development Setup
+
+For detailed examples and starter templates, refer to our [Docker Compose Quickstart](/docs/core/docker-compose/example#tutorial) documentation.
+
+## Monitoring and Maintenance
+
+1. **Health Monitoring**
+   - Container status
+   - Certificate expiration
+   - Network connectivity
+   - Service response times
+
+2. **Performance Optimization**
+   - Cache configuration
+   - Connection pooling
+   - Resource allocation
+   - Network optimization
+
+<Callout type="tip">
+Regular monitoring of your Docker Compose services ensures optimal performance and early detection of potential issues.
+</Callout> 

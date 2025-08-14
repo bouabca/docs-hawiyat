@@ -1,24 +1,150 @@
 ---
 title: "Requirements"
-description: "See a requirements for a domain for the Hawiyat panel"
+description: "Comprehensive guide for domain configuration and management in the Hawiyat platform"
 ---
 
-This guide will give you an idea of the requirements to assign a domain to your Hawiyat panel or use it in any other application, whether Docker Compose or otherwise.
+# Domain Management System
 
-## Requirements
+This comprehensive guide outlines the requirements and processes for configuring domains within the Hawiyat platform. Whether you're setting up a new application, managing Docker Compose deployments, or configuring SSL certificates, this documentation will guide you through the process.
 
-Before beginning, ensure you have a domain purchased from one of the following providers or a provider of your choice:
+## Domain Requirements
 
-- [Cloudflare](https://www.cloudflare.com/)
-- [Namecheap](https://www.namecheap.com/domains/)
-- [Name.com](https://www.name.com/)
-- [GoDaddy](https://www.godaddy.com/)
-- [Domain.com](https://www.domain.com/)
+### Supported Domain Providers
 
+We officially support and recommend the following domain providers for optimal compatibility with Hawiyat:
 
-## Transfer Setup(Optional)
+#### Primary Recommended Providers
 
-We recommend transferring your domain to Cloudflare for free SSL certificates and flexibility in using tools:
+1. **[Adex Cloud](https://adexcloud.dz/fr)**
+   - Algerian cloud service provider
+   - Full integration with Hawiyat platform
+   - Local support and assistance
+   - Competitive pricing for .dz domains
+   - Advanced DNS management tools
 
-- [Transfer Domain to Cloudflare](https://developers.cloudflare.com/registrar/get-started/transfer-domain-to-cloudflare/)
+2. **[OVH Cloud](https://www.ovhcloud.com/)**
+   - Enterprise-grade infrastructure
+   - Global network coverage
+   - Advanced DNS features
+   - Automated DNS configuration
+   - Comprehensive API support
+
+3. **[Hawiyat.org](https://hawiyat.org)**
+   - Native integration with Hawiyat platform
+   - Automated DNS configuration
+   - Pre-configured DNS settings
+   - One-click domain setup
+   - Built-in SSL management
+
+### Domain Configuration Requirements
+
+Before proceeding with domain configuration, ensure you have:
+
+1. **DNS Access**
+   - Full DNS management access
+   - Ability to add/modify A records
+   - Ability to add/modify CNAME records
+   - TXT record management permissions
+   - SSL certificate configuration access
+
+2. **Domain Settings**
+   - Active and verified domain registration
+   - Unlocked domain status
+   - Access to domain nameservers
+   - DNS propagation completed
+   - Valid domain ownership
+
+3. **Technical Requirements**
+   - Valid DNS configuration
+   - Proper nameserver setup
+   - No conflicting DNS records
+   - Correct domain zone configuration
+   - Updated contact information
+
+## SSL Certificate Management
+
+### Automatic SSL Configuration
+
+Hawiyat provides automatic SSL certificate management through:
+
+1. **Built-in Certificate System**
+   - Automatic certificate generation
+   - Automatic renewal process
+   - Wild card certificate support
+   - Multi-domain support
+   - Let's Encrypt integration
+
+2. **Custom Certificate Support**
+   - Upload custom certificates
+   - Certificate chain management
+   - Private key management
+   - Intermediate certificate handling
+   - Certificate expiration monitoring
+
+### DNS Verification Requirements
+
+For automatic SSL certificate generation, ensure:
+
+1. **DNS Records Access**
+   - Ability to add verification records
+   - TXT record management
+   - Quick DNS propagation
+   - Record modification permissions
+   - Clean DNS zone
+
+2. **Domain Control**
+   - Administrative access
+   - DNS management capabilities
+   - Domain registry access
+   - Technical contact access
+   - Emergency contact setup
+
+## Advanced Configuration
+
+### Multi-Domain Setup
+
+For users managing multiple domains:
+
+1. **Domain Organization**
+   - Logical grouping capabilities
+   - Subdomain management
+   - Wildcard domain support
+   - Domain aliasing
+   - Domain forwarding
+
+2. **Load Balancing**
+   - Geographic distribution
+   - Traffic management
+   - Failover configuration
+   - Health monitoring
+   - Performance optimization
+
+### Security Considerations
+
+Implement these security measures:
+
+1. **Domain Security**
+   - DNSSEC implementation
+   - Registry lock
+   - Domain monitoring
+   - Access control
+   - Audit logging
+
+2. **SSL Security**
+   - Strong cipher suites
+   - TLS version control
+   - Certificate monitoring
+   - Key management
+   - Security headers
+
+## Support and Documentation
+
+For additional assistance:
+
+- Visit [Hawiyat Documentation](https://hawiyat.org/docs)
+- Contact [Adex Cloud Support](https://adexcloud.dz/fr/support)
+- Access [OVH Documentation](https://docs.ovh.com)
+- Join our [Community Forums](https://hawiyat.org/community)
+
+Remember to keep your domain registrar credentials and contact information up to date for seamless management and support access.
 

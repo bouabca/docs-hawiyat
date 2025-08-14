@@ -1,25 +1,166 @@
 ---
-title: Certificates
-description: 'Manage SSL/TLS certificates.'
+title: "SSL/TLS Certificate "
+description: "Comprehensive guide for managing SSL/TLS certificates, including creation, deployment, and security best practices"
 ---
 import { Callout } from 'fumadocs-ui/components/callout';
 
+# Certificate Management System
 
-The Certificates section alows you to manage SSL/TLS certificates efficiently.
+## Introduction
 
-## Actions
+The Certificate Management System provides enterprise-grade SSL/TLS certificate handling for securing your applications and services within the Hawiyat platform.
 
-- **Create**: Create a new certificate.
-- **Delete**: Delete an existing certificate.
+## System Architecture
 
-### Create a Certificate
+### Core Components
 
-To create a new certificate, fill out the form with the following details:
+1. **Certificate Authority Integration**
+   - Let's Encrypt support
+   - Custom CA integration
+   - Chain validation
+   - ACME protocol support
 
-- **Name**: Enter a name for the certificate (this can be anything you choose).
-- **Certificate Data**: Provide the certificate details.
-- **Private Key**: Enter the private key.
+2. **Key Management**
+   - Private key storage
+   - Key rotation
+   - Encryption standards
+   - Access control
 
-<Callout>
-This action will create the certificate on the server. For more detailed configuration and management, use the `Traefik` tab.
+3. **Certificate Lifecycle**
+   - Automated renewal
+   - Expiration monitoring
+   - Revocation handling
+   - Backup management
+
+## Certificate Operations
+
+### Available Actions
+
+1. **Certificate Creation**
+   - New certificate generation
+   - CSR processing
+   - Key pair management
+   - Chain verification
+
+2. **Certificate Deletion**
+   - Secure removal
+   - Key cleanup
+   - Configuration updates
+   - Service notifications
+
+### Certificate Creation Process
+
+#### Required Components
+
+1. **Certificate Identity**
+   - **Name**:
+     - Unique identifier
+     - Descriptive naming
+     - Organization scheme
+     - Version tracking
+
+2. **Certificate Data**
+   - Public certificate
+   - Intermediate certificates
+   - Root certificates
+   - Certificate chain
+
+3. **Private Key**
+   - Key generation
+   - Key strength
+   - Algorithm selection
+   - Key protection
+
+<Callout type="warning">
+Always store private keys securely and never share them through unsecured channels.
+</Callout>
+
+## Security Implementation
+
+### Best Practices
+
+1. **Key Security**
+   - Minimum 2048-bit RSA
+   - Regular key rotation
+   - Secure key storage
+   - Access logging
+
+2. **Certificate Management**
+   - Regular monitoring
+   - Automated renewal
+   - Backup procedures
+   - Audit logging
+
+3. **Access Control**
+   - Role-based access
+   - Audit trails
+   - Change management
+   - Emergency procedures
+
+### Validation Procedures
+
+1. **Certificate Verification**
+   - Chain validation
+   - Expiration check
+   - Revocation status
+   - Trust verification
+
+2. **Security Checks**
+   - Protocol support
+   - Cipher suites
+   - Key usage
+   - Extended validations
+
+## Traefik Integration
+
+### Configuration Process
+
+1. **Basic Setup**
+   - Certificate registration
+   - Route configuration
+   - TLS options
+   - Backend services
+
+2. **Advanced Features**
+   - Dynamic certificates
+   - SNI routing
+   - HTTPS redirection
+   - HSTS configuration
+
+<Callout type="info">
+Use the Traefik tab for advanced certificate configuration and real-time management of TLS settings.
+</Callout>
+
+## Monitoring and Maintenance
+
+### Health Checks
+
+1. **Certificate Status**
+   - Validity period
+   - Chain integrity
+   - Trust status
+   - Usage statistics
+
+2. **Performance Metrics**
+   - Handshake times
+   - Connection rates
+   - Error frequency
+   - Resource usage
+
+### Troubleshooting
+
+1. **Common Issues**
+   - Certificate errors
+   - Chain problems
+   - Key mismatches
+   - Configuration conflicts
+
+2. **Resolution Steps**
+   - Validation checks
+   - Chain verification
+   - Key testing
+   - Configuration review
+
+<Callout type="tip">
+Regular certificate monitoring and proactive renewal management ensures uninterrupted secure communications.
 </Callout>

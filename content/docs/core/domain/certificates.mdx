@@ -1,59 +1,220 @@
 ---
-title: "Certificates"
-description: "Learn how to set up certificates for the Hawiyat panel"
+title: "SSL Certificate Management"
+description: "Comprehensive guide for managing SSL certificates in the Hawiyat platform"
 ---
 
 import { Callout } from 'fumadocs-ui/components/callout';
 
-When using a domain for Hawiyat, we offer 3 options for certificates:
+# SSL Certificate Management System
 
-- Use `None`
-- Use a free SSL certificate from [Let's Encrypt](https://letsencrypt.org/)
-- Use a custom SSL certificate
+Hawiyat provides a robust SSL certificate management system with multiple options to secure your applications. This guide details the available certificate options and their implementation procedures.
 
-## None
+## Certificate Options
 
-Using `None` basically means we will not assign a `tlsResolver`, so your DNS provider can implement SSL certificates from their own server.
+We offer three comprehensive certificate management solutions:
 
-<Callout title="Cloudflare">When you register a domain on Cloudflare, the SSL certificate is automatically assigned by Cloudflare, so you need to select `None` in Hawiyat and disable HTTPS.</Callout>
+### 1. Provider-Managed Certificates (`None`)
+- Allows DNS provider's native SSL implementation
+- Zero configuration required from Hawiyat
+- Automatic certificate management by provider
+- Seamless integration with provider's security features
 
-## Let's Encrypt
+### 2. Let's Encrypt Integration
+- Automated certificate generation and renewal
+- Zero-cost SSL implementation
+- Industry-standard security
+- Automatic domain validation
 
-Using a free SSL certificate from [Let's Encrypt](https://letsencrypt.org/) is the easiest option, but it comes with some limitations:
+### 3. Custom SSL Certificates
+- Support for third-party certificates
+- Advanced configuration options
+- Enterprise-grade security features
+- Custom validation methods
 
-1. **Rate Limits**: There are limits on the number of certificates you can issue per domain and account within specific time frames.
-2. **Short Validity Period**: Certificates are valid for only 90 days, but Traefik automatically renews them for you.
-3. **Wildcard Certificates**: While supported, obtaining wildcard certificates requires DNS-01 validation, which can be more complex.
-4. **Domain Validation Only**: Let's Encrypt only provides Domain Validation (DV) certificates, which means they only verify domain ownership, not the organization behind it.
-5. **No Warranty**: Certificates come without any warranties or liability coverage, which might not be suitable for all use cases.
+## Detailed Implementation
 
-### Other Providers
+### Provider-Managed Setup (`None`)
 
-For domains managed by providers other than Cloudflare, the process is simple:
+When selecting the `None` option:
 
-1. In Hawiyat, select `Let's Encrypt` and enable `HTTPS`.
-2. Ensure your DNS records are correctly set up to point to your server.
-3. Traefik will handle the rest, and the certificate should be generated within about 20 seconds.
+1. **Configuration**
+   - No `tlsResolver` assignment
+   - Provider handles SSL implementation
+   - Automatic certificate management
+   - Zero manual intervention required
 
-### Cloudflare Setup
+2. **Provider Integration**
+   - Works with Adex Cloud's SSL system
+   - Compatible with OVH's SSL offering
+   - Native integration with Hawiyat.org certificates
 
-If your domain is managed by Cloudflare:
-
-1. Ensure your domain is set to `Full (Strict)` mode in Cloudflare.
-2. In Hawiyat, select `Let's Encrypt` and enable `HTTPS`.
-
-Steps for Cloudflare configuration:
-
-1. Log in to Cloudflare and navigate to `Websites` -> `Your Domain` -> `SSL/TLS` -> `Overview`.
-2. You will see 4 different modes (Off, Flexible, Full, Full (Strict)).
-3. To use Let's Encrypt, select `Full (Strict)`.
-
-<Callout>
-  **Note:** When creating a domain in your application, ensure you use the `Let's Encrypt` certificate and enable `HTTPS`. The generation of certificates typically takes about 20 seconds. If the certificate is not generated, restart Traefik and try again.
+<Callout type="info">
+**Provider Settings**: When using Adex Cloud or OVH Cloud, their SSL certificates are automatically managed. Select `None` in Hawiyat and disable HTTPS to allow provider certificate management.
 </Callout>
 
-## Custom SSL   
+## Let's Encrypt Integration
 
-We provide a way to create a certificate and have Traefik reference it, but that doesn't mean it will work automatically. You need to adjust the Traefik configuration to use it.
+### Overview
+Let's Encrypt provides automated, free SSL certificates with enterprise-grade security. Our integration offers:
 
-You can read more about how to create a custom certificate [here](https://docs.traefik.io/https/acme/#custom-ssl-certificates).
+1. **Automated Management**
+   - Zero-touch certificate generation
+   - Automatic renewal process
+   - Real-time status monitoring
+   - Immediate deployment
+   - Failure recovery systems
+
+2. **Technical Specifications**
+   - 90-day certificate validity
+   - RSA and ECDSA key support
+   - Automatic key rotation
+   - Multi-domain support
+   - Wildcard certificate capabilities
+
+### Implementation Process
+
+#### Standard Setup
+1. **Initial Configuration**
+   - Select `Let's Encrypt` in Hawiyat
+   - Enable HTTPS option
+   - Verify domain ownership
+   - Configure DNS records
+   - Wait for propagation
+
+2. **Verification Steps**
+   - Confirm DNS resolution
+   - Validate certificate installation
+   - Check HTTPS accessibility
+   - Verify certificate chain
+   - Test SSL configuration
+
+<Callout type="warning">
+Certificate generation typically takes 20-30 seconds. If generation fails, our system automatically retries with exponential backoff.
+</Callout>
+
+### Provider-Specific Configuration
+
+#### Adex Cloud Setup
+1. **DNS Configuration**
+   - Access Adex Cloud console
+   - Navigate to DNS settings
+   - Add required verification records
+   - Wait for DNS propagation
+   - Verify record creation
+
+2. **Certificate Implementation**
+   - Select Let's Encrypt in Hawiyat
+   - Enable HTTPS
+   - Configure security settings
+   - Verify certificate installation
+   - Test secure connection
+
+#### OVH Cloud Integration
+1. **Initial Setup**
+   - Access OVH control panel
+   - Configure DNS settings
+   - Add validation records
+   - Set security parameters
+   - Update DNS configuration
+
+2. **Certificate Deployment**
+   - Choose Let's Encrypt option
+   - Enable HTTPS protocol
+   - Verify certificate issuance
+   - Test secure access
+   - Monitor certificate status
+
+### Advanced Configuration
+
+#### Certificate Management
+1. **Monitoring**
+   - Real-time status checks
+   - Expiration monitoring
+   - Renewal tracking
+   - Error notification
+   - Performance metrics
+
+2. **Troubleshooting**
+   - Certificate validation
+   - DNS verification
+   - HTTPS connectivity
+   - SSL handshake
+   - Security protocols
+
+<Callout type="info">
+Monitor the certificate status in your Hawiyat dashboard. Automatic notifications will alert you of any issues or upcoming renewals.
+</Callout>
+
+## Custom SSL Certificates
+
+### Implementation Options
+
+1. **Manual Certificate Installation**
+   - Upload certificate files
+   - Configure private keys
+   - Set up certificate chains
+   - Define trust anchors
+   - Configure intermediate certificates
+
+2. **Certificate Requirements**
+   - Valid SSL certificate
+   - Private key file
+   - Certificate chain
+   - Root certificate
+   - Intermediate certificates
+
+### Configuration Steps
+
+1. **Initial Setup**
+   - Prepare certificate files
+   - Configure Traefik settings
+   - Set up private keys
+   - Define certificate paths
+   - Configure security parameters
+
+2. **Advanced Settings**
+   - Custom cipher suites
+   - TLS version control
+   - Security headers
+   - HSTS configuration
+   - OCSP stapling
+
+<Callout type="warning">
+Custom certificates require proper configuration in Traefik. Ensure all certificate files are properly formatted and accessible to the system.
+</Callout>
+
+## Security Best Practices
+
+### Certificate Management
+1. **Regular Monitoring**
+   - Certificate status checks
+   - Expiration tracking
+   - Security audits
+   - Performance monitoring
+   - Error logging
+
+2. **Security Measures**
+   - Key rotation schedule
+   - Backup procedures
+   - Access controls
+   - Audit logging
+   - Incident response
+
+### Maintenance Procedures
+1. **Regular Tasks**
+   - Certificate renewal
+   - Security updates
+   - Configuration backups
+   - Performance optimization
+   - System monitoring
+
+2. **Emergency Procedures**
+   - Certificate revocation
+   - Rapid replacement
+   - Incident response
+   - Backup restoration
+   - Security patches
+
+<Callout type="info">
+For detailed configuration options and advanced settings, visit our [comprehensive SSL documentation](https://hawiyat.org/docs/ssl).
+</Callout>

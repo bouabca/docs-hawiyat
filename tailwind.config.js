@@ -15,7 +15,7 @@ export default {
         ...presets.default,
         dark: {
           ...presets.default.dark,
-          background: '0 0% 2%',
+          background: '#272727',
           foreground: '0 0% 98%',
           popover: '0 0% 4%',
           card: '0 0% 4%',

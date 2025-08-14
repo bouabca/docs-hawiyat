@@ -1,34 +1,196 @@
 ---
-title: "Web Domain Setup"
-description: "Learn how to setup a main domain for the Hawiyat panel"
+title: "Domain Configuration Guide"
+description: "Comprehensive guide for configuring and managing domains in the Hawiyat platform"
 ---
 
-This guide covers the basic setup of a main domain for your Hawiyat panel.
+import { Callout } from 'fumadocs-ui/components/callout';
 
-## DNS Setup
+# Web Domain Configuration System
 
-We'll use [Cloudflare](https://www.cloudflare.com/) for DNS management, but you can use any provider. The steps should be similar.
+This comprehensive guide walks you through the process of setting up and managing domains for your Hawiyat platform. We'll cover everything from initial DNS configuration to advanced domain management features.
 
-1. Log in to Cloudflare and navigate to `Websites` -> `Your Domain` -> `DNS` -> `Records`.
-2. Click on `Add record`, select `A`.
-3. Enter `canary` in the name field and your IP address (e.g., `1.2.3.4`) in the value field.
-4. Save the record. Your DNS record will be `canary.hawiyat.org`.
+## Domain Configuration Overview
 
-<ImageZoom src="/assets/images/web-domain-setup/domain-setup.png" width={800} height={630} quality={100} priority alt='home og image' className="rounded-lg" />
+Before beginning the domain setup process, ensure you have:
+
+1. **Prerequisites**
+   - Active domain registration
+   - Access to DNS management
+   - Server IP address
+   - Administrative credentials
+   - SSL certificate preference
+
+2. **Required Information**
+   - Domain name
+   - IP address
+   - DNS provider credentials
+   - Hawiyat admin access
+   - SSL certificate details
+
+## DNS Management System
+
+### Provider Configuration
+
+We support multiple DNS providers, with specialized integration for:
+
+1. **Adex Cloud DNS**
+   - Native integration
+   - Automated DNS verification
+   - Quick propagation
+   - Advanced record management
+   - Real-time DNS updates
+
+2. **OVH DNS Management**
+   - Enterprise-grade DNS
+   - Global DNS infrastructure
+   - Advanced security features
+   - Automated record validation
+   - Performance optimization
+
+3. **Hawiyat DNS Services**
+   - Integrated DNS management
+   - One-click configuration
+   - Automatic verification
+   - Built-in monitoring
+   - Instant propagation
+
+### DNS Record Configuration
+
+Follow these detailed steps to configure your DNS records:
+
+1. **Access DNS Management**
+   - Log in to your DNS provider's control panel
+   - Navigate to DNS management section
+   - Locate record management interface
+
+2. **Create Required Records**
+   - Click "Add Record" or equivalent
+   - Select record type: `A Record`
+   - Enter subdomain: `canary`
+   - Input server IP (e.g., `1.2.3.4`)
+   - Set TTL: `3600` (recommended)
+   - Save configuration
+
+<Callout type="info">
+  DNS changes may take up to 48 hours to propagate globally, though typically complete within 1-4 hours.
+</Callout>
+
+<ImageZoom src="/assets/images/web-domain-setup/domain-setup.png" width={800} height={630} quality={100} priority alt='DNS configuration interface showing record setup' className="rounded-lg" />
+
+## Hawiyat Platform Configuration
+
+### Administrative Setup
+
+1. **Access Control**
+   - Launch Hawiyat admin panel
+   - Authenticate with admin credentials
+   - Navigate to server settings
+
+2. **Domain Configuration**
+   - Access `/dashboard/settings/server`
+   - Locate domain management section
+   - Enter fully qualified domain name
+   - Example: `canary.hawiyat.org`
+
+### SSL Certificate Management
+
+1. **Certificate Options**
+   - Review available options:
+     - `None` (Not recommended for production)
+     - `Let's Encrypt` (Recommended)
+     - `Custom Certificate` (Enterprise)
+
+2. **SSL Implementation**
+   - Select preferred certificate type
+   - Follow certificate setup wizard
+   - Verify SSL installation
+   - Test secure connection
+
+<Callout type="warning">
+  Always use SSL certificates in production environments to ensure secure communications.
+</Callout>
+
+### Final Configuration
+
+1. **Domain Activation**
+   - Save domain settings
+   - Wait for DNS propagation
+   - Verify SSL installation
+   - Test domain accessibility
+
+2. **Access Verification**
+   - Open new browser window
+   - Navigate to `https://canary.hawiyat.org`
+   - Verify SSL certificate
+   - Confirm panel accessibility
 
 
-## Hawiyat Panel Setup
+## Domain Monitoring and Maintenance
 
-1. Log in to your Hawiyat panel.
-2. Navigate to `/dashboard/settings/server`.
-3. Under Server domain, set your domain to match the one configured in Cloudflare (e.g., `canary.hawiyat.org`).
-4. Choose your certificate option:
-   - `None`
-   - `Let's Encrypt`
-6. Access your panel via `https://canary.hawiyat.org`.
+### Health Monitoring
 
+1. **DNS Health**
+   - Regular DNS propagation checks
+   - Record validation
+   - Resolution speed monitoring
+   - Global accessibility testing
 
-For detailed instructions on setting up certificates, refer to the [Certificates](/docs/core/domain/certificates) documentation.
+2. **SSL Monitoring**
+   - Certificate expiration tracking
+   - SSL configuration validation
+   - Security assessment
+   - Protocol compliance checks
 
+### Troubleshooting Guide
 
-<ImageZoom src="/assets/images/web-domain-setup/hawiyat-setup.png" width={800} height={630} quality={100} priority alt='home og image' className="rounded-lg" />
+1. **Common Issues**
+   - DNS propagation delays
+   - SSL certificate errors
+   - Domain resolution problems
+   - Access restrictions
+
+2. **Resolution Steps**
+   - Verify DNS records
+   - Check SSL configuration
+   - Validate domain settings
+   - Test connectivity
+
+<Callout type="tip">
+  For advanced SSL configuration and management, refer to our detailed [Certificates](/docs/core/domain/certificates) documentation.
+</Callout>
+
+## Visual Configuration Guide
+
+The following image demonstrates the Hawiyat panel's domain configuration interface:
+
+<ImageZoom 
+  src="/assets/images/web-domain-setup/hawiyat-setup.png" 
+  width={800} 
+  height={630} 
+  quality={100} 
+  priority 
+  alt='Hawiyat panel domain configuration interface showing settings and SSL options' 
+  className="rounded-lg" 
+/>
+
+## Next Steps
+
+After completing the domain setup:
+
+1. **Security Configuration**
+   - Review security settings
+   - Configure firewall rules
+   - Set up access controls
+   - Enable monitoring
+
+2. **Performance Optimization**
+   - Configure caching
+   - Enable CDN (if available)
+   - Optimize DNS settings
+   - Monitor response times
+
+3. **Maintenance Schedule**
+   - Plan regular SSL updates
+   - Schedule DNS audits
+   - Monitor domain health
+   - Review security logs

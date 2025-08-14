@@ -1,25 +1,176 @@
 ---
-title: Users
-description: 'Manage user roles and permissions within Hawiyat. Admin roles are limited to one per instance.'
+title: "User"
+description: "Comprehensive guide for managing user roles, permissions, and access controls within the Hawiyat platform"
 ---
 import { Callout } from 'fumadocs-ui/components/callout';
 
-Manage user roles and permissions within Hawiyat. Note that only one admin role is allowed per instance.
+# User Management System
 
-## Permissions
+## Introduction
 
-Hawiyat offers multiple permissions to manage your users effectively:
+The User Access Control System provides enterprise-grade user management and permission controls within the Hawiyat platform. This system ensures secure, granular access management across all platform features.
 
-- **Create Projects**: Allows the user to create new projects.
-- **Create Services**: Allows the user to create new applications or databases.
-- **Access Traefik Files Tab**: Allows the user to access the Traefik files tab.
-- **Delete Projects**: Allows the user to delete projects.
-- **Delete Services**: Allows the user to delete services.
-- **Access Docker Tab**: Allows the user to access the Docker tab.
-- **Access API/CLI**: Allows the user to access the API/CLI, including the Swagger route.
+<Callout type="warning">
+Administrative privileges are strictly limited to one user per instance to maintain security and accountability.
+</Callout>
 
-You can also grant permissions to specific users for accessing particular projects or services.
+## System Architecture
 
-### Project Permissions
+### Core Components
 
-Based on your projects and services, you can assign permissions to specific users to give them access to particular projects or services.
+1. **Authentication Layer**
+   - User identification
+   - Session management
+   - Security protocols
+   - Access tracking
+
+2. **Authorization Layer**
+   - Permission management
+   - Role assignments
+   - Access controls
+   - Policy enforcement
+
+3. **Audit System**
+   - Activity logging
+   - Access monitoring
+   - Change tracking
+   - Compliance reporting
+
+## Permission Framework
+
+### Global Permissions
+
+The platform provides granular control over user capabilities:
+
+1. **Project Management**
+   - **Create Projects**:
+     - New project initialization
+     - Template selection
+     - Resource allocation
+     - Configuration setup
+   
+   - **Delete Projects**:
+     - Project termination
+     - Resource cleanup
+     - Backup management
+     - Archive options
+
+2. **Service Control**
+   - **Create Services**:
+     - Application deployment
+     - Database creation
+     - Service configuration
+     - Resource assignment
+   
+   - **Delete Services**:
+     - Service termination
+     - Data preservation
+     - Resource recovery
+     - Dependency management
+
+3. **System Access**
+   - **Traefik Management**:
+     - Configuration access
+     - Route management
+     - Certificate handling
+     - Rule modification
+   
+   - **Docker Control**:
+     - Container management
+     - Image control
+     - Network configuration
+     - Volume management
+   
+   - **API/CLI Access**:
+     - Authentication tokens
+     - Swagger documentation
+     - API rate limits
+     - Integration capabilities
+
+### Project-Level Permissions
+
+Granular access control for specific projects and services:
+
+1. **Access Levels**
+   - View only
+   - Contribute
+   - Manage
+   - Admin
+
+2. **Resource Permissions**
+   - Database access
+   - Storage management
+   - Deployment control
+   - Configuration rights
+
+## Role Management
+
+### Available Roles
+
+1. **Administrator**
+   - Full system access
+   - User management
+   - System configuration
+   - Security controls
+
+2. **Project Manager**
+   - Project creation
+   - Team management
+   - Resource allocation
+   - Monitoring access
+
+3. **Developer**
+   - Code deployment
+   - Service management
+   - Debug access
+   - Log viewing
+
+4. **Operator**
+   - System monitoring
+   - Basic maintenance
+   - Status reporting
+   - Issue tracking
+
+## Security Best Practices
+
+1. **Access Control**
+   - Regular permission audits
+   - Least privilege principle
+   - Role rotation
+   - Access reviews
+
+2. **Monitoring**
+   - User activity tracking
+   - Permission changes
+   - Access attempts
+   - Security events
+
+3. **Compliance**
+   - Audit logging
+   - Policy enforcement
+   - Regular reviews
+   - Documentation
+
+<Callout type="tip">
+Regularly review and update user permissions to maintain security and ensure appropriate access levels.
+</Callout>
+
+## Troubleshooting
+
+### Common Issues
+
+1. **Access Problems**
+   - Permission conflicts
+   - Role misconfigurations
+   - Token expiration
+   - Session issues
+
+2. **Resolution Steps**
+   - Verify permissions
+   - Check role assignments
+   - Validate tokens
+   - Clear sessions
+
+<Callout type="info">
+Contact your system administrator for permission-related issues that cannot be resolved through standard procedures.
+</Callout>

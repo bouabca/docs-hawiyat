@@ -1,86 +1,310 @@
 ---
-title: Cluster (Advanced)
-description: 'Manage server cluster settings.'
+title: "Advanced Cluster Management "
+description: "Comprehensive guide for setting up and managing distributed server clusters in the Hawiyat platform"
 ---
+import { Callout } from 'fumadocs-ui/components/callout';
 
-When you deploy applications in hawiyat, all of them run on the same node. If you wish to run an application on a different server, you can use the cluster feature.
+# Cluster Architecture System
 
-The idea of using clusters is to allow each server to host a different application and, using Traefik along with the load balancer, redirect the traffic from the hawiyat server to the servers you choose.
+## Introduction
 
-## Server Scaling Methods
+The Hawiyat Cluster Management System provides enterprise-grade distributed computing capabilities, allowing seamless scaling and load distribution across multiple servers. This advanced feature enables sophisticated application deployment strategies and enhanced resource utilization.
 
-There are two primary ways to scale your server:
+## System Architecture
 
-1. **Vertical Scaling**: This involves adding more resources to the same hawiyat server, such as more CPU and RAM.
-2. **Horizontal Scaling**: This method involves adding multiple servers.
+### Core Components
 
-### Vertical Scaling
+1. **Distribution Layer**
+   - Load balancing
+   - Traffic routing
+   - Service discovery
+   - Health monitoring
 
-We recommend using vertical scaling to increase the processing capacity of your applications since it's faster and requires less additional configuration.
+2. **Orchestration Layer**
+   - Container scheduling
+   - Resource allocation
+   - Node management
+   - Service coordination
 
-To perform vertical scaling, you need to add more resources to your hawiyat server, that is, more CPU and RAM. This is done through your VPS provider.
+3. **Network Layer**
+   - Inter-node communication
+   - Traffic management
+   - Security protocols
+   - Fault tolerance
 
-It's ideal to first check the vertical scaling limit you can handle. If you find it insufficient, you may consider horizontal scaling.
+## Operational Overview
 
-### Horizontal Scaling
+In the default configuration, applications operate on a single node. The cluster feature enables distributed deployment across multiple servers, leveraging Traefik's advanced load balancing capabilities for optimal traffic distribution.
 
-Horizontal scaling usually requires more additional configuration and involves adding more servers (VPS).
+## Scaling Strategies
 
-If you choose the second option, we will proceed to configure the different servers.
+### Scaling Methodologies
 
-## Requirements for Cluster Setup
+The platform supports two primary scaling approaches:
 
-1. hawiyat server running (Manager).
-2. Have at least one extra server with the same architecture as the hawiyat server.
-3. Have a Docker registry.
+1. **Vertical Scaling (Scale Up)**
+   - **Resource Enhancement**:
+     - CPU allocation
+     - Memory expansion
+     - Storage capacity
+     - Network bandwidth
+   
+   - **Implementation**:
+     - Provider-specific upgrades
+     - Zero-downtime scaling
+     - Resource optimization
+     - Performance monitoring
 
-## Configuring the Docker Registry
+   - **Advantages**:
+     - Simple implementation
+     - Quick deployment
+     - Minimal configuration
+     - Consistent performance
 
-To start, we need to configure a Docker registry, as when deploying an application, you need a registry to deploy and download the application image on the other servers.
+2. **Horizontal Scaling (Scale Out)**
+   - **Infrastructure Expansion**:
+     - Node addition
+     - Load distribution
+     - Service replication
+     - Geographic distribution
+   
+   - **Implementation**:
+     - Multi-server setup
+     - Network configuration
+     - Service orchestration
+     - Load balancing
 
-We offer two ways to configure a registry:
+   - **Advantages**:
+     - Unlimited scaling
+     - High availability
+     - Fault tolerance
+     - Geographic redundancy
 
-1. **External Registry**: Use any registry you want.
-2. **Self-Hosted Registry**: We create and configure a self-hosted registry for you.
+### Scaling Decision Matrix
 
-### External Registry
+#### Vertical Scaling Considerations
 
-You can use any registry, such as Docker Hub, DigitalOcean Spaces, ECR, or your choice. Make sure to enter the correct credentials and test the connection before adding the registry.
+<Callout type="info">
+Recommended as the first scaling approach due to its simplicity and immediate effectiveness.
+</Callout>
 
-### Self-Hosted Registry
+1. **Implementation Process**
+   - Resource assessment
+   - Capacity planning
+   - Provider coordination
+   - Performance testing
 
-We will ask you for three things:
+2. **Resource Management**
+   - CPU utilization
+   - Memory monitoring
+   - Storage optimization
+   - Network capacity
 
-1. A user.
-2. A password.
-3. A domain. Ensure this domain is pointing to the hawiyat VPS.
+3. **Limitations Analysis**
+   - Hardware constraints
+   - Cost implications
+   - Provider limitations
+   - Performance ceiling
+
+#### Horizontal Scaling Implementation
+
+<Callout type="warning">
+Requires careful planning and additional configuration but offers unlimited scaling potential.
+</Callout>
+
+1. **Infrastructure Requirements**
+   - Multiple servers
+   - Network configuration
+   - Load balancing
+   - Service discovery
+
+2. **Configuration Complexity**
+   - Node management
+   - Service orchestration
+   - Data synchronization
+   - Network routing
+
+## Cluster Prerequisites
+
+### System Requirements
+
+1. **Infrastructure Components**
+   - Hawiyat manager node
+   - Compatible worker nodes
+   - Network connectivity
+   - Hardware compatibility
+
+2. **Software Requirements**
+   - Docker Engine
+   - Container runtime
+   - Network plugins
+   - Monitoring tools
+
+3. **Registry Requirements**
+   - Container registry access
+   - Authentication setup
+   - Storage configuration
+   - Network access
+
+## Registry Configuration
+
+### Registry Options
+
+1. **External Registry Integration**
+   - **Supported Providers**:
+     - Docker Hub
+     - Amazon ECR
+     - Google Container Registry
+     - Azure Container Registry
+     - DigitalOcean Spaces
+   
+   - **Configuration Requirements**:
+     - Access credentials
+     - Network access
+     - Security certificates
+     - Rate limiting
+
+2. **Self-Hosted Registry**
+   - **Setup Requirements**:
+     - Authentication:
+       - Username configuration
+       - Password management
+       - Access control
+     
+     - Domain Configuration:
+       - DNS setup
+       - SSL certificates
+       - Network routing
+     
+     - Storage:
+       - Volume management
+       - Backup strategy
+       - Cleanup policies
+
+<Callout type="info">
+Self-hosted registry provides complete control over your container images but requires proper maintenance and security measures.
+</Callout>
+
+### Registry Security
+
+1. **Access Control**
+   - Authentication
+   - Authorization
+   - Role management
+   - Token handling
+
+2. **Network Security**
+   - TLS encryption
+   - Firewall rules
+   - Rate limiting
+   - Access logging
 
 Once set up, the Cluster section will be unlocked.
 
-## Understanding Docker Swarm
+## Orchestration Architecture
 
-We suggest you read this information to better understand how Docker Swarm works and its orchestration: [Docker Swarm documentation](https://docs.docker.com/engine/swarm/) and its architecture: [How Swarm mode works](https://docs.docker.com/engine/swarm/how-swarm-mode-works/nodes/).
+### Docker Swarm Integration
 
-## Managing Your Cluster
+The cluster management system leverages Docker Swarm for container orchestration. For detailed understanding, refer to:
+- [Docker Swarm Documentation](https://docs.docker.com/engine/swarm/)
+- [Swarm Architecture](https://docs.docker.com/engine/swarm/how-swarm-mode-works/nodes/)
 
-Now you can do two things:
+### Node Management
 
-1. Add workers.
-2. Add managers.
+#### Node Types and Roles
 
-Managers have two functionalities:
+1. **Manager Nodes**
+   - **Primary Responsibilities**:
+     - Cluster state management
+     - Service scheduling
+     - Load balancing
+     - Failover handling
+   
+   - **Configuration Requirements**:
+     - High availability setup
+     - State replication
+     - Backup procedures
+     - Network redundancy
 
-1. Manage the cluster state.
-2. Schedule the services.
+2. **Worker Nodes**
+   - **Primary Responsibilities**:
+     - Container execution
+     - Resource provision
+     - Service hosting
+     - Task management
+   
+   - **Configuration Requirements**:
+     - Resource allocation
+     - Network access
+     - Security settings
+     - Monitoring setup
 
-Workers have a single purpose, which is to run the containers, acting under the rules created or established by the manager.
+### Node Addition Process
 
-## Adding Nodes
+#### Setup Procedure
 
-You can click the 'Add Node' button, which will display the instructions you need to follow to add your servers as nodes and join them to the hawiyat manager node.
+1. **Preparation Phase**
+   - System requirements check
+   - Network configuration
+   - Security setup
+   - Resource allocation
 
-<ImageZoom src="/assets/add-node.png" width={800} height={630} className="rounded-lg"/>
+2. **Integration Process**
+   - Access 'Add Node' interface
+   - Follow setup instructions
+   - Execute join commands
+   - Verify connection
 
-Once you follow the instructions, the workers or managers will appear in the table.
+<ImageZoom 
+    src="/assets/add-node.png" 
+    width={800} 
+    height={630} 
+    alt="Node addition interface showing setup instructions and configuration options"
+    className="rounded-lg"
+/>
 
-<ImageZoom src="/assets/nodes.png" width={800} height={630} className="rounded-lg"/>
+#### Verification
+
+Monitor the node integration through the management interface:
+
+<ImageZoom 
+    src="/assets/nodes.png" 
+    width={800} 
+    height={630} 
+    alt="Cluster management dashboard showing active nodes and their status"
+    className="rounded-lg"
+/>
+
+## Advanced Configuration
+
+### High Availability Setup
+
+1. **Manager Configuration**
+   - Quorum management
+   - Leader election
+   - State replication
+   - Backup procedures
+
+2. **Worker Distribution**
+   - Load balancing
+   - Service placement
+   - Resource allocation
+   - Failover handling
+
+### Monitoring and Maintenance
+
+1. **Health Checks**
+   - Node status
+   - Service health
+   - Network connectivity
+   - Resource utilization
+
+2. **Performance Optimization**
+   - Resource distribution
+   - Network optimization
+   - Container placement
+   - Load balancing
+
+<Callout type="tip">
+Regular monitoring and proactive maintenance ensure optimal cluster performance and reliability.
+</Callout>

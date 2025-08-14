@@ -1,32 +1,215 @@
 ---
-title: S3 Destinations
-description: 'Configure S3 buckets for backup storage. This includes setting up access keys, secret keys, bucket names, regions, and endpoints.'
+title: "S3 Storage"
+description: "Comprehensive guide for configuring and managing S3 storage destinations for secure database backups and file management"
 ---
 import { Callout } from 'fumadocs-ui/components/callout';
 
+# S3 Storage Management System
 
-The S3 Destinations section are essential for backing up your databases.
+## Introduction
 
-## Actions:
+The S3 Storage Integration System provides a robust foundation for managing your application's backup and storage needs. This comprehensive guide details the setup, configuration, and management of S3 destinations within the Hawiyat platform.
 
-1. **Create**: Create a new S3 destination.
-2. **Delete**: Delete a S3 destination.
-3. **Edit**: Edit a S3 destination.
-4. **Test**: Test a S3 destination.
+## System Architecture
 
-### Create
+### Core Components
 
-In order to create a new S3 Bucket, you need to fill the form.
+1. **Storage Layer**
+   - S3-compatible storage
+   - Backup management
+   - Version control
+   - Access control
 
-- **Name**: This could be anything you want, it will be the name.
-- **Access Key**: This is the access key that you will use to access your bucket.
-- **Secret Key**: This is the secret key that you will use to access your bucket.
-- **Bucket**: This is the bucket that you will use to access your bucket.
-- **Region**: This is the region that you will use to access your bucket.
-- **Endpoint**: This is the endpoint that you will use to access your bucket.   
+2. **Security Layer**
+   - Encryption at rest
+   - Encryption in transit
+   - Key management
+   - Access policies
 
-<Callout>
- There is a Button `Test` that will test the connection to your bucket, if it is correct it will show you a success message.
+3. **Integration Layer**
+   - API connectivity
+   - Database backups
+   - File management
+   - Monitoring systems
+
+## Management Operations
+
+### Available Actions
+
+The system provides comprehensive control over your S3 destinations:
+
+1. **Creation Management**
+   - New destination setup
+   - Configuration validation
+   - Connection testing
+   - Access verification
+
+2. **Deletion Process**
+   - Safe removal
+   - Data preservation
+   - Access cleanup
+   - Resource recovery
+
+3. **Configuration Updates**
+   - Settings modification
+   - Access management
+   - Policy updates
+   - Connection refresh
+
+4. **Health Monitoring**
+   - Connection testing
+   - Performance metrics
+   - Error detection
+   - Status reporting
+
+## Configuration Process
+
+### Destination Setup
+
+Creating a new S3 destination requires careful configuration of several components:
+
+1. **Identification**
+   - **Name**:
+     - Unique identifier
+     - Descriptive naming
+     - Organization conventions
+     - Search optimization
+
+2. **Authentication**
+   - **Access Key**:
+     - IAM credentials
+     - Access level control
+     - Key rotation policy
+     - Security compliance
+   
+   - **Secret Key**:
+     - Secure storage
+     - Encryption standards
+     - Access restrictions
+     - Regular rotation
+
+3. **Storage Configuration**
+   - **Bucket Settings**:
+     - Bucket naming
+     - Access policies
+     - Versioning options
+     - Lifecycle rules
+   
+   - **Regional Settings**:
+     - Region selection
+     - Performance optimization
+     - Compliance requirements
+     - Disaster recovery
+
+4. **Endpoint Configuration**
+   - **Connection Details**:
+     - Endpoint URL
+     - Protocol selection
+     - Custom endpoints
+     - Path style access
+
+<Callout type="warning">
+Never store access credentials in version control or share them through unsecured channels.
+</Callout>
+
+### Provider-Specific Configuration
+
+#### Amazon S3
+```yaml
+Region Options:
+- us-east-1 (N. Virginia)
+- us-west-2 (Oregon)
+- eu-west-1 (Ireland)
+- ap-southeast-1 (Singapore)
+Endpoint: s3.amazonaws.com
+```
+
+#### Digital Ocean Spaces
+```yaml
+Region Options:
+- nyc3 (New York)
+- ams3 (Amsterdam)
+- sgp1 (Singapore)
+Endpoint: nyc3.digitaloceanspaces.com
+```
+
+#### MinIO
+```yaml
+Custom Configuration:
+Endpoint: your-minio-server:9000
+Region: optional
+```
+
+## Security Best Practices
+
+1. **Access Management**
+   - Implement least privilege
+   - Regular key rotation
+   - Access logging
+   - IP restrictions
+
+2. **Data Protection**
+   - Enable encryption
+   - Version control
+   - Backup validation
+   - Regular testing
+
+3. **Monitoring**
+   - Access patterns
+   - Usage metrics
+   - Error rates
+   - Performance stats
+
+## Connection Validation
+
+### Test Procedure
+
+The system provides comprehensive connection testing:
+
+1. **Authentication Check**
+   - Credential validation
+   - Permission verification
+   - Access level testing
+   - Security compliance
+
+2. **Operation Verification**
+   - Read operations
+   - Write operations
+   - Delete operations
+   - List operations
+
+3. **Performance Analysis**
+   - Response times
+   - Transfer speeds
+   - Error rates
+   - Latency metrics
+
+<Callout type="info">
+Use the `Test` button to verify your configuration before saving. Successful validation ensures proper backup functionality.
+</Callout>
+
+## Troubleshooting Guide
+
+1. **Common Issues**
+   - Authentication failures
+   - Permission errors
+   - Network connectivity
+   - Endpoint misconfigurations
+
+2. **Resolution Steps**
+   - Verify credentials
+   - Check permissions
+   - Validate endpoint
+   - Test network access
+
+3. **Performance Optimization**
+   - Region selection
+   - Endpoint proximity
+   - Transfer settings
+   - Compression options
+
+<Callout type="tip">
+Regular testing and monitoring of your S3 destinations ensures reliable backup operations and optimal performance.
 </Callout>
 
 
