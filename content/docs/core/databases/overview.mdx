@@ -1,49 +1,307 @@
 ---
-title: Overview
-description: "Discover how to create and backup databases easily with Hawiyat, supporting a variety of database systems."
+title: Database Management System
+description: "Comprehensive guide to database creation, management, and optimization in Hawiyat's enterprise-grade database infrastructure."
 ---
 
-Hawiyat simplifies the process of creating and managing databases, offering robust options for both setup and backups.
+# Database Infrastructure Overview
 
-## Database Support
+Hawiyat provides an enterprise-grade database management system that simplifies the creation, deployment, and maintenance of various database technologies. Our platform offers comprehensive database lifecycle management with advanced monitoring, backup solutions, and performance optimization tools.
 
-Hawiyat currently supports a range of popular database systems, ensuring compatibility and flexibility for your projects:
+## Supported Database Technologies
 
-- **Postgres**: Robust, SQL-compliant and highly reliable.
-- **MySQL**: Widely used relational database known for its performance and flexibility.
-- **MariaDB**: A fork of MySQL with additional features and improved performance.
-- **MongoDB**: A NoSQL database known for its high scalability and flexibility.
-- **Redis**: An in-memory key-value store often used as a database, cache, and message broker.
+Hawiyat offers support for a diverse range of database systems, each optimized for specific use cases:
+
+### Relational Databases
+
+1. **PostgreSQL**
+   - **Features**:
+     - Advanced SQL compliance
+     - Complex query optimization
+     - JSON and JSONB support
+     - Full-text search capabilities
+     - Geographic data handling
+   - **Use Cases**:
+     - Enterprise applications
+     - Complex data relationships
+     - Spatial applications
+     - Data warehousing
+
+2. **MySQL**
+   - **Features**:
+     - High performance
+     - Robust replication
+     - Partitioning support
+     - Transaction management
+     - Full-text indexing
+   - **Use Cases**:
+     - Web applications
+     - Online transaction processing
+     - Data analytics
+     - Content management systems
+
+3. **MariaDB**
+   - **Features**:
+     - Enhanced storage engines
+     - Advanced optimization
+     - Galera cluster support
+     - Thread pool management
+     - Custom storage engines
+   - **Use Cases**:
+     - High availability systems
+     - Large-scale deployments
+     - Real-time analytics
+     - Mission-critical applications
+
+### NoSQL Solutions
+
+1. **MongoDB**
+   - **Features**:
+     - Document-oriented storage
+     - Horizontal scaling
+     - Aggregation framework
+     - Change streams
+     - Multi-document ACID
+   - **Use Cases**:
+     - Unstructured data
+     - Real-time analytics
+     - Content management
+     - IoT applications
+
+### In-Memory Data Stores
+
+1. **Redis**
+   - **Features**:
+     - In-memory performance
+     - Data structure support
+     - Pub/sub messaging
+     - Lua scripting
+     - Transaction support
+   - **Use Cases**:
+     - Caching layers
+     - Real-time analytics
+     - Message queuing
+     - Session management
+     - Leaderboards
 
 
-We offer multiple functionalities that you can use to manage your databases, such as:
+## Database Management Features
 
-## General
+Our platform provides comprehensive database management capabilities through an intuitive interface:
 
-Actions like deploying, updating, and deleting your database, and stopping it.
+### Core Management Functions
 
-## Environment
+1. **Lifecycle Management**
+   - **Deployment**
+     - One-click provisioning
+     - Custom configuration
+     - Version selection
+     - High availability setup
+   
+   - **Updates**
+     - Version upgrades
+     - Security patches
+     - Configuration changes
+     - Zero-downtime updates
+   
+   - **Operations**
+     - Start/Stop controls
+     - Restart capabilities
+     - Maintenance mode
+     - Emergency shutdown
 
-If you need to assign environment variables to your application, you can do so here.
+2. **Environment Configuration**
+   - **Variable Management**
+     - System variables
+     - Custom parameters
+     - Security credentials
+     - Performance tuning
+   
+   - **Configuration Groups**
+     - Production settings
+     - Development profiles
+     - Testing environments
+     - Custom profiles
 
-## Monitoring
+### Performance Monitoring System
 
-Four graphs will be displayed for the use of memory, CPU, disk, and network. Note that the information is only updated if you are viewing the current page, otherwise it will not be updated.
+Our advanced monitoring system provides real-time insights through four key metrics:
 
-## Backups
+1. **Memory Analysis**
+   - **Metrics Tracked**:
+     - Total memory usage
+     - Buffer pool utilization
+     - Cache hit ratios
+     - Memory fragmentation
+   - **Visualization**:
+     - Real-time graphs
+     - Historical trends
+     - Threshold alerts
+     - Predictive analysis
 
-We offer automated backups for your databases, ensuring that you can recover your data quickly and easily in case of any issues, you can setup a S3 Destinations in settings to store your backups.
+2. **CPU Performance**
+   - **Metrics Tracked**:
+     - Query execution time
+     - Thread utilization
+     - System load
+     - Query plans
+   - **Analysis Tools**:
+     - Performance advisors
+     - Query optimization
+     - Resource allocation
+     - Bottleneck detection
 
+3. **Storage Monitoring**
+   - **Metrics Tracked**:
+     - Disk usage
+     - I/O operations
+     - Table sizes
+     - Index statistics
+   - **Management Features**:
+     - Auto-scaling
+     - Storage optimization
+     - Cleanup routines
+     - Archival policies
 
-## Logs
+4. **Network Analytics**
+   - **Metrics Tracked**:
+     - Connection counts
+     - Network latency
+     - Throughput rates
+     - Protocol metrics
+   - **Analysis Tools**:
+     - Connection pooling
+     - Network optimization
+     - Traffic patterns
+     - Bottleneck detection
 
-If you want to see any important logs from your application that is running, you can do so here and determine if your application is displaying any errors or not.
+## Backup and Recovery System
 
-## Advanced
+Our comprehensive backup system ensures data safety and business continuity:
 
-This section provides advanced configuration options for experienced users. It includes tools for custom commands within the container, managing Docker Swarm settings, and adjusting cluster settings such as replicas and registry selection. These tools are typically not required for standard application deployment and are intended for complex management and troubleshooting tasks.
+1. **Automated Backup Solutions**
+   - **Scheduling Options**:
+     - Customizable intervals
+     - Point-in-time recovery
+     - Incremental backups
+     - Full database dumps
+   
+   - **Storage Integration**:
+     - S3-compatible storage
+     - Multi-region replication
+     - Versioning support
+     - Lifecycle policies
 
-- **Custom Docker Image**: You can change the Docker image used to run your database.
-- **Run Command**: Execute custom commands directly in the container for advanced management or troubleshooting.
-- **Volumes**: To ensure data persistence across deployments, configure storage volumes for your application.
-- **Resources**: Adjust the CPU and memory allocation for your application.
+2. **Recovery Capabilities**
+   - **Recovery Options**:
+     - Point-in-time recovery
+     - Table-level restoration
+     - Schema-only recovery
+     - Full database restore
+   
+   - **Disaster Recovery**:
+     - Automated failover
+     - Geographic redundancy
+     - Recovery testing
+     - SLA compliance
+
+## Advanced Logging System
+
+Our sophisticated logging system provides comprehensive insights into database operations:
+
+1. **Log Categories**
+   - **Operation Logs**:
+     - Query execution
+     - Schema changes
+     - User activities
+     - System events
+   
+   - **Performance Logs**:
+     - Slow queries
+     - Resource usage
+     - Lock conflicts
+     - Dead locks
+
+2. **Analysis Tools**
+   - **Real-time Monitoring**:
+     - Log streaming
+     - Pattern detection
+     - Alert generation
+     - Trend analysis
+   
+   - **Historical Analysis**:
+     - Log aggregation
+     - Custom filtering
+     - Export capabilities
+     - Retention policies
+
+## Advanced Configuration Center
+
+This section provides enterprise-grade configuration options for advanced database management:
+
+### Container Management
+1. **Custom Images**
+   - **Image Configuration**:
+     - Custom base images
+     - Version control
+     - Security hardening
+     - Performance optimization
+   
+   - **Registry Management**:
+     - Private registry support
+     - Image scanning
+     - Tag management
+     - Pull policies
+
+2. **Command Interface**
+   - **Administrative Tools**:
+     - Direct shell access
+     - Database CLI tools
+     - Maintenance scripts
+     - Diagnostic utilities
+   
+   - **Security Controls**:
+     - Role-based access
+     - Audit logging
+     - Command restrictions
+     - Session management
+
+### Resource Management
+
+1. **Storage Configuration**
+   - **Volume Management**:
+     - Dynamic provisioning
+     - Storage class selection
+     - Capacity planning
+     - Performance tiers
+   
+   - **Data Persistence**:
+     - Backup integration
+     - Replication setup
+     - Snapshot management
+     - Migration tools
+
+2. **Resource Allocation**
+   - **Compute Resources**:
+     - CPU quotas
+     - Memory limits
+     - Cache configuration
+     - Thread pool settings
+   
+   - **Performance Tuning**:
+     - Auto-scaling rules
+     - Load balancing
+     - Resource monitoring
+     - Optimization tools
+
+### Security Framework
+1. **Access Control**
+   - Role-based authentication
+   - SSL/TLS encryption
+   - Network policies
+   - Audit logging
+
+2. **Compliance Tools**
+   - Data encryption
+   - Audit trails
+   - Policy enforcement
+   - Compliance reporting

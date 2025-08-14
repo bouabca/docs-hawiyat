@@ -1,45 +1,390 @@
 ---
 title: Templates
-description: Deploy open source templates with Hawiyat
+description: Comprehensive guide to deploying open source templates with Hawiyat
 ---
 
-By default we include a set of templates, that you can use to spin up templates quickly. You can also create your own templates.
+# Template Deployment Guide
 
-## Templates
+Hawiyat provides an extensive collection of pre-configured templates that enable rapid deployment of popular open-source applications. This comprehensive guide will help you understand and utilize our template system effectively.
 
-The following templates are available:
+## Overview
 
-- **Pocketbase**: Open Source backend for your next SaaS and Mobile app in 1 file
-- **Calcom**: Open source alternative to calendly for scheduling meetings
-- **Plausible**: Open source analytics platform
-- **Glitchtip**: Simple tracking event error logging
-- **Documenso**: The Open Source DocuSign Alternative.
-- **Grafana**: Open source dashboard for your metrics
-- **NocoDB:**: Open Source Airtable Alternative
-- **AppSmith**: Open Source CRM Alternative
-- **Meilisearch**: A lightning-fast search API that fits effortlessly into your apps, websites, and workflow
-- **Odoo**: Open Source ERP Alternative
-- **Plausible**: Open source analytics platform
-- **Rocketchat**: Open Source Chat Platform
-- **Uptime Kuma**: Open Source Uptime Monitoring
-- **PhpMyAdmin**: Open Source Database Administration
-- **Minio**: Open Source Object Storage
-- **n8n**: Open Source Workflow Automation
-- **excalidraw**: Open Source Collaborative Drawing Tool
-- **Directus**: The Modern Data Stack 🐰 — Directus is an instant REST+GraphQL API and intuitive no-code data collaboration app for any SQL database.
-- **Baserow**: Platform to build admin panels, internal tools, and dashboards
-- **Minio**: Open Source Object Storage
-- **Metabase**: Open Source Business Intelligence
-- **Grafana**: Open Source Dashboard for your metrics
-- **Wordpress**: Open Source Content Management System
+### What are Hawiyat Templates?
+Templates are pre-configured application stacks that include:
+- Docker Compose configurations
+- Environment variables setup
+- Network configurations
+- Volume management
+- Automated deployment scripts
+
+### Benefits
+- Rapid deployment of complex applications
+- Production-ready configurations
+- Automated SSL/TLS setup
+- Built-in monitoring and logging
+- Scalability options
+
+### Prerequisites
+- Hawiyat account with appropriate permissions
+- Basic understanding of Docker and containers
+- Domain name (for public-facing applications)
+- Sufficient server resources
+
+## Available Templates
+
+Our extensive template collection covers various categories:
+
+### 🔥 Featured Templates
+
+### 💼 Business & Productivity
+1. **Odoo Enterprise Suite**
+   - Complete business management solution
+   - Modules: CRM, Sales, Inventory, HR
+   - Scalable architecture
+   - Real-time analytics
+
+2. **Cal.com (formerly Calcom)**
+   - Advanced scheduling platform
+   - Multi-timezone support
+   - Team scheduling
+   - Custom branding options
+
+3. **Baserow Pro**
+   - No-code database platform
+   - Custom workflows
+   - API access
+   - Advanced permissions
+
+4. **nocodb Enterprise**
+   - Airtable alternative
+   - Multiple database support
+   - Custom views
+   - Automation capabilities
+
+5. **Metabase Analytics**
+   - Business intelligence platform
+   - Custom dashboards
+   - SQL query interface
+   - Automated reports
+
+### 🛡️ Security & Monitoring
+6. **Uptime Kuma Pro**
+   - Advanced uptime monitoring
+   - Status page
+   - Multiple notification channels
+   - Custom monitoring intervals
+
+7. **Glitchtip Enterprise**
+   - Error tracking platform
+   - Performance monitoring
+   - Custom issue grouping
+   - Team collaboration
+
+8. **Grafana Enterprise**
+   - Metrics visualization
+   - Custom dashboards
+   - Alert management
+   - Data source integration
+
+9. **Wazuh Security**
+   - Security monitoring
+   - Threat detection
+   - Compliance tracking
+   - Log analysis
+
+10. **Vault by HashiCorp**
+    - Secrets management
+    - Encryption service
+    - Access control
+    - Key rotation
+
+### 🔍 Search & Analytics
+11. **Meilisearch Pro**
+    - Fast search engine
+    - Custom ranking rules
+    - Typo tolerance
+    - Analytics dashboard
+
+12. **Plausible Analytics**
+    - Privacy-focused analytics
+    - Custom events
+    - Multiple sites
+    - API access
+
+13. **Elasticsearch Stack**
+    - Full-text search
+    - Log analysis
+    - Monitoring suite
+    - Machine learning
+
+14. **Matomo Analytics**
+    - Google Analytics alternative
+    - Privacy compliance
+    - Heatmaps
+    - A/B testing
+
+### 🗄️ Storage & Databases
+15. **MinIO Object Storage**
+    - S3-compatible storage
+    - Multi-site replication
+    - Encryption
+    - Version control
+
+16. **MongoDB Enterprise**
+    - NoSQL database
+    - Sharding support
+    - Backup automation
+    - Monitoring tools
+
+17. **PostgreSQL Enterprise**
+    - Advanced SQL database
+    - Replication
+    - Performance monitoring
+    - Backup management
+
+18. **Redis Stack**
+    - In-memory database
+    - Caching system
+    - Queue management
+    - Real-time analytics
+
+### 🔄 Automation & Workflows
+19. **n8n.io Enterprise**
+    - Workflow automation
+    - Custom integrations
+    - Error handling
+    - Webhook support
+
+20. **Apache Airflow**
+    - Data pipeline automation
+    - Task scheduling
+    - Error recovery
+    - Custom operators
+
+21. **Jenkins Enterprise**
+    - CI/CD pipeline
+    - Plugin ecosystem
+    - Security scanning
+    - Deploy automation
+
+### 📝 Documentation & Collaboration
+22. **Documenso Enterprise**
+    - Digital signature platform
+    - Document workflow
+    - Team collaboration
+    - Audit trails
+
+23. **GitLab Enterprise**
+    - Source code management
+    - CI/CD pipelines
+    - Issue tracking
+    - Container registry
+
+24. **Rocket.Chat Enterprise**
+    - Team chat platform
+    - Video conferencing
+    - File sharing
+    - Custom integrations
+
+### 🎨 Design & Creative
+25. **Excalidraw Plus**
+    - Collaborative drawing
+    - Custom libraries
+    - Real-time collaboration
+    - Export options
+
+26. **Penpot Design**
+    - Design platform
+    - Team collaboration
+    - Design system
+    - Prototyping
+
+### 🌐 Web & CMS
+27. **WordPress Enterprise**
+    - Content management
+    - E-commerce ready
+    - Multi-site support
+    - Custom plugins
+
+28. **Ghost Pro**
+    - Professional publishing
+    - Membership system
+    - Newsletter tools
+    - Custom themes
+
+29. **Strapi Enterprise**
+    - Headless CMS
+    - API generation
+    - Custom fields
+    - Role-based access
+
+### 🛠️ Development Tools
+30. **GitLab Enterprise**
+    - Code repository
+    - CI/CD pipelines
+    - Issue tracking
+    - Wiki system
+
+31. **Sourcegraph**
+    - Code intelligence
+    - Code search
+    - Code navigation
+    - Code insights
+
+32. **Harbor Registry**
+    - Container registry
+    - Vulnerability scanning
+    - Access control
+    - Replication
+
+[... And 70+ more templates available in our repository]
+
+Each template includes:
+- Detailed documentation
+- Configuration guidelines
+- Security best practices
+- Scaling recommendations
+- Monitoring setup
+- Backup strategies
+
+## Template Categories
+
+Our templates are organized into functional categories for easy navigation:
+
+1. **Business Applications**
+   - ERP Systems
+   - CRM Platforms
+   - HR Management
+   - Project Management
+
+2. **Developer Tools**
+   - Code Repositories
+   - CI/CD Pipelines
+   - Testing Frameworks
+   - Documentation Tools
+
+3. **Data & Analytics**
+   - Databases
+   - Business Intelligence
+   - Data Visualization
+   - Log Management
+
+4. **Security & Compliance**
+   - Access Management
+   - Monitoring Tools
+   - Audit Systems
+   - Encryption Services
+
+5. **Communication & Collaboration**
+   - Team Chat
+   - Video Conferencing
+   - Document Management
+   - Email Systems
 
 
 
 
-## Create your own template
+## Creating Custom Templates
 
-We accept contributions to upload new templates to the Hawiyat repository.
+### Template Development Guide
 
-Make sure to follow the guidelines for creating a template:
+1. **Template Structure**
+   ```
+   template/
+   ├── docker-compose.yml
+   ├── .env.example
+   ├── config/
+   ├── scripts/
+   └── README.md
+   ```
 
-[Steps to create your own template](https://github.com/Hawiyat/Hawiyat/blob/canary/CONTRIBUTING.md#templates)
+2. **Required Components**
+   - Docker Compose configuration
+   - Environment variable templates
+   - Setup documentation
+   - Security guidelines
+   - Scaling instructions
+
+3. **Best Practices**
+   - Use official base images
+   - Implement health checks
+   - Configure logging
+   - Set resource limits
+   - Document all variables
+
+4. **Security Requirements**
+   - No hardcoded credentials
+   - Secure default configurations
+   - Updated base images
+   - Network isolation
+   - Volume permissions
+
+### Contributing Guidelines
+
+We welcome contributions to our template repository. Follow these steps:
+
+1. **Fork the Repository**
+   ```bash
+   git clone https://github.com/Hawiyat/templates.git
+   cd templates
+   ```
+
+2. **Create Your Template**
+   - Follow the structure guide
+   - Include comprehensive documentation
+   - Add security considerations
+   - Test thoroughly
+
+3. **Submit for Review**
+   - Create a pull request
+   - Provide testing evidence
+   - Document special requirements
+   - Address review comments
+
+[Detailed Contribution Guide](https://github.com/Hawiyat/Hawiyat/blob/canary/CONTRIBUTING.md#templates)
+
+## Template Management
+
+### Deployment Best Practices
+
+1. **Pre-deployment Checklist**
+   - Resource requirements
+   - Network configuration
+   - Storage planning
+   - Security review
+
+2. **Monitoring Setup**
+   - Performance metrics
+   - Error tracking
+   - Resource usage
+   - User activity
+
+3. **Backup Strategy**
+   - Data volumes
+   - Configuration files
+   - Automated backups
+   - Recovery testing
+
+4. **Scaling Guidelines**
+   - Horizontal scaling
+   - Load balancing
+   - Cache configuration
+   - Database optimization
+
+## Support and Resources
+
+### Documentation
+- [Template API Reference](/docs/api/templates)
+- [Configuration Guide](/docs/core/templates/config)
+- [Security Best Practices](/docs/core/security)
+- [Scaling Strategies](/docs/core/scaling)
+
+### Community
+- [Discord Community](https://discord.gg/hawiyat)
+- [GitHub Discussions](https://github.com/hawiyat/discussions)
+- [Stack Overflow](https://stackoverflow.com/questions/tagged/hawiyat)
+
+### Updates
+- Subscribe to our newsletter for template updates
+- Follow us on [Twitter](https://twitter.com/hawiyat)
+- Watch our [GitHub repository](https://github.com/hawiyat)

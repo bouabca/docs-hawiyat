@@ -1,41 +1,188 @@
 ---
-title: "Providers"
-description: "Learn how to use Docker  Compose with Hawiyat"
+title: "Docker Compose Providers"
+description: "Comprehensive guide to deploying Docker Compose applications using Hawiyat's multiple provider integrations"
 ---
 
-Hawiyat offers several deployment methods, streamlining the process whether you're utilizing GitHub, any Git provider, Raw, or automated deployments.
+# Docker Compose Provider Integration Guide
 
-- GitHub
-- Git (Any Git Provider)
-- Raw
+Hawiyat provides an enterprise-grade deployment system for Docker Compose applications, offering multiple sophisticated deployment methods to suit various development workflows and operational requirements.
 
-## GitHub
+## Deployment Provider Overview
 
-Deploying via GitHub is straightforward:
+Our platform supports three robust deployment approaches, each designed for specific use cases:
 
-1. Configure your GitHub repository in the `/dashboard/settings/server`.
-2. When creating an application, Hawiyat automatically retrieves the available repositories and branches.
+### Available Providers
 
-## Git
+1. **GitHub Integration**
+   - Native GitHub API integration
+   - Automated repository synchronization
+   - Advanced security features
+   - CI/CD pipeline support
 
-For deployments from any Git repository, whether public or private, you can use either SSH or HTTPS:
+2. **Universal Git Provider Support**
+   - Multiple authentication methods
+   - Custom Git server support
+   - Advanced security protocols
+   - Flexible branch management
 
-1. Enter the repository URL.
-2. Specify the branch you wish to deploy.
+3. **Raw Configuration**
+   - Direct compose file editing
+   - Real-time validation
+   - Version control integration
+   - Template support
 
-### Private Repositories
+## GitHub Integration
 
-For private repositories, authenticate using SSH. We provide a lock icon to generate an SSH key.
+Our GitHub integration provides a seamless deployment experience with advanced features and automation capabilities:
 
-<ImageZoom src="/assets/hawiyat-ssh-compose.png" width={800} height={630} className="rounded-lg"/>
+### Configuration Process
+1. **Repository Setup**
+   - Navigate to `/dashboard/settings/server`
+   - Configure GitHub OAuth integration
+   - Set repository access permissions
+   - Configure webhook settings
 
-You can then copy the SSH key and paste it into the settings of your account.
+2. **Application Configuration**
+   - Automated repository discovery
+   - Smart branch detection
+   - Compose file validation
+   - Environment variable mapping
 
-<ImageZoom src="/assets/private-repository.png" width={800} height={630} className="rounded-lg"/>
+### Advanced Features
+1. **Security Controls**
+   - OAuth2 authentication
+   - Repository-level permissions
+   - Secret management
+   - Access token rotation
 
-This enables you to pull repositories from your private repository, a method consistent across nearly all providers.
+2. **Automation Capabilities**
+   - Automated builds
+   - Deployment triggers
+   - Status notifications
+   - Rollback support
 
+3. **Integration Options**
+   - GitHub Actions support
+   - Status checks integration
+   - PR preview deployments
+   - Branch protection rules
 
-## Raw
+## Universal Git Integration
 
-You specify a docker compose file directly in the code editor and trigger a deployment.
+Our universal Git integration system supports deployments from any Git provider, offering flexible authentication options and advanced security features:
+
+### Authentication Methods
+
+1. **HTTPS Integration**
+   - Personal access tokens
+   - Basic authentication
+   - Custom credentials
+   - Certificate validation
+
+2. **SSH Authentication**
+   - Key pair generation
+   - Multiple key support
+   - Key rotation policies
+   - Access management
+
+### Repository Configuration
+
+1. **Source Control**
+   - Repository URL configuration
+   - Branch selection and tracking
+   - Tag-based deployments
+   - Commit verification
+
+2. **Access Management**
+   - Permission controls
+   - Role-based access
+   - Audit logging
+   - Activity monitoring
+
+### Private Repository Access
+
+Our sophisticated SSH key management system ensures secure access to private repositories:
+
+1. **Key Generation System**
+   - Click the lock icon interface
+   - Automatic key generation
+   - Secure parameter configuration
+   - Key storage management
+
+<ImageZoom 
+  src="/assets/hawiyat-ssh-compose.png" 
+  width={800} 
+  height={630} 
+  className="rounded-lg"
+  alt="SSH Key Generation Interface"
+/>
+
+2. **Key Installation Process**
+   - Copy generated public key
+   - Configure provider settings
+   - Verify key installation
+   - Test repository access
+
+<ImageZoom 
+  src="/assets/private-repository.png" 
+  width={800} 
+  height={630} 
+  className="rounded-lg"
+  alt="Repository Key Configuration"
+/>
+
+### Supported Platforms
+- GitLab (Cloud & Self-hosted)
+- Bitbucket (Cloud & Server)
+- Azure DevOps
+- AWS CodeCommit
+- Custom Git servers
+
+### Security Features
+- Key encryption
+- Access logging
+- IP whitelisting
+- Rate limiting
+
+## Raw Configuration System
+
+Our sophisticated raw configuration system provides direct Docker Compose file management:
+
+### Editor Features
+1. **Compose File Management**
+   - Syntax highlighting
+   - Real-time validation
+   - Auto-completion
+   - Error detection
+
+2. **Version Control**
+   - Change tracking
+   - Revision history
+   - Rollback capability
+   - Diff visualization
+
+### Advanced Capabilities
+1. **Template System**
+   - Predefined templates
+   - Custom templates
+   - Variable substitution
+   - Environment configuration
+
+2. **Validation Features**
+   - Syntax checking
+   - Service validation
+   - Network configuration
+   - Volume verification
+
+### Security Controls
+1. **Access Management**
+   - Role-based editing
+   - Change approval
+   - Audit logging
+   - Version locking
+
+2. **Deployment Safety**
+   - Configuration validation
+   - Resource verification
+   - Dependency checking
+   - Security scanning

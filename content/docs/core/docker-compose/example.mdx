@@ -6,8 +6,19 @@ description: "Learn how to use Docker Compose with Hawiyat"
 
 ## Tutorial
 
-In this tutorial, we will create a simple application using Docker Compose and route the traffic to an accessible domain.
+In this comprehensive tutorial, we will create a scalable web application using Docker Compose and configure it with Hawiyat's infrastructure. You'll learn how to:
+- Set up a containerized Next.js application
+- Configure Traefik reverse proxy for routing
+- Enable automatic SSL certificate generation
+- Implement proper networking between services
+- Deploy the application with high availability
 
+### Prerequisites
+- A Hawiyat account with admin access
+- Basic understanding of Docker and Docker Compose
+- A domain name that you can configure
+- Git installed on your local machine
+- Basic familiarity with YAML syntax
 
 ### Steps
 
@@ -21,12 +32,32 @@ In this tutorial, we will create a simple application using Docker Compose and r
 ![Docker compose configuration](/assets/images/compose/setup.png)
 
 
+### Understanding the Configuration Requirements
+
+Before updating your Docker Compose configuration, it's important to understand the key components that make your application work with Hawiyat:
+
+1. **Network Configuration**
+   - The `hawiyat-network` is a managed network that enables communication between your services
+   - All containers must be connected to this network to ensure proper service discovery
+   - The network is created and managed by Hawiyat automatically
+
+2. **Traefik Integration**
+   - Traefik serves as the edge router for all incoming traffic
+   - Labels are used to configure routing rules and SSL certificates
+   - Each service requires specific Traefik labels for proper routing
+
 ### Updating Your `docker-compose.yml`
 
-Add the following to your existing `docker-compose.yml` file:
+To integrate your application with Hawiyat's infrastructure, you need to make the following modifications to your `docker-compose.yml` file:
 
-1. Add the network `hawiyat-network` to each service.
-2. Add labels for Traefik to make the service accessible through the domain.
+1. Add the `hawiyat-network` to each service to enable proper communication
+2. Configure Traefik labels for:
+   - Enabling Traefik routing
+   - Setting up domain rules
+   - Configuring SSL endpoints
+   - Defining service ports
+3. Remove any conflicting network configurations
+4. Adjust port mappings to avoid conflicts
 
 Example:
 
@@ -101,10 +132,51 @@ Deploy the application by clicking on "deploy" and wait for the deployment to co
 
 <ImageZoom  src="/assets/images/compose/application.png" width={800} height={630} alt='home og image' className="rounded-lg" />
 
-**Tips**:
+### Important Configuration Details
 
-1. Set unique names for each router: `traefik.http.routers.<unique-name>` 
-2.  Set unique names for each service: `traefik.http.services.<unique-name>`
-3. Ensure the network is linked to the `hawiyat-network`
-4. Set the entry point to websecure and the certificate resolver to letsencrypt to generate certificates.
+#### Naming Conventions and Best Practices
+
+1. **Router Naming**
+   - Set unique names for each router: `traefik.http.routers.<unique-name>`
+   - Use descriptive names that reflect the service purpose
+   - Example: `myapp-web`, `myapp-api`, `myapp-frontend`
+
+2. **Service Naming**
+   - Set unique names for each service: `traefik.http.services.<unique-name>`
+   - Keep service names consistent with router names
+   - Avoid generic names like "web" or "app"
+
+3. **Network Configuration**
+   - Always ensure services are linked to `hawiyat-network`
+   - Remove any custom network definitions
+   - Don't create additional overlay networks unless necessary
+
+4. **SSL and Security**
+   - Use `websecure` entrypoint for HTTPS traffic
+   - Configure `letsencrypt` as the certificate resolver
+   - SSL certificates are automatically generated and renewed
+   - Ensure your domain's DNS is properly configured
+
+5. **Performance Optimization**
+   - Use the `restart: always` policy for production services
+   - Configure appropriate healthcheck parameters
+   - Set reasonable resource limits
+   - Use proper logging configurations
+
+#### Troubleshooting Common Issues
+
+1. **Certificate Generation**
+   - Allow up to 1 minute for initial certificate generation
+   - Verify DNS records are properly configured
+   - Check Traefik logs if certificates aren't generating
+
+2. **Network Connectivity**
+   - Ensure all services are on `hawiyat-network`
+   - Verify port configurations
+   - Check for port conflicts
+
+3. **Service Discovery**
+   - Use proper service names in your configurations
+   - Verify Traefik labels are correctly formatted
+   - Check for typos in domain names
 

@@ -3,12 +3,38 @@ title: Domains
 description: Configure domains for your Docker Compose application.
 ---
 
-When using Docker Compose, adding a domain to a service is a straightforward process. This guide will walk you through the necessary steps to configure domains for your application.
+This comprehensive guide explains how to configure domain routing for your Docker Compose applications using Hawiyat's infrastructure. You'll learn advanced domain configuration techniques, SSL/TLS setup, and best practices for production deployments.
 
-Key Steps:
+## Overview
 
-1. Add the service to the `hawiyat-network`.
-2. Use Traefik labels to configure routing.
+When configuring domains in a Docker Compose environment, you'll need to understand several key components:
+
+### Core Components
+1. **Hawiyat Network**: A managed overlay network that enables service discovery and load balancing
+2. **Traefik Integration**: An advanced reverse proxy that handles routing, SSL termination, and load balancing
+3. **DNS Configuration**: Setting up proper DNS records for your domains
+4. **SSL/TLS Certificates**: Automatic certificate generation and renewal
+
+### Key Benefits
+- Automatic SSL certificate management
+- Zero-downtime deployments
+- Built-in load balancing
+- Service discovery
+- Health checking
+- Metrics and monitoring
+
+### Prerequisites
+- A Hawiyat account with appropriate permissions
+- Basic understanding of DNS and networking concepts
+- Familiarity with Docker Compose
+- One or more registered domains
+
+## Implementation Steps
+
+1. Add your services to the `hawiyat-network` for proper service discovery
+2. Configure Traefik labels for intelligent routing
+3. Set up SSL/TLS certificates
+4. Configure DNS records
 
 Example Scenario
 
@@ -163,34 +189,219 @@ networks:
     external: true
 ```
 
-Understanding Traefik Labels
+## Understanding Traefik Configuration
+
+### Label Architecture
+Traefik uses a label-based configuration system that provides fine-grained control over routing, middleware, and load balancing. Here's a detailed breakdown of each label:
+
+1. **Service Enablement**
+   ```yaml
+   traefik.enable=true
+   ```
+   - Activates Traefik routing for the service
+   - Required for all services that need routing
+   - Can be disabled for internal services
+
+2. **Domain Configuration**
+   ```yaml
+   traefik.http.routers.<UNIQUE-RULE>.rule=Host(`your-domain.hawiyat.com`)
+   ```
+   - Defines the domain routing rule
+   - Supports multiple domains using OR: `Host(`domain1.com`) || Host(`domain2.com`)`
+   - Allows path-based routing: `Host(`api.domain.com`) && PathPrefix(`/v1`)`
+
+3. **Entrypoint Configuration**
+   ```yaml
+   traefik.http.routers.<UNIQUE-RULE>.entrypoints=web
+   ```
+   - Defines the network entry point
+   - Common values: `web` (HTTP), `websecure` (HTTPS)
+   - Can specify multiple entrypoints for different protocols
+
+4. **Load Balancer Configuration**
+   ```yaml
+   traefik.http.services.<UNIQUE-RULE>.loadbalancer.server.port=3000
+   ```
+   - Specifies the internal service port
+   - Supports sticky sessions and health checks
+   - Can configure load balancing algorithms
+
+### Advanced Label Options
+
+5. **Middleware Configuration**
+   ```yaml
+   traefik.http.routers.<UNIQUE-RULE>.middlewares=rate-limit@file
+   ```
+   - Apply transformations to requests/responses
+   - Examples: authentication, rate limiting, headers
+
+6. **TLS Configuration**
+   ```yaml
+   traefik.http.routers.<UNIQUE-RULE>.tls.certresolver=letsencrypt
+   ```
+   - Enables automatic SSL/TLS certificate management
+   - Supports multiple certificate resolvers
+
+**Important**: Replace `<UNIQUE-RULE>` with a descriptive, unique identifier for each service (e.g., `frontend-app`, `backend-api`, `admin-dashboard`). Use consistent naming across related labels.
 
 
-1. `traefik.enable=true`   Enables Traefik routing for the service.
-2. `traefik.http.routers.<UNIQUE-RULE>.rule=Host('your-domain.hawiyat.com')` Specifies the domain for the service
-3. `traefik.http.routers.<UNIQUE-RULE>.entrypoints=web`  Sets the service to be accessible via HTTP.
-4. `traefik.http.services.<UNIQUE-RULE>.loadbalancer.server.port=3000` Specifies the port your service is using internally.
+## Production Best Practices
 
-**Note**: Replace `<UNIQUE-RULE>` with a unique identifier for each service (e.g., frontend-app, backend-app, etc.). 
+### Security Considerations
 
+1. **Port Management**
+   - Use `expose` instead of `ports` for internal service communication
+   - Avoid exposing unnecessary ports to the host
+   - Implement proper network segmentation
+   ```yaml
+   services:
+     api:
+       expose:
+         - "8080"  # Only exposed internally
+   ```
 
-## Important Considerations
+2. **SSL/TLS Configuration**
+   - Always use HTTPS in production
+   - Enable automatic certificate renewal
+   - Configure proper SSL ciphers
+   ```yaml
+   labels:
+     - traefik.http.routers.myapp.tls=true
+     - traefik.http.routers.myapp.tls.certresolver=letsencrypt
+     - traefik.http.routers.myapp.tls.options=modern@file
+   ```
 
-1. **Port Exposure**: Use `expose` instead of `ports` to expose ports to the host machine. This ensures that the ports are not exposed to the host machine.
-2. **DNS Configuration**: Ensure you create `A` records pointing to your domain in your DNS Provider Settings.
-3. **HTTPS**: For HTTPS, you can use Let's Encrypt or other SSL/TLS certificates. 
+3. **Network Security**
+   - Use internal networks for service-to-service communication
+   - Implement proper access controls
+   - Enable rate limiting for public endpoints
+   ```yaml
+   labels:
+     - traefik.http.middlewares.rate-limit.ratelimit.average=100
+     - traefik.http.middlewares.rate-limit.ratelimit.burst=50
+   ```
 
+### DNS Configuration
 
-## Deployment
+1. **Record Types**
+   - Create `A` records pointing to Hawiyat's infrastructure
+   - Use `CNAME` records for subdomains
+   - Consider `CAA` records for certificate authority restrictions
 
-With these configurations in place, you're now ready to deploy your application using Docker Compose. This setup should be sufficient to get your services up and running with custom domain routing through Traefik.
+2. **DNS Propagation**
+   - Allow time for DNS changes to propagate (usually 0-48 hours)
+   - Use DNS checking tools to verify propagation
+   - Configure appropriate TTL values
 
-## SSL Certificates and Further Configuration
+3. **Monitoring**
+   - Set up DNS monitoring
+   - Configure alerts for DNS issues
+   - Regular DNS health checks
 
-If you have questions about when to use Let's Encrypt or other SSL certificate options, you can find more detailed information in the following resources:
+## Deployment Strategies
 
-1. [Certificates](/docs/core/domain/certificates)
-2. [Docker Compose Domain](/docs/core/domain/docker-compose-setup)
-3. [Docker Compose Example](/docs/core/docker-compose/example)
+1. **Zero-Downtime Deployment**
+   - Use rolling updates
+   - Implement health checks
+   - Configure proper update delays
+   ```yaml
+   deploy:
+     update_config:
+       order: start-first
+       failure_action: rollback
+       delay: 10s
+   ```
 
-If you have any further questions or need assistance, join our [Discord server](https://discord.com/) and we'll be happy to help.
+2. **Monitoring and Logging**
+   - Enable Traefik access logs
+   - Configure application logging
+   - Set up metrics collection
+   ```yaml
+   labels:
+     - traefik.http.middlewares.logger.accesslog=true
+     - traefik.http.middlewares.logger.accesslog.format=json
+   ```
+
+3. **Scaling Considerations**
+   - Configure proper resource limits
+   - Implement load balancing
+   - Use Docker Compose v3+ features
+   ```yaml
+   deploy:
+     resources:
+       limits:
+         cpus: '0.50'
+         memory: 512M
+     replicas: 3
+   ```
+
+## Advanced Configuration and Troubleshooting
+
+### SSL/TLS Certificate Management
+
+1. **Automatic Certificate Generation**
+   - Let's Encrypt integration
+   - Certificate renewal automation
+   - Multiple domain support
+   ```yaml
+   labels:
+     - traefik.http.routers.myapp.tls.certresolver=letsencrypt
+     - traefik.http.routers.myapp.tls.domains[0].main=example.com
+     - traefik.http.routers.myapp.tls.domains[0].sans=*.example.com
+   ```
+
+2. **Manual Certificate Configuration**
+   - Custom certificate support
+   - Certificate chain configuration
+   - Private key management
+
+### Common Issues and Solutions
+
+1. **Certificate Problems**
+   - Check DNS configuration
+   - Verify domain ownership
+   - Review Traefik logs
+   ```bash
+   # View Traefik logs
+   docker logs traefik-proxy
+   ```
+
+2. **Routing Issues**
+   - Validate label configuration
+   - Check network connectivity
+   - Verify service health
+
+3. **Performance Optimization**
+   - Configure caching
+   - Implement compression
+   - Enable HTTP/2
+   ```yaml
+   labels:
+     - traefik.http.middlewares.compress.compress=true
+     - traefik.http.middlewares.cache.headers.customresponseheaders.Cache-Control=public,max-age=3600
+   ```
+
+## Additional Resources
+
+For more detailed information and advanced configurations, refer to:
+
+1. [SSL Certificate Management](/docs/core/domain/certificates)
+   - Deep dive into certificate types
+   - Advanced SSL configuration
+   - Security best practices
+
+2. [Docker Compose Domain Setup](/docs/core/domain/docker-compose-setup)
+   - Complete domain configuration
+   - Advanced routing scenarios
+   - Production deployment guides
+
+3. [Example Implementations](/docs/core/docker-compose/example)
+   - Real-world configurations
+   - Best practices examples
+   - Common patterns
+
+### Community and Support
+
+- Join our [Discord server](https://discord.com/) for real-time support
+- Check our [GitHub repository](https://github.com/hawiyat) for updates
+- Subscribe to our newsletter for latest features and best practices

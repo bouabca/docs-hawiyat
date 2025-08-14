@@ -1,39 +1,132 @@
 ---
-title: Auto-deploy
-description: How to auto-deploy your docker-compose application with Hawiyat
+title: Automated Deployment System
+description: "Comprehensive guide to automated Docker Compose deployments using Hawiyat's advanced integration systems"
 ---
 
-Automatically deploying your docker-compose application to Hawiyat can be achieved through two primary methods: using Webhooks or the Hawiyat API. Each method supports various platforms and provides a streamlined deployment process.
+# Docker Compose Automation Framework
 
-## Github
+Hawiyat provides an enterprise-grade automation framework for Docker Compose deployments, offering sophisticated integration options and robust deployment pipelines. Our system supports multiple automation methods, each designed for specific operational requirements and development workflows.
 
-For Github, we provide autodeploy without any configuration. This will automatically deploy your application whenever you push to your repository.
+## Deployment Automation Architecture
 
-## Webhook URL
+Our platform implements a multi-layered automation system:
 
-Webhooks allow you to automatically deploy your docker-compose application whenever changes are made in your source repository.
+### Core Components
+1. **Event Processing**
+   - Webhook handlers
+   - API endpoints
+   - Event queuing
+   - State management
 
-- GitHub
-- GitLab
-- Bitbucket
-- Gitea
+2. **Security Layer**
+   - Authentication services
+   - Authorization controls
+   - Audit logging
+   - Rate limiting
 
-### Configuration Steps
+3. **Deployment Engine**
+   - Container orchestration
+   - Service discovery
+   - Load balancing
+   - Health monitoring
 
-1. **Enable Auto Deploy**: Toggle the 'Auto Deploy' button found in the general tab of your application settings in Hawiyat.
-2. **Obtain Webhook URL**: Locate the Webhook URL from the deployment logs.
+## GitHub Native Integration
+
+Our advanced GitHub integration provides zero-configuration deployment capabilities:
+
+### Features
+1. **Automated Deployment**
+   - Push detection
+   - Branch monitoring
+   - Commit validation
+   - Status tracking
+
+2. **Security Controls**
+   - Repository verification
+   - Access management
+   - Secret handling
+   - Token rotation
+
+3. **Integration Options**
+   - Actions workflow
+   - Status checks
+   - Branch protection
+   - Deploy previews
+
+## Webhook Integration System
+
+Our enterprise-grade webhook system enables automated deployments across multiple platforms with advanced security and monitoring capabilities.
+
+### Supported Platforms
+
+1. **GitHub Integration**
+   - Organization support
+   - Enterprise server compatibility
+   - Advanced security features
+   - Custom event filtering
+
+2. **GitLab Implementation**
+   - Cloud and self-hosted support
+   - Pipeline integration
+   - Mirror repositories
+   - Custom webhooks
+
+3. **Bitbucket Connectivity**
+   - Cloud and Data Center support
+   - Pipeline triggers
+   - Custom payload filtering
+   - Branch restrictions
+
+4. **Gitea Support**
+   - Self-hosted compatibility
+   - Event filtering
+   - Custom headers
+   - Signature verification
+
+### Advanced Configuration Process
+
+1. **Automation Setup**
+   - **Initial Configuration**
+     - Access application settings
+     - Navigate to general tab
+     - Locate Auto Deploy section
+     - Enable automation feature
+
+   - **Security Settings**
+     - Configure access controls
+     - Set up IP filtering
+     - Enable event validation
+     - Configure rate limits
+
+2. **Webhook Management**
+   - **URL Configuration**
+     - Generate secure endpoint
+     - Configure callback URL
+     - Set security parameters
+     - Test connectivity
 
 <ImageZoom
   src="/assets/webhook-url-compose.png"
-  alt="Webhook URL"
+  alt="Webhook Configuration Interface"
   width={1000}
   height={500}
+  quality={100}
 />
 
-3. **Configure Your Repository**:
-   - Navigate to your repository settings on your chosen platform.
-   - Add the webhook URL provided by Hawiyat.
-   - Ensure the settings match the configuration necessary for triggering the webhook.
+3. **Platform Integration**
+   - **Repository Setup**
+     - Access provider settings
+     - Configure webhook endpoint
+     - Set event triggers
+     - Configure authentication
+
+<ImageZoom
+  src="/assets/webhook-github.png"
+  alt="Repository Webhook Setup"
+  width={1000}
+  height={500}
+  quality={100}
+/>
 
 <ImageZoom
   src="/assets/webhook-github.png"
@@ -42,33 +135,65 @@ Webhooks allow you to automatically deploy your docker-compose application whene
   height={500}
 />
 
-#### Important Notes
+## Critical Configuration Guidelines
 
-- **Branch Matching**: When using Git-based providers (GitHub, GitLab, etc.), ensure that the branch configured in Hawiyat matches the branch you intend to push to. Misalignment will result in a "Branch Not Match" error.
-- The steps are the same for all the providers.
+### Version Control Integration
 
-## API Method
+1. **Branch Management**
+   - **Matching Rules**
+     - Exact branch name matching
+     - Case sensitivity handling
+     - Pattern matching support
+     - Default branch configuration
 
-Deploy your application programmatically using the Hawiyat API from anywhere.
+   - **Security Considerations**
+     - Branch protection rules
+     - Access restrictions
+     - Review requirements
+     - Merge policies
 
-### Steps to Deploy Using API
+2. **Provider-Specific Settings**
+   - Platform-specific configurations
+   - Authentication methods
+   - Event filtering rules
+   - Response handling
 
-Steps:
+## RESTful API Integration
 
-1. **Generate a Token**: Create an API token in your profile settings on Hawiyat.
-2. **Retrieve Compose ID**:
+Our enterprise-grade API system enables programmatic control over deployments with comprehensive security and monitoring capabilities.
 
+### Authentication System
+
+1. **Token Management**
+   - **Generation Process**
+     - Access profile settings
+     - Configure token scope
+     - Set expiration
+     - Generate credentials
+
+   - **Security Features**
+     - Encryption standards
+     - Rotation policies
+     - Access monitoring
+     - Audit logging
+
+2. **Application Discovery**
+
+### Project Discovery API
 ```http
 curl -X 'GET' \
   'https://your-domain/api/project.all' \
-  -H 'accept: application/json'
+  -H 'accept: application/json' \
   -H 'Authorization: Bearer <token>'
 ```
 
-This command lists all projects and services. Identify the composeId for the compose you wish to deploy.
+**Response Processing**:
+- Project enumeration
+- Service discovery
+- Configuration validation
+- State verification
 
-3. **Trigger Deployment**:
-
+### Deployment Trigger API
 ```http
 curl -X 'POST' \
   'https://canary.Hawiyat.com/api/compose.deploy' \
@@ -80,5 +205,56 @@ curl -X 'POST' \
 }'
 ```
 
-This API method allows for flexible, scriptable deployment options, suitable for automated systems or situations where direct repository integration is not feasible.
-In this way you can deploy your application from anywhere, you can use the webhook URL or the API.
+## Advanced Integration Features
+
+### 1. Automation Capabilities
+- **CI/CD Integration**
+  - Jenkins pipeline support
+  - GitHub Actions workflows
+  - GitLab CI integration
+  - Custom pipeline support
+
+- **Deployment Strategies**
+  - Rolling updates
+  - Blue-green deployments
+  - Canary releases
+  - A/B testing
+
+### 2. Security Framework
+- **Access Control**
+  - Role-based access
+  - Token management
+  - IP restrictions
+  - Rate limiting
+
+- **Audit System**
+  - Activity logging
+  - Change tracking
+  - Compliance reporting
+  - Security alerts
+
+### 3. Monitoring and Analytics
+- **Performance Metrics**
+  - Response times
+  - Success rates
+  - Error tracking
+  - Resource usage
+
+- **Reporting Tools**
+  - Deployment stats
+  - Success metrics
+  - Error analysis
+  - Trend monitoring
+
+### 4. Best Practices
+- **Security Guidelines**
+  - Token rotation
+  - Access reviews
+  - Audit logging
+  - Incident response
+
+- **Performance Optimization**
+  - Request batching
+  - Cache management
+  - Rate limiting
+  - Error handling

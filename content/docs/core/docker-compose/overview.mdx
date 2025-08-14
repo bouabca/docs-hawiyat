@@ -1,49 +1,272 @@
 ---
-title: "Overview"
-description: "Learn how to use Docker Compose with Hawiyat"
+title: "Docker Compose"
+description: "Comprehensive guide to Docker Compose and Stack deployment solutions in Hawiyat"
 ---
 
-Hawiyat integrates with Docker Compose and Docker Stack to provide flexible deployment solutions. Whether you are developing locally or deploying at scale, Hawiyat facilitates application management through these powerful Docker tools.
+# Docker Compose Integration Platform
 
-### Configuration Methods
+Hawiyat provides an enterprise-grade integration platform for Docker Compose and Docker Stack deployments, offering sophisticated orchestration capabilities, advanced monitoring, and seamless scaling solutions. Our platform bridges the gap between development and production environments, ensuring consistent deployments across your infrastructure.
 
-Hawiyat provides two methods for creating Docker Compose configurations:
+## Platform Architecture
+
+Hawiyat's Docker integration platform is built on a multi-layered architecture designed for reliability, scalability, and ease of use:
+
+### Core Components
+
+1. **Orchestration Engine**
+   - Docker Compose integration
+   - Swarm mode support
+   - Service discovery
+   - Load balancing
+   - Health checking
+
+2. **Security Framework**
+   - Role-based access control
+   - Secret management
+   - Network isolation
+   - Resource constraints
+   - Vulnerability scanning
+
+3. **Monitoring System**
+   - Real-time metrics
+   - Log aggregation
+   - Performance analysis
+   - Alert management
+
+## Configuration Systems
+
+Hawiyat offers two sophisticated methods for managing Docker deployments:
+
+### 1. Docker Compose Implementation
+- **Features**:
+  - Full compose specification support
+  - Multi-container orchestration
+  - Network management
+  - Volume handling
+  - Environment configuration
+
+- **Use Cases**:
+  - Development environments
+  - Single-node deployments
+  - Testing and staging
+  - Rapid prototyping
+
+### 2. Stack Deployment System
+- **Features**:
+  - Swarm mode optimization
+  - Service scaling
+  - Rolling updates
+  - Load balancing
+  - High availability
+
+- **Limitations**:
+  - No build context support
+  - Restricted local volume mounts
+  - Limited host network access
+  - Platform-specific constraints
+
+## Core Management Features
+
+### Application Lifecycle Management
+
+1. **Source Control Integration**
+   - Multiple provider support
+   - Branch management
+   - Version tracking
+   - Automated deployments
+
+2. **Build System**
+   - Multi-stage builds
+   - Cache optimization
+   - Dependency management
+   - Build arguments
+
+3. **Deployment Controls**
+   - Zero-downtime updates
+   - Rollback capabilities
+   - Health checking
+   - State management
+
+### Environment Configuration System
+
+Our sophisticated environment management system provides:
+
+1. **Variable Management**
+   - **Editor Features**:
+     - Syntax highlighting
+     - Validation
+     - Auto-completion
+     - Secret handling
+   
+   - **File Management**:
+     - Automatic .env creation
+     - Template support
+     - Version control
+     - Backup system
+
+2. **Security Features**
+   - Encrypted storage
+   - Access control
+   - Audit logging
+   - Rotation policies
+
+### Advanced Monitoring System
+
+Our comprehensive monitoring solution provides detailed insights for each service:
+
+1. **Service Metrics**
+   - **Resource Usage**:
+     - CPU utilization
+     - Memory consumption
+     - Network I/O
+     - Storage metrics
+   
+   - **Performance Indicators**:
+     - Response times
+     - Error rates
+     - Queue lengths
+     - Cache hit rates
+
+2. **Visualization Tools**
+   - Real-time graphs
+   - Historical trends
+   - Custom dashboards
+   - Alert thresholds
+
+### Log Management System
+
+Enterprise-grade logging system with advanced features:
+
+1. **Log Collection**
+   - **Source Types**:
+     - Application logs
+     - System logs
+     - Access logs
+     - Error logs
+   
+   - **Processing Features**:
+     - Real-time aggregation
+     - Pattern recognition
+     - Structured parsing
+     - Format normalization
+
+2. **Analysis Tools**
+   - Search capabilities
+   - Filter options
+   - Pattern matching
+   - Trend analysis
 
 
-- **Docker Compose**: Ideal for standard Docker Compose configurations.
-- **Stack**: Geared towards orchestrating applications using Docker Swarm. Note that some Docker Compose features, such as `build`, are not available in this mode.
+## Deployment Management System
 
-### General
+Our sophisticated deployment system provides comprehensive control and visibility over your application lifecycle:
 
-Configure the source of your code, the way your application is built, and also manage actions like deploying, updating, and deleting your application, and stopping it.
+### Deployment History
 
-### Enviroment
+1. **Historical Tracking**
+   - Last 10 deployment records
+   - Status tracking
+   - Performance metrics
+   - Configuration changes
 
-A code editor within Hawiyat allows you to specify environment variables for your Docker Compose file. By default, Hawiyat creates a `.env` file in the specified Docker Compose file path.
+2. **Real-time Monitoring**
+   - Live build progress
+   - Resource utilization
+   - Error detection
+   - Status notifications
 
-###  Monitoring
+### Deployment Control
 
-Monitor each service individually within Hawiyat. If your application consists of multiple services, each can be monitored separately to ensure optimal performance.
+1. **Queue Management**
+   - Deployment scheduling
+   - Priority configuration
+   - Queue monitoring
+   - Cancellation capabilities
 
-### Logs
+2. **Automation Options**
+   - Webhook integration
+   - CI/CD pipeline support
+   - Automated testing
+   - Rollback triggers
 
-Access detailed logs for each service through the Hawiyat log viewer, which can help in troubleshooting and ensuring the stability of your services.
+### Provider Integration
+- GitHub deployment triggers
+- GitLab CI/CD integration
+- Bitbucket pipeline support
+- Custom webhook endpoints
 
+## Advanced Configuration Center
 
-### Deployments
+Enterprise-grade configuration options for sophisticated deployment scenarios:
 
-You can view the last 10 deployments of your application. When you deploy your application in real time, a new deployment record will be created and it will gradually show you how your application is being built.
+### Command Management
 
-We also offer a button to cancel deployments that are in queue. Note that those in progress cannot be canceled.
+1. **Execution Control**
+   - **Base Commands**:
+     - Compose file execution
+     - Service management
+     - Network configuration
+     - Volume handling
+   
+   - **Custom Options**:
+     - Flag configuration
+     - Parameter passing
+     - Environment override
+     - Runtime arguments
 
-We provide a webhook so that you can trigger your own deployments by pushing to your GitHub, Gitea, GitLab, Bitbucket repository.
+2. **Security Controls**
+   - Command validation
+   - Permission checking
+   - Execution logging
+   - Resource limits
 
+### Storage Management
 
-### Advanced
+1. **Volume Configuration**
+   - **Types Support**:
+     - Named volumes
+     - Bind mounts
+     - tmpfs mounts
+     - npipe mounts
+   
+   - **Management Features**:
+     - Automatic provisioning
+     - Backup integration
+     - Quota management
+     - Performance tuning
 
-This section provides advanced configuration options for experienced users. It includes tools for custom commands within the container and volumes.
+2. **Persistence Options**
+   - Data redundancy
+   - Backup scheduling
+   - Recovery procedures
+   - Migration tools
 
-- **Command**: Hawiyat has a defined command to run the Docker Compose file, ensuring complete control through the UI. However, you can append flags or options to the command.
-- **Volumes**: To ensure data persistence across deployments, configure storage volumes for your application.
+<ImageZoom  
+  src="/assets/images/compose/overview.png" 
+  width={800} 
+  height={630} 
+  quality={100} 
+  priority 
+  alt='Docker Compose Platform Overview' 
+  className="rounded-lg" 
+/>
 
-<ImageZoom  src="/assets/images/compose/overview.png" width={800} height={630} quality={100} priority alt='home og image' className="rounded-lg" />
+### Best Practices
+
+1. **Security Guidelines**
+   - Regular security audits
+   - Access control reviews
+   - Secret rotation
+   - Vulnerability scanning
+
+2. **Performance Optimization**
+   - Resource allocation
+   - Cache management
+   - Network optimization
+   - Storage efficiency
+
+3. **Monitoring Recommendations**
+   - Metric collection
+   - Alert configuration
+   - Log analysis
+   - Performance tracking
