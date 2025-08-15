@@ -1,9 +1,47 @@
 ---
-title: application
+title: Application Management API
+description: Comprehensive documentation for Hawiyat's application management and deployment endpoints
 full: true
 ---
 
 import { Root, API, APIInfo, APIExample, Responses, Response, ResponseTypes, ExampleResponse, TypeScriptResponse, Property, ObjectCollapsible, Requests, Request } from "fumadocs-ui/components/api";
+
+# Application Management API Reference
+
+## Overview
+
+The Application Management API provides enterprise-grade endpoints for creating, managing, and deploying applications within the Hawiyat platform. These endpoints handle application lifecycle management, configuration, and deployment orchestration.
+
+### Core Features
+- Application lifecycle management
+- Environment configuration
+- Build system integration
+- Deployment orchestration
+- Resource management
+- Provider integration
+
+### Authentication Requirements
+All endpoints require:
+- Valid Bearer token authentication
+- Application management scope
+- Resource access permissions
+
+### Rate Limiting
+- Standard endpoints: 100 requests/minute
+- Deployment endpoints: 20 requests/minute
+- Build operations: 10 requests/minute
+- Configuration updates: 50 requests/minute
+
+### Error Handling
+All endpoints use a standardized error response format:
+```typescript
+{
+  message: string;    // Human-readable error description
+  code: string;       // Machine-readable error code
+  issues?: {         // Optional detailed error information
+    message: string; // Specific error details
+  }[];
+}
 
 <Root>
 

@@ -1,9 +1,42 @@
 ---
-title: admin
+title: Administrative API Reference
+description: Comprehensive documentation for Hawiyat's administrative API endpoints
 full: true
 ---
 
 import { Root, API, APIInfo, APIExample, Responses, Response, ResponseTypes, ExampleResponse, TypeScriptResponse, Property, ObjectCollapsible, Requests, Request } from "fumadocs-ui/components/api";
+
+# Administrative API Reference
+
+## Overview
+
+The Administrative API provides secure endpoints for managing users, permissions, and system configurations in Hawiyat. These endpoints are restricted to administrators and require proper authentication.
+
+### Authentication
+
+All administrative endpoints require:
+- Valid Bearer token authentication
+- Administrative privileges
+- Proper scope permissions
+
+### Rate Limiting
+
+- Max 100 requests per minute
+- Burst allowance: 200 requests
+- Rate limit headers included in responses
+
+### Error Handling
+
+All endpoints follow a consistent error response format:
+```typescript
+{
+  message: string;    // Human-readable error message
+  code: string;       // Error code for programmatic handling
+  issues?: {         // Optional array of specific issues
+    message: string; // Detailed error information
+  }[];
+}
+```
 
 <Root>
 
@@ -11,20 +44,36 @@ import { Root, API, APIInfo, APIExample, Responses, Response, ResponseTypes, Exa
 
 <APIInfo method={"GET"} route={"/admin.one"}>
 
-## admin-one
+## Get Admin Status
 
-### Authorization
+Get the current administrative status and capabilities. This endpoint verifies administrative access and returns the current configuration state.
+
+### Authentication Requirements
 
 <Property name={"Authorization"} type={"Bearer <token>"} required={true}>
 
 In: `header`
+- Token must have administrative scope
+- Must be an active session
+- IP address must be allowlisted
 
 </Property>
 
+### Response Codes
+
 | Status code | Description |
 | ----------- | ----------- |
-| `200` | Successful response |
-| `default` | Error response |
+| `200` | Successfully retrieved admin status |
+| `401` | Unauthorized - Invalid or expired token |
+| `403` | Forbidden - Insufficient privileges |
+| `429` | Too Many Requests - Rate limit exceeded |
+| `default` | Unexpected error occurred |
+
+### Security Considerations
+- Endpoint is rate limited
+- All access attempts are logged
+- Token validation includes scope verification
+- IP-based access control enforced
 
 </APIInfo>
 
@@ -102,23 +151,41 @@ export interface Response {
 
 <APIInfo method={"POST"} route={"/admin.createUserInvitation"}>
 
-## admin-createUserInvitation
+## Create User Invitation
 
-### Authorization
+Creates a new user invitation for accessing the Hawiyat platform. This endpoint generates a secure invitation token and sends it to the specified email address.
+
+### Authentication Requirements
 
 <Property name={"Authorization"} type={"Bearer <token>"} required={true}>
 
 In: `header`
+- Administrative access required
+- User management permissions needed
+- Active session verification
 
 </Property>
 
-### Request Body
+### Request Body Parameters
 
 <Property name={"email"} type={"string"} required={true} deprecated={undefined}>
 
-<span>Format:  `"email"`</span>
+<span>Format: `"email"`</span>
+
+Requirements:
+- Must be a valid email format
+- Domain must be allowlisted
+- Cannot be an existing user's email
+- Maximum length: 255 characters
 
 </Property>
+
+### Business Rules
+- Maximum 100 active invitations per administrator
+- Invitations expire after 7 days
+- Rate limited to 10 invitations per minute
+- Duplicate invitations are not allowed
+- Email verification required
 
 | Status code | Description |
 | ----------- | ----------- |
@@ -204,23 +271,50 @@ export interface Response {
 
 <APIInfo method={"POST"} route={"/admin.removeUser"}>
 
-## admin-removeUser
+## Remove User
 
-### Authorization
+Permanently removes a user from the Hawiyat platform. This action is irreversible and will remove all associated data, permissions, and access tokens.
+
+### Authentication Requirements
 
 <Property name={"Authorization"} type={"Bearer <token>"} required={true}>
 
 In: `header`
+- Super admin privileges required
+- Two-factor authentication required
+- Audit logging enabled
+- IP restriction enforced
 
 </Property>
 
-### Request Body
+### Request Body Parameters
 
 <Property name={"authId"} type={"string"} required={true} deprecated={undefined}>
 
-<span>Minimum length:  `1`</span>
+<span>Minimum length: `1`</span>
+
+Validation Rules:
+- Must be a valid UUID v4 format
+- User must exist in the system
+- Cannot remove super admin accounts
+- Cannot remove your own account
+- Must not have active sessions
 
 </Property>
+
+### System Impact
+- All user sessions terminated
+- Access tokens revoked
+- Project permissions removed
+- Service access revoked
+- Audit logs preserved
+- Backup created automatically
+
+### Security Measures
+- Requires confirmation code
+- Action is logged and audited
+- Notification sent to admins
+- Compliance check performed
 
 | Status code | Description |
 | ----------- | ----------- |
@@ -405,59 +499,151 @@ export interface Response {
 
 <APIInfo method={"POST"} route={"/admin.assignPermissions"}>
 
-## admin-assignPermissions
+## Assign User Permissions
 
-### Authorization
+Configure detailed user permissions and access rights within the Hawiyat platform. This endpoint provides granular control over user capabilities and resource access.
+
+### Authentication Requirements
 
 <Property name={"Authorization"} type={"Bearer <token>"} required={true}>
 
 In: `header`
+- Administrative privileges required
+- Permission management scope needed
+- Active session verification
+- Audit logging enabled
 
 </Property>
 
-### Request Body
+### Request Body Parameters
 
 <Property name={"userId"} type={"string"} required={true} deprecated={undefined}>
 
-<span>Minimum length:  `1`</span>
+<span>Minimum length: `1`</span>
+
+User Identification:
+- Must be a valid UUID v4
+- User must exist and be active
+- Cannot modify super admin permissions
+- Case-sensitive
 
 </Property>
 
+### Resource Management Permissions
+
 <Property name={"canCreateProjects"} type={"boolean"} required={true} deprecated={undefined}>
+
+Project Creation Rights:
+- Allows creating new projects
+- Includes project template access
+- Resource quota applies
+- Audit logging enabled
 
 </Property>
 
 <Property name={"canCreateServices"} type={"boolean"} required={true} deprecated={undefined}>
 
+Service Management Rights:
+- Service creation capability
+- Container deployment access
+- Resource limit enforcement
+- Monitoring access included
+
 </Property>
 
 <Property name={"canDeleteProjects"} type={"boolean"} required={true} deprecated={undefined}>
+
+Project Deletion Authority:
+- Project removal rights
+- Backup requirement check
+- Compliance verification
+- Cascading deletion control
 
 </Property>
 
 <Property name={"canDeleteServices"} type={"boolean"} required={true} deprecated={undefined}>
 
+Service Deletion Rights:
+- Service termination ability
+- State verification required
+- Dependency check enabled
+- Backup verification
+
 </Property>
 
+### Access Control Lists
+
 <Property name={"accesedProjects"} type={"array of string"} required={true} deprecated={undefined}>
+
+Project Access List:
+- Array of project IDs
+- Valid UUID v4 format
+- Maximum 100 projects
+- Existence verification
 
 </Property>
 
 <Property name={"accesedServices"} type={"array of string"} required={true} deprecated={undefined}>
 
+Service Access List:
+- Array of service IDs
+- Valid UUID v4 format
+- Maximum 200 services
+- Active service verification
+
 </Property>
 
+### System Access Rights
+
 <Property name={"canAccessToTraefikFiles"} type={"boolean"} required={true} deprecated={undefined}>
+
+Traefik Configuration Access:
+- Route configuration access
+- Certificate management
+- Rule modification rights
+- Middleware configuration
 
 </Property>
 
 <Property name={"canAccessToDocker"} type={"boolean"} required={true} deprecated={undefined}>
 
+Docker System Access:
+- Container management
+- Network configuration
+- Volume management
+- Registry access
+
 </Property>
 
 <Property name={"canAccessToAPI"} type={"boolean"} required={true} deprecated={undefined}>
 
+API Access Rights:
+- API endpoint access
+- Rate limit configuration
+- Token generation
+- Scope management
+
 </Property>
+
+### Implementation Notes
+
+1. **Validation Rules**:
+   - All boolean flags default to false
+   - Arrays must not be empty when access is granted
+   - Resource limits are enforced
+   - Circular dependencies prevented
+
+2. **Security Measures**:
+   - Permission changes are logged
+   - Notification system enabled
+   - Conflict resolution built-in
+   - Version control maintained
+
+3. **Performance Considerations**:
+   - Batch processing available
+   - Cache invalidation handled
+   - Transaction management
+   - Rollback support
 
 | Status code | Description |
 | ----------- | ----------- |
